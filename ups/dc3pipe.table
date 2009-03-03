@@ -1,0 +1,8 @@
+# setupRequired(orca)
+# setupRequired(pex_harness)
+# setupRequired(ap)
+# setupRequired(mops)
+
+envPrepend(PATH, ${PRODUCT_DIR}/bin)
+envPrepend(PORT_RANGE, "35001:35099")
+envPrepend(MPIEXEC_PORT_RANGE, "35001:35099")
