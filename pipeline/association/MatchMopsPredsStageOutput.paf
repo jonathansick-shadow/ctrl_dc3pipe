@@ -1,0 +1,38 @@
+#<?cfg paf policy ?>
+#
+# DC2 policy file for the lsst.dps.IOStage.OutputStage
+# that persists lsst.ap.pipeline.MatchMopsPredsStage outputs
+
+AdditionalData: "visitId=triggerAssociationEvent.visitId"
+RunMode: "preprocess"
+OutputItems: {
+    MopsPredToDiaSourceMatches: {
+        Required: true
+        StoragePolicy: {
+            Storage:  "DbTsvStorage"
+            Location: "mysql://lsst10.ncsa.uiuc.edu:3306/%{runId}"
+        }
+    }
+    NewObjectIdPairs: {
+        Required: true
+        StoragePolicy: {
+            Storage:  "DbTsvStorage"
+            Location: "mysql://lsst10.ncsa.uiuc.edu:3306/%{runId}"
+        }
+    }
+}
+Persistence: {
+    Formatter: {
+        IdPairVector: {
+            NewObjectIdPairs: {
+                templateTableName: "IdPair"
+            }
+        }
+        MatchPairVector: {
+            MopsPredToDiaSourceMatches: {
+                templateTableName: "MatchPair"
+            }
+        }
+    }
+}
+

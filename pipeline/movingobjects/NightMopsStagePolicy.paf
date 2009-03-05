@@ -1,0 +1,9 @@
+#<?cfg paf policy ?>
+# Default NightMops policy file
+
+# 
+ephemDB: "mysql://lsst10.ncsa.uiuc.edu:3306/DC2"
+fovDiam: 1.5
+#
+
+

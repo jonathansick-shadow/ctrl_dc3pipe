@@ -1,0 +1,16 @@
+About The data files in this directory.
+
+The file "exposures.list" contains information about the D4 image data. 
+Each row contains the following fields:
+
+(a) exposureId
+(b) RA in decimal degrees
+(c) decl in decimal degrees
+(d) filterId (either "i" or "r")
+(e) observation date (MJD)
+
+There is a line corresponding to every complete exposure available
+from D4; there are 906 exposures.
+
+The file "short.data" is similar in format but includes
+only 10 exposures.

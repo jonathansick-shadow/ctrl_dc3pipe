@@ -1,0 +1,6 @@
+RunMode: "preprocess"
+AdditionalData: "exposureId=triggerVisitEvent.exposureId" "filterName=triggerVisitEvent.filterName"
+Links: {
+	sourcePath: "/lsst/images/DC2/input/%(exposureId)d/"
+	destPath: "/share/lsst9/DC2root/%(runId)s/ipd/input/%(exposureId)d"
+}

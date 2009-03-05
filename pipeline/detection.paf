@@ -1,0 +1,29 @@
+#<?cfg paf policy ?> 
+#
+# A pipline for testing the detection stage.  
+#
+
+# executionMode:  oneloop
+
+shutdownTopic: shutdownDetection
+
+##
+# Stage configuration
+
+appStages: "lsst.dps.SymLinkStage.SymLinkStage"         # Stage 1
+appStages: "lsst.dps.IOStage.InputStage"                # Stage 2
+appStages: "lsst.detection.pipeline.DetectionStage"     # Stage 3
+appStages: "lsst.dps.IOStage.OutputStage"               # Stage 4
+appStages: "lsst.dps.EventStage.EventStage"             # Stage 5
+
+eventTopics: "triggerVisitEvent"                        # Stage 1
+eventTopics: "None"                                     # Stage 2
+eventTopics: "None"                                     # Stage 3
+eventTopics: "None"                                     # Stage 4
+eventTopics: "None"                                     # Stage 5
+
+stagePolicies: "detection/symlink_policy.paf"           # Stage 1
+stagePolicies: "detection/input_policy.paf"             # Stage 2
+stagePolicies: "detection/detection.paf"                # Stage 3
+stagePolicies: "detection/detectOutput_policy.paf"      # Stage 4
+stagePolicies: "detection/associationEvent_policy.paf"  # Stage 5

@@ -1,0 +1,40 @@
+#<?cfg paf policy ?> 
+#
+# DC2 association pipeline
+#
+
+# executionMode:  oneloop
+
+shutdownTopic:  shutdownAssociation
+
+activemqBroker: lsst8.ncsa.uiuc.edu
+
+##
+# Stage configuration
+
+appStages:      "lsst.ap.pipeline.LoadStage"                  # Stage 1
+appStages:      "lsst.pex.harness.IOStage.InputStage"         # Stage 2
+appStages:      "lsst.ap.pipeline.MatchDiaSourcesStage"       # Stage 3
+appStages:      "lsst.pex.harness.IOStage.OutputStage"        # Stage 4
+appStages:      "lsst.pex.harness.IOStage.InputStage"         # Stage 5
+appStages:      "lsst.ap.pipeline.MatchMopsPredsStage"        # Stage 6
+appStages:      "lsst.pex.harness.IOStage.OutputStage"        # Stage 7
+appStages:      "lsst.ap.pipeline.StoreStage"                 # Stage 8
+ 
+stagePolicies:  "association/LoadStage.paf"                   # Stage 1
+stagePolicies:  "association/MatchDiaSourcesStageInput.paf"   # Stage 2
+stagePolicies:  "None"                                        # Stage 3
+stagePolicies:  "association/MatchDiaSourcesStageOutput.paf"  # Stage 4
+stagePolicies:  "association/MatchMopsPredsStageInput.paf"    # Stage 5
+stagePolicies:  "None"                                        # Stage 6
+stagePolicies:  "association/MatchMopsPredsStageOutput.paf"   # Stage 7
+stagePolicies:  "association/StoreStage.paf"                  # Stage 8
+
+eventTopics:    "triggerAssociationEvent"                     # Stage 1
+eventTopics:    "None"                                        # Stage 2
+eventTopics:    "None"                                        # Stage 3
+eventTopics:    "None"                                        # Stage 4
+eventTopics:    "triggerMatchMopsPredsEvent"                  # Stage 5
+eventTopics:    "None"                                        # Stage 6
+eventTopics:    "None"                                        # Stage 7
+eventTopics:    "None"                                        # Stage 8
