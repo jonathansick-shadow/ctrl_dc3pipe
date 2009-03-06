@@ -1,2 +1,2 @@
-source /lsst/DMSstack/loadLSST.sh
-setup dc2pipe 
+source /lsst/DC3/stacks/default/loadLSST.sh
+setup dc3pipe 
