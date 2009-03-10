@@ -1,0 +1,60 @@
+#<?cfg paf policy ?> 
+# 
+# DC2 image processing pipeline including image subtraction and 
+# source detection
+#
+
+# executionMode: oneloop
+
+# receiving an event with this topic name will shut down the pipeline
+#
+localLogMode: true
+eventBrokerHost: "lsst8.ncsa.uiuc.edu"
+shutdownTopic: shutdownImageSubtractionDetection
+
+##
+# Stage configuration
+
+# Stage 2: load input data (science and template images) into memory
+appStage: {
+   stageName: "lsst.pex.harness.IOStage.InputStage"
+   eventTopic: "triggerVisitEvent"  
+   stagePolicy: "imageSubtractionDetection/input_policy.paf"
+}
+
+# Stage 4: persist the per-visit metadata
+appStage: {
+   stageName: "lsst.pex.harness.IOStage.OutputStage"
+   eventTopic: "None"
+   stagePolicy: "imageSubtractionDetection/metadataOutput_policy.paf"
+}
+
+# Stage 5: persist the Exposure with its metadata
+appStage: {
+   stageName: "lsst.pex.harness.IOStage.OutputStage"
+   eventTopic: "None"
+   stagePolicy: "imageSubtractionDetection/exposureOutput_policy.paf"
+}
+
+# Stage 7: write out the difference image
+appStage: {
+   stageName: "lsst.pex.harness.IOStage.OutputStage"
+   eventTopic: "None"
+   stagePolicy: "imageSubtractionDetection/subtractOutput_policy.paf"
+}
+
+# Stage 9: write out the table of detected sources to the database
+appStage: {
+   stageName: "lsst.pex.harness.IOStage.OutputStage"
+   eventTopic: "None"
+   stagePolicy: "imageSubtractionDetection/detectOutput_policy.paf"
+}
+
+# Stage 10: send an event to the association pipeline indicating that 
+#           new detections are available
+appStage: {
+   stageName: "lsst.pex.harness.EventStage.EventStage"
+   eventTopic: "None"
+   stagePolicy: "imageSubtractionDetection/associationEvent_policy.paf"
+}
+
