@@ -36,11 +36,11 @@ cl.add_option("-m", "--mpdconfset", action="store_true", dest="forceMpdConf",
 cl.opts = {}
 cl.args = []
 
-pkgdirvar = "DC2PIPE_DIR"
+pkgdirvar = "DC3PIPE_DIR"
 ensurempdconfcmd = "forceMpdConf.sh"
 
 def createLog():
-    log = Log(Log.getDefaultLog(), "dc2pipe")
+    log = Log(Log.getDefaultLog(), "dc3pipe")
     return log
 
 def setVerbosity(verbosity):
@@ -55,7 +55,7 @@ def main():
 
         if len(cl.args) < 1:
             print usage
-            raise RuntimeError("Missing arguments: dc2pipe_policy_file runId")
+            raise RuntimeError("Missing arguments: dc3pipe_policy_file runId")
         if len(cl.args) < 2:
             print usage
             raise RuntimeError("Missing argument: runid")
@@ -72,7 +72,7 @@ def main():
 
 def launchPipeline(policyFile, runid):
     if not os.environ.has_key(pkgdirvar):
-        raise RuntimeError("DC2PIPE_DIR env. var not set (setup dc2pipe)")
+        raise RuntimeError("DC3PIPE_DIR env. var not set (setup dc3pipe)")
 
     nodesfile = "nodelist.scr"
     if cl.opts.nodelist is not None:

@@ -1,10 +1,10 @@
 #! /bin/bash
 #
-if [ -z "$DC2PIPE_DIR" ]; then
-    echo "DC2PIPE_DIR environment not set; you need to 'source loadLSST.?'"
+if [ -z "$DC3PIPE_DIR" ]; then
+    echo "DC3PIPE_DIR environment not set; you need to 'source loadLSST.?'"
     exit 1
 fi
-DEF_NODES_FILE=$DC2PIPE_DIR/etc/ensuressh_nodes.txt
+DEF_NODES_FILE=$DC3PIPE_DIR/etc/ensuressh_nodes.txt
 MPDCONF=etc/mpd.conf
 
 NODEFILE=$1
@@ -19,6 +19,6 @@ nodes=`cat $NODEFILE`
 
 for node in $nodes; do 
     echo Updating \$HOME/.mpd.conf on $node
-    cat $DC2PIPE_DIR/$MPDCONF | ssh $node csh -f -c "'cat >>! $HOME/.mpd.conf'"
+    cat $DC3PIPE_DIR/$MPDCONF | ssh $node csh -f -c "'cat >>! $HOME/.mpd.conf'"
     ssh $node chmod 600 .mpd.conf
 done

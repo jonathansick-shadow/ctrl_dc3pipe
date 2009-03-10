@@ -5,7 +5,7 @@ import optparse, traceback
 from lsst.pex.logging import Log
 from lsst.pex.policy import Policy
 
-usage = """usage: %prog [-vqs] [-V int] [-p dc2pipe_policy_file] [-r runId] [node ...]
+usage = """usage: %prog [-vqs] [-V int] [-p dc3pipe_policy_file] [-r runId] [node ...]
 
 Kill the pipelines running on a give set of head nodes.
 """
@@ -25,7 +25,7 @@ cl.add_option("-s", "--silent", action="store_const", const=-3,
               help="print only warning & error messages")
 cl.add_option("-p", "--policy", action="store", dest="policy", 
               default=None, metavar="policy_file",
-              help="the dc2pipe policy file used to launch the pipelines")
+              help="the dc3pipe policy file used to launch the pipelines")
 cl.add_option("-r", "--runid", action="store", dest="runid", 
               default="", metavar="runid",
               help="restrict the kill to pipelines running with this runid")
@@ -34,12 +34,12 @@ cl.add_option("-r", "--runid", action="store", dest="runid",
 cl.opts = {}
 cl.args = []
 
-pkgdirvar = "DC2PIPE_DIR"
+pkgdirvar = "DC3PIPE_DIR"
 defDomain = ".ncsa.uiuc.edu"
 remkill = "killpipe.sh"
 
 def createLog():
-    log = Log(Log.getDefaultLog(), "dc2pipe")
+    log = Log(Log.getDefaultLog(), "dc3pipe")
     return log
 
 def setVerbosity(verbosity):

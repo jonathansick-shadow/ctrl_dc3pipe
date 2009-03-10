@@ -6,12 +6,12 @@ if echo $0 | grep -q /; then
     bindir=`dirname $0`
 fi
 
-if [ -z "$DC2PIPE_DIR" ]; then
+if [ -z "$DC3PIPE_DIR" ]; then
 
-    # make sure we load the dc2pipe environment
-    version=`dirname "$bindir"`         # dc2pipe version directory
+    # make sure we load the dc3pipe environment
+    version=`dirname "$bindir"`         # dc3pipe version directory
     if [ "$version" = "."  ]; then
-        echo "Unable to load dc2pipe: unable to determin version from $bindir"
+        echo "Unable to load dc3pipe: unable to determin version from $bindir"
         exit 1
     fi
 
@@ -31,7 +31,7 @@ if [ -z "$DC2PIPE_DIR" ]; then
 
     SHELL=/bin/bash
     source  $LSST_HOME/loadLSST.sh
-    setup dc2pipe $version
+    setup dc3pipe $version
 fi
 
 eups list 2> /dev/null | grep Setup > eups-env.txt
