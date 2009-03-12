@@ -1,0 +1,26 @@
+#<?cfg paf policy ?>
+# Make sure that this happens in the Slices.
+RunMode: "process"
+AdditionalData: "visitId=triggerImageprocEvent0.visitId"
+
+OutputItems: {
+   MopsPreds: {
+       Required: true
+       StoragePolicy: {
+           Storage: "DbTsvStorage"
+           Location: "mysql://lsst10.ncsa.uiuc.edu:3306/%{runId}"
+           # Location: "mysql://lsst10.ncsa.uiuc.edu:3306/fpierfed_cfhtls"
+       }
+   }
+}
+Persistence: {
+   Formatter: {
+       PersistableMovingObjectPredictionVector: {
+           MopsPreds: {
+               templateTableName: "_tmpl_mops_Prediction"
+               perVisitTableNamePattern: "_tmp_v%1%_Preds"
+           }
+       }
+   }
+}
+
