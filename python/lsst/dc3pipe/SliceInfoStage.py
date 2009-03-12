@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 
+from lsst.pex.harness import Stage
+
 class SliceInfoStage(Stage):
     '''Compute per-slice information.'''
 
@@ -11,10 +13,20 @@ class SliceInfoStage(Stage):
         Compute the ampId and ccdId corresponding to this slice.
         """
         self.activeClipboard = self.inputQueue.getNextDataset()
+
         sliceId = self.getRank()
-        nCcds = self._policy.get("ccdsPerFocalPlane")
-        nAmps = self._policy.get("ampsPerCcd")
-        assert nAmps * nCcds == getUniverseSize()
-        self.activeClipboard["ampId"] = sliceId % nAmps
-        self.activeClipboard["ccdId"] = sliceId / nAmps
+
+        nAmps = self._policy.get("nAmps")
+        nCcds = self._policy.get("nCcds")
+
+        ccdFormula = self._policy.get("ccdIdFormula")
+        ampFormula = self._policy.get("ampIdFormula")
+        ccdFormat = self._policy.get("ccdIdStringFormat")
+        ampFormat = self._policy.get("ampIdStringFormat")
+
+        ccdId = eval(ccdFormula)
+        ampId = eval(ampFormula)
+        ccdIdString = ccdFormat % (ccdId)
+        ampIdString = ampFormat % (ampId)
+
         self.outputQueue.addDataset(self.activeClipboard)
