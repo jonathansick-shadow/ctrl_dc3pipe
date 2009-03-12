@@ -25,7 +25,7 @@ class SliceInfoStage(Stage):
         ccdId = eval(ccdFormula)
         ampId = eval(ampFormula)
 
-        self.activeClipboard["ccdId"] = ccdId
-        self.activeClipboard["ampId"] = ampId
+        self.activeClipboard.put("ccdId") = ccdId
+        self.activeClipboard.put("ampId") = ampId
 
         self.outputQueue.addDataset(self.activeClipboard)
