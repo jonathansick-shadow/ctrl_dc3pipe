@@ -2,6 +2,9 @@
 
 # Policy configuration for Cfht data
 
+####
+# TO GENERATE THE EVENT
+
 # Unique visit ID
 visitIdKeyword: OBSID
 
@@ -34,6 +37,10 @@ airmassKeyword: AIRMASS
 # Airmass of mid-exposure
 datasetIdKeyword: OBJECT
 
+# Persisted name of file
+filenameKeyword: FILENAME
+
+
 # ANY DATA CONVERSIONS BELOW
 
 # Convert the time?
@@ -46,3 +53,22 @@ convertDateobsToTai: true
 # False if information is for the middle of the exposure
 convertDateobsToMidExposure: true
 
+
+####
+# FOR THE ISR
+
+# For all data
+gainKeyword: GAIN
+saturationKeyword: SATURATE
+trimsecKeyword: TRIMSEC
+overscanKeyword: BIASSEC
+
+# For calibration data
+# meancountsKeyword: IMMODE
+# darkscaleKeyword: EXPTIME
+# flatscaleKeyword: IMMODE
+# illumscaleKeyword: IMMODE
+
+# Not use in DC3a
+# fringeskyKeyword: FRNG_SKY
+# fringeampKeyword: FRNG_RNG

@@ -16,7 +16,22 @@ decl       : double
 equinox    : double
 airmass    : double
 dateobs    : double
+filename   : string
 
 # Information needed for ISR
+gain       : float
+saturation : float
+trimsec    : string
+overscan   : string
+
+# calibration data only
+# meancounts : float
+# darkscale  : float
+# flatscale  : float
+# illumscale : float
+
+# fringe frames; not for dc3a
+# fringesky  : float
+# fringeamp  : float
 
 # Information needed for your particular stage
