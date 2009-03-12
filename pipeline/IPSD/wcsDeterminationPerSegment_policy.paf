@@ -1,0 +1,17 @@
+#<?cfg paf dictionary ?>
+#
+# Determine Wcs for one segment (a single exposure)
+#
+astrometryIndicesGlob: "/lsst/DC3/stacks/gcc412/20feb/Generic/astrometry_net_data/usnob/index-*.fits"
+exposureNames: "calibratedExposure"
+sourceSetNames: "sourceSet"
+# Minimum flux of sources for WCS determination; default is 1000.0
+fluxLimit: 1000.0
+# Inform the solver that the image may suffer from some distortion. Leave this on if a purely linear wcs solution
+# will get the postions of some stars wrong by more than 1 pixel. Default is true
+allowDistortion: true
+# How good does a match need to be to be accepted. Typical value is log(1e12) = 27.631
+matchThreshold: 27.631
+# Range of allowed fit pixel scale = [input scale/pixelScaleRangeFactor, input scale * pixelScaleRangeFactor]
+# must be >= 1.0; defaults to 1.1
+pixelScaleRangeFactor: 1.1
