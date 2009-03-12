@@ -21,7 +21,7 @@ dateObsKeyword: MJD-OBS
 exptimeKeyword: EXPTIME
 
 # Filter
-filterIdKeyword: FILTER
+filterKeyword: FILTER
 
 # Pointing Ra and Decl
 boresightRaKeyword: RA_DEG

@@ -15,34 +15,34 @@ ampIdKeyword: LSSTAMP
 exposureIdKeyword: EXPID
 
 # Time of mid-observation in TAI
-dateObsKeyword: MJD-OBS
+dateobsKeyword: MJD-OBS
 
 # Exposure time in seconds
 exptimeKeyword: EXPTIME
 
 # Filter
-filterIdKeyword: FILTER
+filterKeyword: FILTER
 
 # Pointing Ra and Decl
-boresightRaKeyword: RA_DEG
-boresightDeclKeyword: DEC_DEG
+raKeyword: RA_DEG
+declKeyword: DEC_DEG
 equinoxKeyword: EQUINOX
 
 # Airmass of mid-exposure
 airmassKeyword: AIRMASS
 
 # Airmass of mid-exposure
-dataSetIdKeyword: OBJECT
+datasetIdKeyword: OBJECT
 
 # ANY DATA CONVERSIONS BELOW
 
 # Convert the time?
 # True if information is in UTC
 # False if information is in TAI
-convertDateObstoTai: true
+convertDateobsToTai: true
 
-# Shift the DateObs?
+# Shift the Dateobs?
 # True if information is for the start of the exposure
 # False if information is for the middle of the exposure
-convertDateObstoMidExposure: true
+convertDateobsToMidExposure: true
 
