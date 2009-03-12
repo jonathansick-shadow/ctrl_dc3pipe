@@ -21,12 +21,11 @@ class SliceInfoStage(Stage):
 
         ccdFormula = self._policy.get("ccdIdFormula")
         ampFormula = self._policy.get("ampIdFormula")
-        ccdFormat = self._policy.get("ccdIdStringFormat")
-        ampFormat = self._policy.get("ampIdStringFormat")
 
         ccdId = eval(ccdFormula)
         ampId = eval(ampFormula)
-        ccdIdString = ccdFormat % (ccdId)
-        ampIdString = ampFormat % (ampId)
+
+        self.activeClipboard["ccdId"] = ccdId
+        self.activeClipboard["ampId"] = ampId
 
         self.outputQueue.addDataset(self.activeClipboard)
