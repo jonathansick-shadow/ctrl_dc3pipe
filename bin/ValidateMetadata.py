@@ -37,6 +37,9 @@ def ValidateMetadata(metadata, metadataPolicy=None):
     return True
     
 
+def WcsFromMetadata(metadata):
+    return afwImage.Wcs(metadata)
+
 def TransformMetadata(metadata, datatypePolicy, metadataPolicy=None, suffix='Keyword'):
     """This stage takes an input set of metadata and transforms this
     to the LSST standard.  It will be input-dataset specific, and the
@@ -62,7 +65,6 @@ def TransformMetadata(metadata, datatypePolicy, metadataPolicy=None, suffix='Key
             keyword = datatypePolicy.getString(mappingKey)
             metadata.copy(paramName, metadata, keyword)
     
-
     # Any additional operations on the input data?
     if datatypePolicy.exists('convertDateobsToTai'):
         convertDateobsToTai = datatypePolicy.getBool('convertDateobsToTai')
@@ -76,6 +78,6 @@ def TransformMetadata(metadata, datatypePolicy, metadataPolicy=None, suffix='Key
         convertDateobsToMidExposure = datatypePolicy.getBool('convertDateobsToMidExposure')
         if convertDateobsToMidExposure:
             dateobs  = metadata.getDouble('dateobs')
-            dateobs += metadata.getDouble('exptime') * 0.5
+            dateobs += metadata.getDouble('exptime') * 0.5 / 3600. / 24.
             metadata.setDouble('dateobs', dateobs)
     

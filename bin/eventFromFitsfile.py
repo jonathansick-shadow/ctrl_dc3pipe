@@ -51,7 +51,8 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
         eventTransmitter = ctrlEvents.EventTransmitter(hostName, topicName+'0')
     elif event.getInt('exposureId') == 1:
         eventTransmitter = ctrlEvents.EventTransmitter(hostName, topicName+'1')
-        
+
+    print event.getDouble('dateobs')
     eventTransmitter.publish(event)
 
 
