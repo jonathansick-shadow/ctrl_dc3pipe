@@ -47,6 +47,7 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
     event.copy('ccdId',       metadata, ccdIdKeyword)
     event.copy('ampId',       metadata, ampIdKeyword)
     event.copy('exposureId',  metadata, exposureIdKeyword)
+    event.copy('datasetId',   metadata, dataSetIdKeyword)
     
     event.copy('filter',      metadata, filterIdKeyword)
     event.copy('exptime',     metadata, exptimeKeyword)
@@ -54,7 +55,6 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
     event.copy('decl',        metadata, boresightDeclKeyword)
     event.copy('equinox',     metadata, equinoxKeyword)
     event.copy('airmass',     metadata, airmassKeyword)
-    event.copy('datasetId',   metadata, dataSetIdKeyword)
 
     # Operations on the input metadata
     if convertDateObstoTai or convertDateObstoMidExposure:
@@ -67,10 +67,10 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
         if convertDateObstoMidExposure:
             dateobs += metadata.getDouble(exptimeKeyword) * 0.5
 
-        event.setDouble('dateObs', dateobs)
+        event.setDouble('dateobs', dateobs)
         
     else:
-        event.copy('dateObs', metadata, dateObsKeyword)
+        event.copy('dateobs', metadata, dateObsKeyword)
 
     
     # Policy for the event transmission
