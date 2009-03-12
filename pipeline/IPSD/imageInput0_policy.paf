@@ -1,0 +1,15 @@
+AdditionalData: "datasetId=triggerImageprocEvent0.datasetId"
+AdditionalData: "visitId=triggerImageprocEvent0.visitId"
+AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
+AdditionalData: "ccdId=triggerImageprocEvent0.ccdId"
+AdditionalData: "ampId=triggerImageprocEvent0.ampId"
+InputItems: {
+    rawCameraImage0: {
+        Type: "ImageF"
+        PythonType: "lsst.afw.image.ImageF"
+        StoragePolicy: {
+            Storage: "FitsStorage"
+            Location: "%(input)/raw/%(datasetId)/%(visitId)/%(exposureId)/raw-%06d(visitId)-e%03d(exposureId)-c%03d(ccdId)-a%03d(ampId).fits"
+        }
+    }
+}
