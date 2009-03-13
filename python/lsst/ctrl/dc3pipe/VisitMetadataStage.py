@@ -7,7 +7,8 @@ class VisitMetadataStage(Stage):
     def preprocess(self):
         self.activeClipboard = self.inputQueue.getNextDataset()
 
-        event = self.activeClipboard.get("triggerImageprocEvent0")
+        eventName = self._policy.get("inputEvent")
+        event = self.activeClipboard.get(eventName)
         visitId = event.get("visitId")
         exposureId = event.get("exposureId")
 
@@ -21,7 +22,7 @@ class VisitMetadataStage(Stage):
         visit = PropertySet()
         visit.set("visitId", visitId)
         visit.set("exposureId", fpaExposureId)
-        self.activeClipboard.put("visit", visit)
+        self.activeClipboard.put("visit" + str(exposureId), visit)
 
         rawFpaExposure = PropertySet()
         rawFpaExposure.set("fpaExposureId", fpaExposureId)
@@ -34,19 +35,22 @@ class VisitMetadataStage(Stage):
         rawFpaExposure.set("mjdObs", DateTime(event.get("dateObs")).mjd())
         rawFpaExposure.set("expTime", event.get("expTime"))
         rawFpaExposure.set("airmass", event.get("airmass"))
-        self.activeClipboard.put("fpaExposure", rawFpaExposure)
+        self.activeClipboard.put("fpaExposure" + str(exposureId),
+                rawFpaExposure)
 
         rawCcdExposure = PropertySet()
         rawCcdExposure.set("ccdExposureId", ccdExposureId)
         rawCcdExposure.set("fpaExposureId", fpaExposureId) 
-        self.activeClipboard.put("ccdExposure", rawCcdExposure)
+        self.activeClipboard.put("ccdExposure" + str(exposureId),
+                rawCcdExposure)
 
         # rely on default postprocess() to move clipboard to output queue
 
     def process(self):
         self.activeClipboard = self.inputQueue.getNextDataset()
 
-        event = self.activeClipboard.get("triggerImageprocEvent0")
+        eventName = self._policy.get("inputEvent")
+        event = self.activeClipboard.get(eventName)
         visitId = event.get("visitId")
         exposureId = event.get("exposureId")
 
@@ -65,7 +69,8 @@ class VisitMetadataStage(Stage):
         exposureMetadata.set("fpaExposureId", fpaExposureId)
         exposureMetadata.set("ccdExposureId", ccdExposureId)
         exposureMetadata.set("ampExposureId", ampExposureId)
-        self.activeClipboard.put("exposureMetadata", exposureMetadata)
+        self.activeClipboard.put("exposureMetadata" + str(exposureId),
+                exposureMetadata)
 
         self.outputQueue.addDataset(self.activeClipboard)
 
