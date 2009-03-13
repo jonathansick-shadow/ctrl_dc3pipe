@@ -8,7 +8,7 @@ def validateMetadata(metadata, metadataPolicy):
     paramNames = metadataPolicy.paramNames(1)
     for paramName in paramNames:
         if not metadata.exists(paramName):
-            raise RuntimeError, 'Unable to find \'%s\' in metadata' % (paramName))
+            raise RuntimeError, 'Unable to find \'%s\' in metadata' % (paramName,)
         # TBD; VALIDATE AGAINST DICTIONARY FOR TYPE ETC
 
 def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
