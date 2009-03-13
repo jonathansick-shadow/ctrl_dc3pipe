@@ -6,7 +6,7 @@ import lsst.afw.math as afwMath
 import lsst.pex.policy as pexPolicy
 import lsst.daf.base as dafBase
 import lsst.ctrl.events as ctrlEvents
-from ValidateMetadata import *
+from lsst.ctrl.dc3pipe.MetadataStages import transformMetadata, validateMetadata
 
 import lsst.pex.logging as logging
 Verbosity = 4
@@ -16,11 +16,16 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
     # For DC3a, inputfile is a .fits file on disk
     metadata = afwImage.readMetadata(inputfile)
 
+    dc3pipeDir = eups.productDir('ctrl_dc3pipe')
+    dc3PolicyPath = os.path.join(dc3pipeDir, 'pipeline',
+            'dc3MetadataPolicy.paf')
+    metadataPolicy = pexPolicy.Policy.createPolicy(dc3PolicyPath)
+
     # First, transform the input metdata
-    TransformMetadata(metadata, datatypePolicy)
+    transformMetadata(metadata, datatypePolicy, metadataPolicy, 'Keyword')
 
     # To be consistent...
-    if not ValidateMetadata(metadata):
+    if not validateMetadata(metadata, metadataPolicy):
         pexLog.Trace('dc3pipe.eventfrominputfile', 1, 'Unable to create event from %s' % (inputfile))
         return False
         

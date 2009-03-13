@@ -4,6 +4,43 @@ import lsst.afw.image as afwImage
 
 from lsst.pex.harness.Stage import Stage
 
+def validateMetadata(metadata, metadataPolicy):
+    paramNames = metadataPolicy.paramNames(1)
+    for paramName in paramNames:
+        if not metadata.exists(paramName):
+            raise RuntimeError, 'Unable to find \'%s\' in metadata' % (paramName))
+        # TBD; VALIDATE AGAINST DICTIONARY FOR TYPE ETC
+
+def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
+    paramNames = metadataPolicy.paramNames(1)
+    for paramName in paramNames:
+        # If it already exists don't try and update it
+        if metadata.exists(paramName):
+            continue
+        
+        mappingKey = paramName + suffix
+        if datatypePolicy.exists(mappingKey):
+            keyword = datatypePolicy.getString(mappingKey)
+            metadata.copy(paramName, metadata, keyword)
+    
+    # Any additional operations on the input data?
+    if datatypePolicy.exists('convertDateobsToTai'):
+        convertDateobsToTai = datatypePolicy.getBool('convertDateobsToTai')
+        if convertDateobsToTai:
+            dateobs  = metadata.getDouble('dateobs')
+            dateTime = dafBase.DateTime(dateobs, dafBase.DateTime.UTC)
+            dateobs  = dateTime.mjd(dafBase.DateTime.TAI)
+            metadata.setDouble('dateobs', dateobs)
+
+    if datatypePolicy.exists('convertDateobsToMidExposure'):
+        convertDateobsToMidExposure = \
+            datatypePolicy.getBool('convertDateobsToMidExposure')
+        if convertDateobsToMidExposure:
+            dateobs  = metadata.getDouble('dateobs')
+            dateobs += metadata.getDouble('exptime') * 0.5 / 3600. / 24.
+            metadata.setDouble('dateobs', dateobs)
+
+
 class ValidateMetadataStage(Stage):
 
     """Validates that every field in metadataPolicy exists in the
@@ -21,14 +58,9 @@ class ValidateMetadataStage(Stage):
         metadataPolicy = self._policy.getPolicy("metadata")
         imageMetadataName = self._policy.get("imageMetadataName")
         metadata = self.activeClipboard.get(imageMetadataName)
-        paramNames = metadataPolicy.paramNames(1)
-        for paramName in paramNames:
-            if not metadata.exists(paramName):
-                raise RuntimeError, 'Unable to find \'%s\' in metadata' % (paramName))
-            # TBD; VALIDATE AGAINST DICTIONARY FOR TYPE ETC
+        validateMetadata(metadata, metadataPolicy)
         self.outputQueue.addDataset(self.activeClipboard)
     
-
 class TransformMetadataStage(Stage):
 
     """This stage takes an input set of metadata and transforms this
@@ -50,32 +82,7 @@ class TransformMetadataStage(Stage):
         else:
             suffix = "Keyword"
 
-        paramNames = metadataPolicy.paramNames(1)
-        for paramName in paramNames:
-            # If it already exists don't try and update it
-            if metadata.exists(paramName):
-                continue
-        
-            mappingKey = paramName + suffix
-            if datatypePolicy.exists(mappingKey):
-                keyword = datatypePolicy.getString(mappingKey)
-                metadata.copy(paramName, metadata, keyword)
-    
-        # Any additional operations on the input data?
-        if datatypePolicy.exists('convertDateobsToTai'):
-            convertDateobsToTai = datatypePolicy.getBool('convertDateobsToTai')
-            if convertDateobsToTai:
-                dateobs  = metadata.getDouble('dateobs')
-                dateTime = dafBase.DateTime(dateobs, dafBase.DateTime.UTC)
-                dateobs  = dateTime.mjd(dafBase.DateTime.TAI)
-                metadata.setDouble('dateobs', dateobs)
-
-        if datatypePolicy.exists('convertDateobsToMidExposure'):
-            convertDateobsToMidExposure = datatypePolicy.getBool('convertDateobsToMidExposure')
-            if convertDateobsToMidExposure:
-                dateobs  = metadata.getDouble('dateobs')
-                dateobs += metadata.getDouble('exptime') * 0.5 / 3600. / 24.
-                metadata.setDouble('dateobs', dateobs)
+        transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
 
         self.activeClipboard.put(imageMetadataName, metadata)
         self.activeClipboard.put("wcsGuess", afwImage.Wcs(metadata))
