@@ -74,8 +74,9 @@ class TransformMetadataStage(Stage):
         self.activeClipboard = self.inputQueue.getNextDataset()
         metadataPolicy = self._policy.getPolicy("metadata")
         datatypePolicy = self._policy.getPolicy("datatype")
-        imageMetadataName = self._policy.get("imageMetadataName")
-        metadata = self.activeClipboard.get(imageMetadataName)
+        imageName = self._policy.get("imageName")
+        decoratedImage = self.activeClipboard.get(imageName)
+        metadata = decoratedImage.getMetadata()
 
         if self._policy.exists("suffix"):
             suffix = self._policy.get("suffix")
@@ -84,7 +85,9 @@ class TransformMetadataStage(Stage):
 
         transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
 
-        self.activeClipboard.put(imageMetadataName, metadata)
-        self.activeClipboard.put("wcsGuess", afwImage.Wcs(metadata))
+        self.activeClipboard.put(metadataName, metadata)
+        self.activeClipboard.put(imageName, decoratedImage.getImage())
+        if self._policy.getBool("computeWcsGuess"):
+            self.activeClipboard.put("wcsGuess", afwImage.Wcs(metadata))
 
         self.outputQueue.addDataset(self.activeClipboard)
