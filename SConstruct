@@ -5,7 +5,7 @@
 import glob, os.path, re, os
 import lsst.SConsUtils as scons
 
-env = scons.makeEnv("dc3pipe", r"$HeadURL$")
+env = scons.makeEnv("ctrl_dc3pipe", r"$HeadURL$")
 
 
 
