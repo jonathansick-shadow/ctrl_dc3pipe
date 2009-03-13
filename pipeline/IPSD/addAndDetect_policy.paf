@@ -1,0 +1,21 @@
+#<? cfg paf policy ?>
+#
+# stage policy for AddAndDetectStage
+
+exposureKey: "calibratedExposure0"
+exposureKey: "calibratedExposure1"
+
+psfPolicy: {
+    algorithm: "DoubleGaussian"
+    width = 15
+    height = 15
+}
+detectionPolicy: {
+    minPixels:1 
+    thresholdValue: 3
+    thresholdType: "stdev"
+    thresholdPolarity: "both"
+}
+
+positiveDetectionKey: "positiveFootprintSet"
+negativeDetectionKey: "negativeFootprintSet"

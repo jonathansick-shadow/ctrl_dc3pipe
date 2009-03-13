@@ -207,34 +207,6 @@ execute: {
       stagePolicy: "IPSD/isr1_policy.paf"
    }
    
-   # Detect sources for WCS (exposure 1)
-   appStage: {
-      stageName: "lsst.meas.pipeline.SourceDetectionStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/sourceDetection1_policy.paf"
-   }
-   
-   # Measure sources for WCS (exposure 1)
-   appStage: {
-      stageName: "lsst.meas.pipeline.SourceMeasurementStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/sourceMasurement1_policy.paf"
-   }
-   
-   # Determine PSF (exposure 1)
-   appStage: {
-      stageName: "lsst.meas.pipeline.PsfDeterminationStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/psfDetermination1_policy.paf"
-   }
-   
-   # Persist WCS sources and PSF (exposure 1)
-   appStage: {
-      stageName: "lsst.pex.harness.IOStage.OutputStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/wcsSourcesAndPsfOutput1_policy.paf"
-   }
-   
    # Load WCS sources from entire CCD
    appStage: {
       stageName: "lsst.pex.harness.IOStage.InputStage"
