@@ -3,9 +3,10 @@
 
 # 
 ephemDB: "mysql://lsst10.ncsa.uiuc.edu:3306/fpierfed_cfhtls"
-# ephemDB: "mysql://lsst10.ncsa.uiuc.edu:3306/%{runId}"
 fovDiam: 1.5
 obscode: "568"
+RIDICOLOUSLY_VERBOSE: 1
+EXTRA_RIDICOLOUSLY_VERBOSE: 0
 #
 
 
