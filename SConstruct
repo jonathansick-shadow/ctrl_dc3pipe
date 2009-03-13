@@ -17,6 +17,7 @@ Alias("install", [env.Install(env['prefix'], "bin"),
                   env.Install(env['prefix'], "etc"),
                   env.Install(env['prefix'], "exposureLists"),
                   env.Install(env['prefix'], "pipeline"),
+                  env.Install(env['prefix'], "python"),
                   env.InstallEups(env['prefix'] + "/ups",
                                   glob.glob("ups/*.table"))])
 
