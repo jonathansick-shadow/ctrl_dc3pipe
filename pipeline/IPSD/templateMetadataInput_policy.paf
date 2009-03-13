@@ -3,14 +3,14 @@ AdditionalData: "visitId=triggerImageprocEvent0.visitId"
 AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
 AdditionalData: "ccdId=triggerImageprocEvent0.ccdId"
 AdditionalData: "ampId=triggerImageprocEvent0.ampId"
-AdditionalData: "filterName=triggerImageprocEvent0.filterName"
+AdditionalData: "filter=triggerImageprocEvent0.filter"
 InputItems: {
     templateWcs: {
         Type: "WCS"
         PythonType: "lsst.afw.image.WCS"
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(input)/template/%(datasetId)/85/%(filterName)/T0004_%(datasetId)_85_%(filterName).fits"
+            Location: "%(input)/template/%(datasetId)/85/%(filter)/T0004_%(datasetId)_85_%(filter).fits"
         }
     }
 }
