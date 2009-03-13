@@ -77,6 +77,7 @@ class TransformMetadataStage(Stage):
         metadataPolicy = self._policy.getPolicy("metadata")
         datatypePolicy = self._policy.getPolicy("datatype")
         imageName = self._policy.get("imageName")
+        metadataName = self._policy.get("metadataName")
         decoratedImage = self.activeClipboard.get(imageName)
         metadata = decoratedImage.getMetadata()
 
