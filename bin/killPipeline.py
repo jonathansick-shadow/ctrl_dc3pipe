@@ -34,7 +34,7 @@ cl.add_option("-r", "--runid", action="store", dest="runid",
 cl.opts = {}
 cl.args = []
 
-pkgdirvar = "DC3PIPE_DIR"
+pkgdirvar = "CTRL_DC3PIPE_DIR"
 defDomain = ".ncsa.uiuc.edu"
 remkill = "killpipe.sh"
 

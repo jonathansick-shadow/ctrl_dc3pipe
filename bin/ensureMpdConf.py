@@ -8,13 +8,13 @@ from lsst.pex.policy import Policy
 usage = """usage: %%prog [-vqs] [-V int]
 
 Ensures that the HOME directory contains a .mpd.conf file.  If one does not 
-exists, a default is copied into it from the $DC3PIPE_DIR/etc directory. 
+exists, a default is copied into it from the $CTRL_DC3PIPE_DIR/etc directory. 
 """
 
 cl = optparse.OptionParser(usage)
 cl.add_option("-r", "--policyRepository", type="string", action="store",
               dest="policyRepository", default=None, metavar="dir",
-              help="directory containing policy files (def: $DC3PIPE_DIR/pipeline")
+              help="directory containing policy files (def: $CTRL_DC3PIPE_DIR/pipeline")
 cl.add_option("-V", "--verbosity", type="int", action="store",
               dest="verbosity", default=0, metavar="int",
               help="verbosity level (0=normal, 1=debug, -1=quiet, -3=silent)")
@@ -32,7 +32,7 @@ cl.add_option("-s", "--silent", action="store_const", const=-3,
 cl.opts = {}
 cl.args = []
 
-pkgdirvar = "DC3PIPE_DIR"
+pkgdirvar = "CTRL_DC3PIPE_DIR"
 mpdconf = ".mpd.conf"
 pkgmpdconf = os.path.join("etc", "mpd.conf")
 
@@ -61,7 +61,7 @@ def main():
 
 def ensureMpdConf():
     if not os.environ.has_key(pkgdirvar):
-        raise RuntimeError("DC3PIPE_DIR env. var not set (setup dc3pipe)")
+        raise RuntimeError("CTRL_DC3PIPE_DIR env. var not set (setup dc3pipe)")
 
     pkgdir = os.environ[pkgdirvar]
     path = os.path.join(os.environ["HOME"], mpdconf)

@@ -6,7 +6,7 @@ if echo $0 | grep -q /; then
     bindir=`dirname $0`
 fi
 
-if [ -z "$DC3PIPE_DIR" ]; then
+if [ -z "$CTRL_DC3PIPE_DIR" ]; then
 
     # make sure we load the dc3pipe environment
     version=`dirname "$bindir"`         # dc3pipe version directory

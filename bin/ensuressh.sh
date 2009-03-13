@@ -1,11 +1,11 @@
 #! /bin/bash
 #
-if [ -z "$DC3PIPE_DIR" ]; then
-    echo "DC3PIPE_DIR environment not set; you need to 'source loadLSST.?'"
+if [ -z "$CTRL_DC3PIPE_DIR" ]; then
+    echo "CTRL_DC3PIPE_DIR environment not set; you need to 'source loadLSST.?'"
     exit 1
 fi
-DEF_NODES_FILE=$DC3PIPE_DIR/etc/ensuressh_nodes.txt
-KNOWN_HOSTS_FILE=$DC3PIPE_DIR/etc/ensuressh_known_hosts
+DEF_NODES_FILE=$CTRL_DC3PIPE_DIR/etc/ensuressh_nodes.txt
+KNOWN_HOSTS_FILE=$CTRL_DC3PIPE_DIR/etc/ensuressh_known_hosts
 
 NODEFILE=$1
 if [ -z "$NODEFILE" ]; then

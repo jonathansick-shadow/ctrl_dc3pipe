@@ -36,7 +36,7 @@ cl.add_option("-m", "--mpdconfset", action="store_true", dest="forceMpdConf",
 cl.opts = {}
 cl.args = []
 
-pkgdirvar = "DC3PIPE_DIR"
+pkgdirvar = "CTRL_DC3PIPE_DIR"
 ensurempdconfcmd = "forceMpdConf.sh"
 
 def createLog():
@@ -72,7 +72,7 @@ def main():
 
 def launchPipeline(policyFile, runid):
     if not os.environ.has_key(pkgdirvar):
-        raise RuntimeError("DC3PIPE_DIR env. var not set (setup dc3pipe)")
+        raise RuntimeError("CTRL_DC3PIPE_DIR env. var not set (setup dc3pipe)")
 
     nodesfile = "nodelist.scr"
     if cl.opts.nodelist is not None:
