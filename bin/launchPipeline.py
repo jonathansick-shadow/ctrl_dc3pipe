@@ -72,7 +72,7 @@ def main():
 
 def launchPipeline(policyFile, runid):
     if not os.environ.has_key(pkgdirvar):
-        raise RuntimeError("CTRL_DC3PIPE_DIR env. var not set (setup dc3pipe)")
+        raise RuntimeError("CTRL_DC3PIPE_DIR env. var not set (setup ctrl_dc3pipe)")
 
     nodesfile = "nodelist.scr"
     if cl.opts.nodelist is not None:

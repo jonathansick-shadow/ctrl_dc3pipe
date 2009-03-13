@@ -8,10 +8,10 @@ fi
 
 if [ -z "$CTRL_DC3PIPE_DIR" ]; then
 
-    # make sure we load the dc3pipe environment
-    version=`dirname "$bindir"`         # dc3pipe version directory
+    # make sure we load the ctrl_dc3pipe environment
+    version=`dirname "$bindir"`         # ctrl_dc3pipe version directory
     if [ "$version" = "."  ]; then
-        echo "Unable to load dc3pipe: unable to determin version from $bindir"
+        echo "Unable to load ctrl_dc3pipe: unable to determin version from $bindir"
         exit 1
     fi
 
@@ -31,7 +31,7 @@ if [ -z "$CTRL_DC3PIPE_DIR" ]; then
 
     SHELL=/bin/bash
     source  $LSST_HOME/loadLSST.sh
-    setup dc3pipe $version
+    setup ctrl_dc3pipe $version
 fi
 
 eups list 2> /dev/null | grep Setup > eups-env.txt
