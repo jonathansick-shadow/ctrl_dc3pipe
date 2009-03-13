@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
-import sys, re
+import os, sys, re
+import eups
 import lsst.afw.image as afwImage
 import lsst.afw.math as afwMath
 import lsst.pex.policy as pexPolicy
+import lsst.pex.logging as pexLog
 import lsst.daf.base as dafBase
 import lsst.ctrl.events as ctrlEvents
 from lsst.ctrl.dc3pipe.MetadataStages import transformMetadata, validateMetadata

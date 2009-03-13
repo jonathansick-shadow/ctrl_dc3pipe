@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import lsst.afw.image as afwImage
+import lsst.daf.base as dafBase
 
 from lsst.pex.harness.Stage import Stage
 
@@ -10,6 +11,7 @@ def validateMetadata(metadata, metadataPolicy):
         if not metadata.exists(paramName):
             raise RuntimeError, 'Unable to find \'%s\' in metadata' % (paramName,)
         # TBD; VALIDATE AGAINST DICTIONARY FOR TYPE ETC
+    return True
 
 def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
     paramNames = metadataPolicy.paramNames(1)
