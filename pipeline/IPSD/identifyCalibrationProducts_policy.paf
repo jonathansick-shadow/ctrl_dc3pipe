@@ -1,0 +1,2 @@
+dbPath: "/lsst/images/repository/calib/calibDatabase.paf"
+darkPolicy: closest
