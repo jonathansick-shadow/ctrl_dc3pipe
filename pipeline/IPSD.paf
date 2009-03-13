@@ -69,14 +69,14 @@ execute: {
    
    # Transform slice id into amp, CCD, and other identifiers
    appStage: {
-      stageName: "lsst.ctrl.dc3pipe.SliceInfoStage"
+      stageName: "lsst.ctrl.dc3pipe.SliceInfoStage.SliceInfoStage"
       eventTopic: "None"
       stagePolicy: "IPSD/sliceInfo_policy.paf"
    }
    
    # Link input files into input directory
    appStage: {
-      stageName: "lsst.pex.harness.SymLinkStage"
+      stageName: "lsst.pex.harness.SymLinkStage.SymLinkStage"
       eventTopic: "None"
       stagePolicy: "IPSD/symLink_policy.paf"
    }

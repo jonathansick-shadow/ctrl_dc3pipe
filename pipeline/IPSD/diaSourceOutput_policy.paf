@@ -1,0 +1,38 @@
+AdditionalData: "datasetId=triggerImageprocEvent0.datasetId"
+AdditionalData: "visitId=triggerImageprocEvent0.visitId"
+AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
+AdditionalData: "ccdId=triggerImageprocEvent0.ccdId"
+AdditionalData: "ampId=triggerImageprocEvent0.ampId"
+OutputItems: {
+    sourceSet0: {
+        Type: "PersistableDiaSourceVector"
+        PythonType: "lsst.afw.detection.PersistableDiaSourceVector"
+        StoragePolicy: {
+            Storage: "DbStorage"
+            Location: "%(dbUrl)"
+        }
+    }
+    sourceSet1: {
+        Type: "PersistableDiaSourceVector"
+        PythonType: "lsst.afw.detection.PersistableDiaSourceVector"
+        StoragePolicy: {
+            Storage: "DbStorage"
+            Location: "%(dbUrl)"
+        }
+    }
+}
+
+Persistence: {
+    Formatter: {
+        DiaSourceFormatter: {
+            sourceSet0: {
+                templateTableName: "tmpl_DiaSource"
+                tableNamePattern: "DiaSource_v%(visitId)"
+            }
+            sourceSet1: {
+                templateTableName: "tmpl_DiaSource"
+                tableNamePattern: "DiaSource_v%(visitId)"
+            }
+        }
+    }
+}
