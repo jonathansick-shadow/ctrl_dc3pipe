@@ -8,7 +8,7 @@ measureObjects: {
     photometryAlgorithm: "NAIVE"
     apRadius: 3.0
 }
-psfKey: "psf"
+psfKey: "psfModel"
 data: {
     exposureKey: "calibratedExposure0"
     outputKey: "sourceSet0"

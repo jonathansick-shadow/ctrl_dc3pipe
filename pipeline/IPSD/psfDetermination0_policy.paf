@@ -1,0 +1,9 @@
+#<? cfg paf policy ?>
+#
+# Stage policy for PsfDetermination Stage
+
+data: {
+    exposureKey: "calibratedExposure0"
+    sourceSetKey: "sourceSet0"
+    outputPsfKey: "psfModel"
+}

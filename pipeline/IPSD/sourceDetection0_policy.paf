@@ -8,14 +8,16 @@ psfPolicy: {
     algorithm: "DoubleGaussian"
     width = 15
     height = 15
+    #5*/(2*sqrt(2*log(2)))
+    parameter: 3.22195985
 }
 detectionPolicy: {
     minPixels:1 
     thresholdValue: 3
     thresholdType: "stdev"
-    thresholdPolarity: "both"
+    thresholdPolarity: "positive"
 }
 
-smoothingPsfKey: "psf"
+smoothingPsfKey: "psfModel"
 positiveDetectionKey: "positiveFooptrintSet"
 negativeDetectionKey: "negativeFootprintSet"
