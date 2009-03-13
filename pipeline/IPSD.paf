@@ -297,7 +297,14 @@ execute: {
       eventTopic: "None"
       stagePolicy: "IPSD/diaSourceMasurement_policy.paf"
    }
-   
+
+   # Conver the Sources to Dia sources
+   appStage :{
+      stageName: "lsst.meas.pipeline.SourceToDiaSourceStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/sourceToDiaSource_policy.paf"
+   }
+
    # Classify DIASources
    appStage: {
       stageName: "lsst.meas.pipeline.SourceClassificationStage"
