@@ -1,5 +1,5 @@
 metadata: @dc3MetadataPolicy.paf
-dataType: @dataTypePolicy/cfhtTypePolicy.paf
+datatype: @datatypePolicy/cfhtTypePolicy.paf
 suffix: Keyword
 imageName: rawCameraImage1
 metadataName: rawImageMetadata1
