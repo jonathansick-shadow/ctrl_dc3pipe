@@ -97,14 +97,14 @@ execute: {
    
    # Transform image metadata into LSST standard (exposure 0)
    appStage: {
-      stageName: "lsst.ctrl.dc3pipe.TransformMetadataStage"
+      stageName: "lsst.ctrl.dc3pipe.MetadataStages.TransformMetadataStage"
       eventTopic: "None"
       stagePolicy: "IPSD/transformMetadata0_policy.paf"
    }
    
    # Validate that metadata is in LSST standard form (exposure 0)
    appStage: {
-      stageName: "lsst.ctrl.dc3pipe.ValidateMetadataStage"
+      stageName: "lsst.ctrl.dc3pipe.MetadataStages.ValidateMetadataStage"
       eventTopic: "None"
       stagePolicy: "IPSD/validateMetadata0_policy.paf"
    }
@@ -181,14 +181,14 @@ execute: {
    
    # Transform image metadata into LSST standard (exposure 1)
    appStage: {
-      stageName: "lsst.ctrl.dc3pipe.TransformMetadataStage"
+      stageName: "lsst.ctrl.dc3pipe.MetadataStages.TransformMetadataStage"
       eventTopic: "None"
       stagePolicy: "IPSD/transformMetadata1_policy.paf"
    }
    
    # Validate that metadata is in LSST standard form (exposure 1)
    appStage: {
-      stageName: "lsst.ctrl.dc3pipe.ValidateMetadataStage"
+      stageName: "lsst.ctrl.dc3pipe.MetadataStages.ValidateMetadataStage"
       eventTopic: "None"
       stagePolicy: "IPSD/validateMetadata1_policy.paf"
    }
