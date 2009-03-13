@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from lsst.pex.harness import Stage
+from lsst.pex.harness.Stage import Stage
 
 class SliceInfoStage(Stage):
     '''Compute per-slice information.'''
@@ -25,7 +25,7 @@ class SliceInfoStage(Stage):
         ccdId = eval(ccdFormula)
         ampId = eval(ampFormula)
 
-        self.activeClipboard.put("ccdId") = ccdId
-        self.activeClipboard.put("ampId") = ampId
+        self.activeClipboard.put("ccdId", ccdId)
+        self.activeClipboard.put("ampId", ampId)
 
         self.outputQueue.addDataset(self.activeClipboard)
