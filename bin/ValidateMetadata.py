@@ -38,6 +38,7 @@ def ValidateMetadata(metadata, metadataPolicy=None):
     
 
 def WcsFromMetadata(metadata):
+    # put on clipboad as initialWcs
     return afwImage.Wcs(metadata)
 
 def TransformMetadata(metadata, datatypePolicy, metadataPolicy=None, suffix='Keyword'):

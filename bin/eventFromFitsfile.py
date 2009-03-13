@@ -20,7 +20,10 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
     TransformMetadata(metadata, datatypePolicy)
 
     # To be consistent...
-    print ValidateMetadata(metadata)
+    if not ValidateMetadata(metadata):
+        pexLog.Trace('dc3pipe.eventfrominputfile', 1, 'Unable to create event from %s' % (inputfile))
+        return False
+        
 
     # Create event policy, using defaults from input metadata
     event = dafBase.PropertySet()
@@ -52,8 +55,8 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
     elif event.getInt('exposureId') == 1:
         eventTransmitter = ctrlEvents.EventTransmitter(hostName, topicName+'1')
 
-    print event.getDouble('dateobs')
     eventTransmitter.publish(event)
+    return True
 
 
 if __name__ == "__main__":
