@@ -1,0 +1,43 @@
+AdditionalData: "datasetId=triggerImageprocEvent0.datasetId"
+AdditionalData: "visitId=triggerImageprocEvent0.visitId"
+AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
+AdditionalData: "ccdId=triggerImageprocEvent0.ccdId"
+AdditionalData: "ampId=triggerImageprocEvent0.ampId"
+AdditionalData: "biasFilename=calibFiles.bias"
+AdditionalData: "flatFilename=calibFiles.flat"
+AdditionalData: "fringeFilename=calibFiles.fringe"
+AdditionalData: "darkFilename=calibFiles.dark"
+InputItems: {
+    biasImage: {
+        Type: "ImageF"
+        PythonType: "lsst.afw.image.ImageF"
+        StoragePolicy: {
+            Storage: "FitsStorage"
+            Location: "%(input)/calib/%(biasFilename)"
+        }
+    }
+    flatImage: {
+        Type: "ImageF"
+        PythonType: "lsst.afw.image.ImageF"
+        StoragePolicy: {
+            Storage: "FitsStorage"
+            Location: "%(input)/calib/%(flatFilename)"
+        }
+    }
+    fringeImage: {
+        Type: "ImageF"
+        PythonType: "lsst.afw.image.ImageF"
+        StoragePolicy: {
+            Storage: "FitsStorage"
+            Location: "%(input)/calib/%(fringeFilename)"
+        }
+    }
+    darkImage: {
+        Type: "ImageF"
+        PythonType: "lsst.afw.image.ImageF"
+        StoragePolicy: {
+            Storage: "FitsStorage"
+            Location: "%(input)/calib/%(darkFilename)"
+        }
+    }
+}

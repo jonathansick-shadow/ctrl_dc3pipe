@@ -1,0 +1,25 @@
+AdditionalData: "datasetId=triggerImageprocEvent0.datasetId"
+AdditionalData: "visitId=triggerImageprocEvent0.visitId"
+AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
+AdditionalData: "ccdId=triggerImageprocEvent0.ccdId"
+AdditionalData: "ampId=triggerImageprocEvent0.ampId"
+InputItems: {
+    ccdWcsSources: {
+        Type: "PersistableSourceVector"
+        PythonType: "lsst.afw.detection.PersistableSourceVector"
+        StoragePolicy: {
+            Storage: "DbTsvStorage"
+            Location: "%(dbUrl)"
+        }
+    }
+}
+
+Persistence: {
+    Formatter: {
+        SourceFormatter: {
+            ccdWcsSources: {
+                perVisitTableNamePattern: "WcsSource_v%(visitId)_c%(ccdId)"
+            }
+        }
+    }
+}
