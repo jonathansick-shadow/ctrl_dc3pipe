@@ -16,6 +16,6 @@ detectionPolicy: {
     thresholdType: "stdev"
     thresholdPolarity: "both"
 }
-
+smoothingPsfKey: "psf"
 positiveDetectionKey: "positiveFootprintSet"
 negativeDetectionKey: "negativeFootprintSet"
