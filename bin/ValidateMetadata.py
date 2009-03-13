@@ -23,7 +23,7 @@ def ValidateMetadata(metadata, metadataPolicy=None):
 
     if metadataPolicy == None:
         # Use the default for DC3a
-        dc3pipeDir     = eups.productDir('dc3pipe')
+        dc3pipeDir     = eups.productDir('ctrl_dc3pipe')
         dc3PolicyPath  = os.path.join(dc3pipeDir, 'pipeline', 'dc3MetadataPolicy.paf')
         metadataPolicy = pexPolicy.Policy.createPolicy(dc3PolicyPath)
 
@@ -51,7 +51,7 @@ def TransformMetadata(metadata, datatypePolicy, metadataPolicy=None, suffix='Key
 
     if metadataPolicy == None:
         # Use the default for DC3a
-        dc3pipeDir     = eups.productDir('dc3pipe')
+        dc3pipeDir     = eups.productDir('ctrl_dc3pipe')
         dc3PolicyPath  = os.path.join(dc3pipeDir, 'pipeline', 'dc3MetadataPolicy.paf')
         metadataPolicy = pexPolicy.Policy.createPolicy(dc3PolicyPath)
 
