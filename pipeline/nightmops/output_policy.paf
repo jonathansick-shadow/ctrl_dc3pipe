@@ -18,7 +18,7 @@ Persistence: {
        PersistableMovingObjectPredictionVector: {
            MopsPreds: {
                templateTableName: "_tmpl_mops_Prediction"
-               perVisitTableNamePattern: "_tmp_v%1%_Preds"
+               tableNamePattern: "_tmp_v%(visitId)_Preds"
            }
        }
    }
