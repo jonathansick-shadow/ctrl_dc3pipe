@@ -18,7 +18,7 @@ Persistence: {
     Formatter: {
         SourceFormatter: {
             ccdWcsSources: {
-                perVisitTableNamePattern: "WcsSource_v%(visitId)_c%(ccdId)"
+                tableNamePattern: "_tmp_v%(visitId)_c%(ccdId)_WcsSource"
             }
         }
     }
