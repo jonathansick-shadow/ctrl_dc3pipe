@@ -6,35 +6,35 @@ AdditionalData: "ampId=triggerImageprocEvent0.ampId"
 AdditionalData: "biasFilename=calibData.bias"
 AdditionalData: "darkFilename=calibData.dark"
 AdditionalData: "flatFilename=calibData.flat"
-AdditionalData: "fringeFilename=calibData.fringe"
+# AdditionalData: "fringeFilename=calibData.fringe"
 InputItems: {
-    biasImage: {
-        Type: "ImageF"
-        PythonType: "lsst.afw.image.ImageF"
+    biasExposure: {
+        Type: "ExposureF"
+        PythonType: "lsst.afw.image.ExposureF"
         StoragePolicy: {
             Storage: "FitsStorage"
             Location: "%(input)/calib/%(biasFilename)"
         }
     }
-    flatImage: {
-        Type: "ImageF"
-        PythonType: "lsst.afw.image.ImageF"
+    flatExposure: {
+        Type: "ExposureF"
+        PythonType: "lsst.afw.image.ExposureF"
         StoragePolicy: {
             Storage: "FitsStorage"
             Location: "%(input)/calib/%(flatFilename)"
         }
     }
-    fringeImage: {
-        Type: "ImageF"
-        PythonType: "lsst.afw.image.ImageF"
-        StoragePolicy: {
-            Storage: "FitsStorage"
-            Location: "%(input)/calib/%(fringeFilename)"
-        }
-    }
-    darkImage: {
-        Type: "ImageF"
-        PythonType: "lsst.afw.image.ImageF"
+#     fringeExposure: {
+#         Type: "ExposureF"
+#         PythonType: "lsst.afw.image.ExposureF"
+#         StoragePolicy: {
+#             Storage: "FitsStorage"
+#             Location: "%(input)/calib/%(fringeFilename)"
+#         }
+#     }
+    darkExposure: {
+        Type: "ExposureF"
+        PythonType: "lsst.afw.image.ExposureF"
         StoragePolicy: {
             Storage: "FitsStorage"
             Location: "%(input)/calib/%(darkFilename)"

@@ -41,7 +41,7 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
             datatypePolicy.getBool('convertDateobsToMidExposure')
         if convertDateobsToMidExposure:
             dateObs  = metadata.getDouble('dateObs')
-            dateObs += metadata.getDouble('exptime') * 0.5 / 3600. / 24.
+            dateObs += metadata.getDouble('expTime') * 0.5 / 3600. / 24.
             metadata.setDouble('dateObs', dateObs)
 
     if datatypePolicy.exists('trimFilterName'):

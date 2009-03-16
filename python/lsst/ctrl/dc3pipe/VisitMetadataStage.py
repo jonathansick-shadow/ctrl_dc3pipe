@@ -26,8 +26,8 @@ class VisitMetadataStage(Stage):
 
         rawFpaExposure = PropertySet()
         rawFpaExposure.set("fpaExposureId", fpaExposureId)
-        rawFpaExposure.set("ra", event.get("raBoresight"))
-        rawFpaExposure.set("decl", event.get("declBoresight"))
+        rawFpaExposure.set("ra", event.get("ra"))
+        rawFpaExposure.set("decl", event.get("decl"))
         rawFpaExposure.set("filterId",
                 self.lookupFilterId(event.get("filter")))
         rawFpaExposure.set("equinox", event.get("equinox"))

@@ -118,11 +118,11 @@ execute: {
    }
    
    # Transform input event into visit metadata (exposure 0)
-#    appStage: {
-#       stageName: "lsst.ctrl.dc3pipe.VisitMetadataStage.VisitMetadataStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/visitMetadata0_policy.paf"
-#    }
+   appStage: {
+      stageName: "lsst.ctrl.dc3pipe.VisitMetadataStage.VisitMetadataStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/visitMetadata0_policy.paf"
+   }
    
    # Transform image metadata into LSST standard (exposure 0)
    appStage: {
@@ -139,11 +139,11 @@ execute: {
    }
    
    # Persist the per-visit metadata (exposure 0)
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.OutputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/visitMetadataOutput0_policy.paf"
-#    }
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/visitMetadataOutput0_policy.paf"
+   }
 
    # Persist the per-exposure metadata and the raw image (exposure 0)
    appStage: {
@@ -173,19 +173,19 @@ execute: {
       stagePolicy: "IPSD/isr0_policy.paf"
    }
    
-#    # Detect sources for WCS (exposure 0)
-#    appStage: {
-#       stageName: "lsst.meas.pipeline.SourceDetectionStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/sourceDetection0_policy.paf"
-#    }
-#    
-#    # Measure sources for WCS (exposure 0)
-#    appStage: {
-#       stageName: "lsst.meas.pipeline.SourceMeasurementStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/sourceMasurement0_policy.paf"
-#    }
+   # Detect sources for WCS (exposure 0)
+   appStage: {
+      stageName: "lsst.meas.pipeline.SourceDetectionStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/sourceDetection0_policy.paf"
+   }
+   
+   # Measure sources for WCS (exposure 0)
+   appStage: {
+      stageName: "lsst.meas.pipeline.SourceMeasurementStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/sourceMasurement0_policy.paf"
+   }
    
 #    # Determine PSF (exposure 0)
 #    appStage: {

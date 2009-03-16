@@ -10,7 +10,7 @@ ccdId      : int
 ampId      : int
 datasetId  : string
 filter     : string
-exptime    : float
+expTime    : float
 ra         : double
 decl       : double
 equinox    : double

@@ -21,7 +21,7 @@ exposureIdKeyword: EXPID
 dateObsKeyword: MJD-OBS
 
 # Exposure time in seconds
-exptimeKeyword: EXPTIME
+expTimeKeyword: EXPTIME
 
 # Filter
 filterKeyword: FILTER
