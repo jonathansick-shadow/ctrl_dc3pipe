@@ -15,7 +15,7 @@ ra         : double
 decl       : double
 equinox    : double
 airmass    : double
-dateobs    : double
+dateObs    : double
 filename   : string
 
 # Information needed for ISR

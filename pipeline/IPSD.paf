@@ -13,7 +13,7 @@ requires: {
    }
 
    platform: {
-      minCoreCount:  8
+      minCoreCount:  2
    }
 }
 
@@ -118,11 +118,11 @@ execute: {
    }
    
    # Transform input event into visit metadata (exposure 0)
-   appStage: {
-      stageName: "lsst.ctrl.dc3pipe.VisitMetadataStage.VisitMetadataStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/visitMetadata0_policy.paf"
-   }
+#    appStage: {
+#       stageName: "lsst.ctrl.dc3pipe.VisitMetadataStage.VisitMetadataStage"
+#       eventTopic: "None"
+#       stagePolicy: "IPSD/visitMetadata0_policy.paf"
+#    }
    
    # Transform image metadata into LSST standard (exposure 0)
    appStage: {
@@ -138,12 +138,12 @@ execute: {
       stagePolicy: "IPSD/validateMetadata0_policy.paf"
    }
    
-   # Persist the per-visit metadata (exposure 1)
-   appStage: {
-      stageName: "lsst.pex.harness.IOStage.OutputStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/visitMetadataOutput1_policy.paf"
-   }
+   # Persist the per-visit metadata (exposure 0)
+#    appStage: {
+#       stageName: "lsst.pex.harness.IOStage.OutputStage"
+#       eventTopic: "None"
+#       stagePolicy: "IPSD/visitMetadataOutput0_policy.paf"
+#    }
 
    # Persist the per-exposure metadata and the raw image (exposure 0)
    appStage: {

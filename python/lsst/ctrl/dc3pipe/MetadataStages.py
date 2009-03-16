@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import re
+
 import lsst.afw.image as afwImage
 import lsst.daf.base as dafBase
 
@@ -29,18 +31,24 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
     if datatypePolicy.exists('convertDateobsToTai'):
         convertDateobsToTai = datatypePolicy.getBool('convertDateobsToTai')
         if convertDateobsToTai:
-            dateobs  = metadata.getDouble('dateobs')
-            dateTime = dafBase.DateTime(dateobs, dafBase.DateTime.UTC)
-            dateobs  = dateTime.mjd(dafBase.DateTime.TAI)
-            metadata.setDouble('dateobs', dateobs)
+            dateObs  = metadata.getDouble('dateObs')
+            dateTime = dafBase.DateTime(dateObs, dafBase.DateTime.UTC)
+            dateObs  = dateTime.mjd(dafBase.DateTime.TAI)
+            metadata.setDouble('dateObs', dateObs)
 
     if datatypePolicy.exists('convertDateobsToMidExposure'):
         convertDateobsToMidExposure = \
             datatypePolicy.getBool('convertDateobsToMidExposure')
         if convertDateobsToMidExposure:
-            dateobs  = metadata.getDouble('dateobs')
-            dateobs += metadata.getDouble('exptime') * 0.5 / 3600. / 24.
-            metadata.setDouble('dateobs', dateobs)
+            dateObs  = metadata.getDouble('dateObs')
+            dateObs += metadata.getDouble('exptime') * 0.5 / 3600. / 24.
+            metadata.setDouble('dateObs', dateObs)
+
+    if datatypePolicy.exists('trimFilterName'):
+        if datatypePolicy.getBool('trimFilterName'):
+            filter = metadata.getString('filter')
+            filter = re.sub(r'\..*', '', filter)
+            metadata.setString('filter', filter)
 
 
 class ValidateMetadataStage(Stage):

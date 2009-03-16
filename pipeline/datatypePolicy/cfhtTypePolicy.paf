@@ -18,7 +18,7 @@ ampIdKeyword: LSSTAMP
 exposureIdKeyword: EXPID
 
 # Time of mid-observation in TAI
-dateobsKeyword: MJD-OBS
+dateObsKeyword: MJD-OBS
 
 # Exposure time in seconds
 exptimeKeyword: EXPTIME
@@ -53,6 +53,10 @@ convertDateobsToTai: true
 # False if information is for the middle of the exposure
 convertDateobsToMidExposure: true
 
+# Trim the filter name?
+# True if the filter name contains extra information after a "."
+# False if the filter name is OK as is
+trimFilterName: true
 
 ####
 # FOR THE ISR
