@@ -2,8 +2,8 @@
 #
 # stage policy for lsst.meas.pipeline.SourceClassificationStage
  
-sourceList0ClipboardKey: "sourceSet0"
-sourceList1ClipboardKey: "sourceSet1"
+sourceList0ClipboardKey: "diaSourceSet0"
+sourceList1ClipboardKey: "diaSourceSet1"
 
 classifier: {
     bit: 0
