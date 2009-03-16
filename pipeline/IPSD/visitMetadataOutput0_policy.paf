@@ -11,7 +11,7 @@ OutputItems: {
         PythonType: "lsst.daf.base.PropertySet"
         StoragePolicy: {
             Storage: "DbStorage"
-            Location: "%(dbURL)"
+            Location: "%(dbUrl)"
         }
     }
     fpaExposure0: {
@@ -19,7 +19,7 @@ OutputItems: {
         PythonType: "lsst.daf.base.PropertySet"
         StoragePolicy: {
             Storage: "DbStorage"
-            Location: "%(dbURL)"
+            Location: "%(dbUrl)"
         }
     }
     ccdExposure0: {
@@ -27,7 +27,7 @@ OutputItems: {
         PythonType: "lsst.daf.base.PropertySet"
         StoragePolicy: {
             Storage: "DbStorage"
-            Location: "%(dbURL)"
+            Location: "%(dbUrl)"
         }
     }
 }

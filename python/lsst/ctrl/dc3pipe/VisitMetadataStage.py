@@ -75,7 +75,7 @@ class VisitMetadataStage(Stage):
         self.outputQueue.addDataset(self.activeClipboard)
 
     def lookupFilterId(self, filterName):
-        dblocation = LogicalLocation("%(dbURL)")
+        dbLocation = LogicalLocation("%(dbUrl)")
         filterDb = afwImage.Filter(dbLocation, filterName)
         filterId = filterDb.getId()
         return filterId
