@@ -18,7 +18,7 @@ ampIdKeyword: LSSTAMP
 exposureIdKeyword: EXPID
 
 # Time of mid-observation in TAI
-dateobsKeyword: MJD-OBS
+dateObsKeyword: MJD-OBS
 
 # Exposure time in seconds
 exptimeKeyword: EXPTIME
