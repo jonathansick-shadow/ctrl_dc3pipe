@@ -280,9 +280,9 @@ execute: {
 #    
 #    # Determine bounding box of exposures within template image
 #    appStage: {
-#       stageName: "lsst.meas.pipeline.TemplateBboxStage"
+#       stageName: "lsst.meas.pipeline.TemplateBBoxStage"
 #       eventTopic: "None"
-#       stagePolicy: "IPSD/templateBbox_policy.paf"
+#       stagePolicy: "IPSD/templateBBox_policy.paf"
 #    }
 #    
 #    # Load subimage of template corresponding to exposure
