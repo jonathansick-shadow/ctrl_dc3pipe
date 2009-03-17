@@ -184,7 +184,7 @@ execute: {
    appStage: {
       stageName: "lsst.meas.pipeline.SourceMeasurementStage"
       eventTopic: "None"
-      stagePolicy: "IPSD/sourceMasurement0_policy.paf"
+      stagePolicy: "IPSD/sourceMeasurement0_policy.paf"
    }
    
 #    # Determine PSF (exposure 0)
@@ -324,7 +324,7 @@ execute: {
 #    appStage: {
 #       stageName: "lsst.meas.pipeline.SourceMeasurementStage"
 #       eventTopic: "None"
-#       stagePolicy: "IPSD/diaSourceMasurement_policy.paf"
+#       stagePolicy: "IPSD/diaSourceMeasurement_policy.paf"
 #    }
 # 
 #    # Conver the Sources to Dia sources
