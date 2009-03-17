@@ -72,7 +72,7 @@ execute: {
       #
       defaultRoot:  .
 
-      runDirPattern: "%(runid)s"
+      runDirPattern: "../../%(runid)s"
 
 
       # These indicate the directory that should be used for a named purpose.
@@ -83,11 +83,11 @@ execute: {
       # using a pattern is recommended in order to distinguish between different 
       # production runs.)
       #
-      work:     .    # the working directory, where the pipeline is started
-      input:    .    # the directory to cache/find input data
-      output:   .    # the directory to write output data
-      update:   .    # the directory where updatable data is deployed
-      scratch:  .    # a directory for temporary files that may be deleted 
+      work:     work    # the working directory, where the pipeline is started
+      input:    input    # the directory to cache/find input data
+      output:   output    # the directory to write output data
+      update:   update    # the directory where updatable data is deployed
+      scratch:  scratch    # a directory for temporary files that may be deleted 
                      #   upon completion of the pipeline
 
    }
@@ -187,20 +187,20 @@ execute: {
       stagePolicy: "IPSD/sourceMeasurement0_policy.paf"
    }
    
-#    # Determine PSF (exposure 0)
-#    appStage: {
-#       stageName: "lsst.meas.pipeline.PsfDeterminationStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/psfDetermination0_policy.paf"
-#    }
-#    
-#    # Persist WCS sources and PSF (exposure 0)
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.OutputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/wcsSourcesAndPsfOutput0_policy.paf"
-#    }
-#    
+   # Determine PSF (exposure 0)
+   appStage: {
+      stageName: "lsst.meas.pipeline.PsfDeterminationStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/psfDetermination0_policy.paf"
+   }
+   
+   # Persist WCS sources and PSF (exposure 0)
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/wcsSourcesAndPsfOutput0_policy.paf"
+   }
+   
 #    # Load input image (exposure 1)
 #    appStage: {
 #       stageName: "lsst.pex.harness.IOStage.InputStage"

@@ -13,7 +13,7 @@ InputItems: {
         PythonType: "lsst.afw.image.ExposureF"
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(input)/calib/%(biasPath)"
+            Location: "%(biasPath)"
         }
     }
     flatExposure: {
@@ -21,7 +21,7 @@ InputItems: {
         PythonType: "lsst.afw.image.ExposureF"
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(input)/calib/%(flatPath)"
+            Location: "%(flatPath)"
         }
     }
 #     fringeExposure: {
@@ -29,7 +29,7 @@ InputItems: {
 #         PythonType: "lsst.afw.image.ExposureF"
 #         StoragePolicy: {
 #             Storage: "FitsStorage"
-#             Location: "%(input)/calib/%(fringePath)"
+#             Location: "%(fringePath)"
 #         }
 #     }
     darkExposure: {
@@ -37,7 +37,7 @@ InputItems: {
         PythonType: "lsst.afw.image.ExposureF"
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(input)/calib/%(darkPath)"
+            Location: "%(darkPath)"
         }
     }
 }
