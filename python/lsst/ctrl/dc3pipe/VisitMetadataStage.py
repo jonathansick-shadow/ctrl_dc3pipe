@@ -12,12 +12,7 @@ class VisitMetadataStage(Stage):
         visitId = event.get("visitId")
         exposureId = event.get("exposureId")
 
-        ccdId = self.activeClipboard.get("ccdId")
-        ampId = self.activeClipboard.get("ampId")
-
         fpaExposureId = long(visitId) << 1 + exposureId
-        ccdExposureId = fpaExposureId << 8 + ccdId
-        ampExposureId = ccdExposureId << 6 + ampId
 
         visit = PropertySet()
         visit.set("visitId", visitId)
@@ -37,12 +32,6 @@ class VisitMetadataStage(Stage):
         rawFpaExposure.set("airmass", event.get("airmass"))
         self.activeClipboard.put("fpaExposure" + str(exposureId),
                 rawFpaExposure)
-
-        rawCcdExposure = PropertySet()
-        rawCcdExposure.set("rawCCDExposureId", ccdExposureId)
-        rawCcdExposure.set("rawFPAExposureId", fpaExposureId) 
-        self.activeClipboard.put("ccdExposure" + str(exposureId),
-                rawCcdExposure)
 
         # rely on default postprocess() to move clipboard to output queue
 
