@@ -50,8 +50,8 @@ logging.Trace_setVerbosity('dc3pipe', Verbosity)
 
 def EventFromInputFileList(inputfile, 
                            datatypePolicy, 
-                           expTime=15,
-                           slweTime=5,
+                           expTime=EXP_TIME,
+                           slweTime=SLEW_TIME,
                            rootTopicName='triggerImageprocEvent', 
                            hostName='lsst8.ncsa.uiuc.edu'):
     """
@@ -172,16 +172,14 @@ directory has the following structure:
     datatypePolicy = pexPolicy.Policy.createPolicy(sys.argv[2])
     expTime = EXP_TIME
     slewTime = SLEW_TIME
-    if(len(sys.argv) == 4):
-        try:
-            expTime = int(sys.argv[4])
-        except:
-            pass
-    if(len(sys.argv) == 5):
-        try:
-            slewTime = int(sys.argv[4])
-        except:
-            pass
+    try:
+        expTime = float(sys.argv[3])
+    except:
+        pass
+    try:
+        slewTime = float(sys.argv[4])
+    except:
+        pass
     
     # Extract broker info etc.
     pipelinePolicy = dafBase.PropertySet()
