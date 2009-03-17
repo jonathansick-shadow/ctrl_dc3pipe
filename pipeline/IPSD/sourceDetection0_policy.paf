@@ -18,6 +18,6 @@ detectionPolicy: {
     thresholdPolarity: "positive"
 }
 
-smoothingPsfKey: "psfModel"
+smoothingPsfKey: "smoothingPsf"
 positiveDetectionKey: "positiveFooptrintSet"
 negativeDetectionKey: "negativeFootprintSet"

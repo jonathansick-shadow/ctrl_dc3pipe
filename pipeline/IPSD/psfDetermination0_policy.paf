@@ -5,8 +5,8 @@
 data: {
     exposureKey: "calibratedExposure0"
     sourceSetKey: "sourceSet0"
-    outputPsfKey: "psfModel"
-    outputCellSetKey: "psfCellSet"
+    outputPsfKey: "psfModel0"
+    outputCellSetKey: "psfCellSet0"
 }
 fluxLim: 1000
 sizeCellX: 512
