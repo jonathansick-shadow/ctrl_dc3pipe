@@ -52,8 +52,8 @@ logging.Trace_setVerbosity('dc3pipe', Verbosity)
 
 def EventFromInputSubsets(subsets, 
                           datatypePolicy, 
-                          expTime=15,
-                          slweTime=5,
+                          expTime=EXP_TIME,
+                          slweTime=SLEW_TIME,
                           rootTopicName='triggerImageprocEvent', 
                           hostName='lsst8.ncsa.uiuc.edu'):
     """
@@ -108,29 +108,35 @@ def EventFromInputSubsets(subsets,
     
     for subset in subsets:
         dirName = os.path.join(ROOT_DIR, subset)
+        subDirNames = os.listdir(dirName)
         
-        # Get the list of amp FITS files in each dir.
-        fileList0 = glob.glob(os.path.join(dirName, '*', '0', '*.fits'))
-        fileList1 = glob.glob(os.path.join(dirName, '*', '1', '*.fits'))
-        
-        # Simple sanity check.
-        if(len(fileList0) != len(fileList1)):
-            pexLog.Trace('dc3pipe.eventfrominputfilelist', 1, 
-                         'Skipping %s: wrong file count in 0 and 1' \
-                         %(os.path.dirname(fileList0)))
-            continue
-        
-        # Now we just trust that the i-th file in 0 corresponds to the i-th file
-        # in 1... Fortunately, we only need to send one event per image 
-        # directory, since all images there are one MEF split into individual 
-        # amps.
-        sendEvent(fileList0[0])
-        # Sleep some.
-        time.sleep(expTime)
-        # Next event.
-        sendEvent(fileList1[0])
-        # Sleep expTime + slewTime.
-        time.sleep(expTime + slewTime)
+        for subDirName in subDirNames:
+            subDirPath = os.path.join(dirName, subDirName)
+            if(not os.path.isdir(subDirPath)):
+                continue
+            
+            # Get the list of amp FITS files in each dir.
+            fileList0 = glob.glob(os.path.join(subDirPath, '0', '*.fits'))
+            fileList1 = glob.glob(os.path.join(subDirPath, '1', '*.fits'))
+            
+            # Simple sanity check.
+            if(len(fileList0) != len(fileList1)):
+                pexLog.Trace('dc3pipe.eventfrominputfilelist', 1, 
+                             'Skipping %s: wrong file count in 0 and 1' \
+                             %(os.path.dirname(fileList0)))
+                continue
+            
+            # Now we just trust that the i-th file in 0 corresponds to the i-th file
+            # in 1... Fortunately, we only need to send one event per image 
+            # directory, since all images there are one MEF split into individual 
+            # amps.
+            sendEvent(fileList0[0])
+            # Sleep some.
+            time.sleep(expTime)
+            # Next event.
+            sendEvent(fileList1[0])
+            # Sleep expTime + slewTime.
+            time.sleep(expTime + slewTime)
     return
     
 
@@ -177,16 +183,14 @@ and then sends an event for the second exposure. At that point, it waits
     datatypePolicy = pexPolicy.Policy.createPolicy(sys.argv[2])
     expTime = EXP_TIME
     slewTime = SLEW_TIME
-    if(len(sys.argv) == 4):
-        try:
-            expTime = int(sys.argv[4])
-        except:
-            pass
-    if(len(sys.argv) == 5):
-        try:
-            slewTime = int(sys.argv[4])
-        except:
-            pass
+    try:
+        expTime = float(sys.argv[3])
+    except:
+        pass
+    try:
+        slewTime = float(sys.argv[4])
+    except:
+        pass
     
     # Extract broker info etc.
     pipelinePolicy = dafBase.PropertySet()
