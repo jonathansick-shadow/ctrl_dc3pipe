@@ -14,21 +14,21 @@ import lsst.pex.logging as logging
 Verbosity = 4
 logging.Trace_setVerbosity('dc3pipe', Verbosity)
 
-def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.PropertySet()):
+def EventFromInputfile(inputfile, 
+                       datatypePolicy, 
+                       metadataPolicy,
+                       topicName='triggerImageprocEvent', 
+                       hostName='lsst8.ncsa.uiuc.edu'):
     # For DC3a, inputfile is a .fits file on disk
     metadata = afwImage.readMetadata(inputfile)
-
-    dc3pipeDir = eups.productDir('ctrl_dc3pipe')
-    dc3PolicyPath = os.path.join(dc3pipeDir, 'pipeline',
-            'dc3MetadataPolicy.paf')
-    metadataPolicy = pexPolicy.Policy.createPolicy(dc3PolicyPath)
 
     # First, transform the input metdata
     transformMetadata(metadata, datatypePolicy, metadataPolicy, 'Keyword')
 
     # To be consistent...
     if not validateMetadata(metadata, metadataPolicy):
-        pexLog.Trace('dc3pipe.eventfrominputfile', 1, 'Unable to create event from %s' % (inputfile))
+        pexLog.Trace('dc3pipe.eventfrominputfilelist', 1, 
+                     'Unable to create event from %s' % (inputfile))
         return False
         
 
@@ -47,7 +47,22 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
     event.copy('airmass',     metadata, 'airmass')
     event.copy('dateObs',     metadata, 'dateObs')
 
-    # Policy for the event transmission
+    if event.getInt('exposureId') == 0:
+        eventTransmitter = ctrlEvents.EventTransmitter(hostName, topicName+'0')
+    elif event.getInt('exposureId') == 1:
+        eventTransmitter = ctrlEvents.EventTransmitter(hostName, topicName+'1')
+
+    eventTransmitter.publish(event)
+    # print('Sending event for file %s' %(inputfile))
+    return True
+
+
+if __name__ == "__main__":
+    inputfile      = sys.argv[1]
+    datatypePolicy = pexPolicy.Policy.createPolicy(sys.argv[2])
+    
+    # Extract broker info etc.
+    pipelinePolicy = dafBase.PropertySet()
     if pipelinePolicy.exists('hostName'):
         hostName  = pipelinePolicy.getString('hostName')
     else:
@@ -56,19 +71,12 @@ def EventFromInputfile(inputfile, datatypePolicy, pipelinePolicy=dafBase.Propert
         topicName = pipelinePolicy.getString('topicName')
     else:
         topicName = 'triggerImageprocEvent'
-
-    if event.getInt('exposureId') == 0:
-        eventTransmitter = ctrlEvents.EventTransmitter(hostName, topicName+'0')
-    elif event.getInt('exposureId') == 1:
-        eventTransmitter = ctrlEvents.EventTransmitter(hostName, topicName+'1')
-
-    eventTransmitter.publish(event)
-    return True
-
-
-if __name__ == "__main__":
-    inputfile      = sys.argv[1]
-    datatypePolicy = pexPolicy.Policy.createPolicy(sys.argv[2])
     
-    EventFromInputfile(inputfile, datatypePolicy)
-        
+    # Create a metadata policy object.
+    dc3pipeDir = eups.productDir('ctrl_dc3pipe')
+    metadataPolicy = pexPolicy.Policy.createPolicy(os.path.join(dc3pipeDir, 
+                        'pipeline', 'dc3MetadataPolicy.paf'))
+    
+    EventFromInputfile(inputfile, datatypePolicy, metadataPolicy, 
+                       topicName, hostName)
+
