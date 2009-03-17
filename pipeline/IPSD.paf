@@ -42,14 +42,14 @@ framework: {
    # can be represented as $ENVVAR which will be replaced with the
    # value of the environment variable with the name ENVVAR.
    # 
-   environment: "$CTRL_DC3PIPE_DIR/etc/setup.sh".
+   environment: "$PEX_HARNESS_DIR/etc/setup.sh".
 
    # this is the execution script that we will use to start the
    # pipeline on the head node of the platform.  The file path component
    # can be represented as $ENVVAR which will be replaced with the
    # value of the environment variable with the name ENVVAR.
    # 
-   exec:  "$CTRL_DC3PIPE_DIR/bin/launchPipeline.sh"
+   exec:  "$PEX_HARNESS_DIR/bin/launchPipeline.sh"
 }
 
 # the contents of this item is passed to the harness to configure the
