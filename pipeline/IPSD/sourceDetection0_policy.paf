@@ -6,8 +6,8 @@ exposureKey: "calibratedExposure0"
 
 psfPolicy: {
     algorithm: "DoubleGaussian"
-    width = 15
-    height = 15
+    width: 15
+    height: 15
     #5*/(2*sqrt(2*log(2)))
     parameter: 3.22195985
 }
