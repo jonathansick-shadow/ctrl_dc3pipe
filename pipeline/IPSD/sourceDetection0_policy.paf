@@ -19,5 +19,5 @@ detectionPolicy: {
 }
 
 smoothingPsfKey: "smoothingPsf"
-positiveDetectionKey: "positiveFooptrintSet"
+positiveDetectionKey: "positiveFootrintSet"
 negativeDetectionKey: "negativeFootprintSet"
