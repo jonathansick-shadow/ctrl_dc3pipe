@@ -1,8 +1,8 @@
 AdditionalData: "datasetId=triggerImageprocEvent1.datasetId"
 AdditionalData: "visitId=triggerImageprocEvent1.visitId"
 AdditionalData: "exposureId=triggerImageprocEvent1.exposureId"
-AdditionalData: "ccdId=triggerImageprocEvent1.ccdId"
-AdditionalData: "ampId=triggerImageprocEvent1.ampId"
+AdditionalData: "ccdId=ccdId"
+AdditionalData: "ampId=ampId"
 OutputItems: {
     rawCameraImage1: {
         Type: "ImageF"

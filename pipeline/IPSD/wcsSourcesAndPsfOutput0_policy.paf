@@ -1,8 +1,8 @@
 AdditionalData: "datasetId=triggerImageprocEvent0.datasetId"
 AdditionalData: "visitId=triggerImageprocEvent0.visitId"
 AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
-AdditionalData: "ccdId=triggerImageprocEvent0.ccdId"
-AdditionalData: "ampId=triggerImageprocEvent0.ampId"
+AdditionalData: "ccdId=ccdId"
+AdditionalData: "ampId=ampId"
 OutputItems: {
     ampWcsSources: {
         Type: "PersistableSourceVector"

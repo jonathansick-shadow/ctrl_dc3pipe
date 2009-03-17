@@ -3,6 +3,8 @@ RunMode: preprocess
 AdditionalData: "datasetId=triggerImageprocEvent0.datasetId"
 AdditionalData: "visitId=triggerImageprocEvent0.visitId"
 AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
+AdditionalData: "ccdId=ccdId"
+AdditionalData: "ampId=ampId"
 OutputItems: {
     visit0: {
         Type: "PropertySet"
