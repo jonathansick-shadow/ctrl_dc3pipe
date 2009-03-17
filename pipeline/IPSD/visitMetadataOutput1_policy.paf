@@ -33,7 +33,7 @@ OutputItems: {
 }
 
 Persistence: {
-    Formatters: {
+    Formatter: {
         PropertySet: {
             visit1: {
                 TableName: "Visit"
