@@ -13,7 +13,7 @@ sizeCellX: 512
 sizeCellY: 512
 nStarPerCell: 3
 kernelSize: 21
-nEigenComponenets: 2
+nEigenComponents: 2
 spatialOrder: 1
 nStarPerCellSpatialFit: 5
 tolerance: 0.1
