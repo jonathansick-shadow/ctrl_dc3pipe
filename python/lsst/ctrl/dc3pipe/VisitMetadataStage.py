@@ -25,7 +25,7 @@ class VisitMetadataStage(Stage):
         self.activeClipboard.put("visit" + str(exposureId), visit)
 
         rawFpaExposure = PropertySet()
-        rawFpaExposure.set("fpaExposureId", fpaExposureId)
+        rawFpaExposure.set("rawFPAExposureId", fpaExposureId)
         rawFpaExposure.set("ra", event.get("ra"))
         rawFpaExposure.set("decl", event.get("decl"))
         rawFpaExposure.set("filterId",
@@ -39,8 +39,8 @@ class VisitMetadataStage(Stage):
                 rawFpaExposure)
 
         rawCcdExposure = PropertySet()
-        rawCcdExposure.set("ccdExposureId", ccdExposureId)
-        rawCcdExposure.set("fpaExposureId", fpaExposureId) 
+        rawCcdExposure.set("rawCCDExposureId", ccdExposureId)
+        rawCcdExposure.set("rawFPAExposureId", fpaExposureId) 
         self.activeClipboard.put("ccdExposure" + str(exposureId),
                 rawCcdExposure)
 
