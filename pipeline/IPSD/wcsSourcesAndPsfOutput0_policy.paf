@@ -1,10 +1,14 @@
 AdditionalData: "datasetId=triggerImageprocEvent0.datasetId"
 AdditionalData: "visitId=triggerImageprocEvent0.visitId"
 AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
+AdditionalData: "ampExposureId=exposureMetadata0.ampExposureId"
+AdditionalData: "ccdExposureId=exposureMetadata0.ccdExposureId"
+AdditionalData: "fpaExposureId=exposureMetadata0.fpaExposureId"
+AdditionalData: "filterId=exposureMetadata0.filterId"
 AdditionalData: "ccdId=ccdId"
 AdditionalData: "ampId=ampId"
 OutputItems: {
-    ampWcsSources: {
+    persistable_sourceSet0: {
         Type: "PersistableSourceVector"
         PythonType: "lsst.afw.detection.PersistableSourceVector"
         StoragePolicy: {
@@ -12,7 +16,7 @@ OutputItems: {
             Location: "%(dbUrl)"
         }
     }
-    psfModel: {
+    psfModel0: {
         Type: "PSF"
         PythonType: "lsst.meas.algorithms.PSF"
         StoragePolicy: {
@@ -24,8 +28,8 @@ OutputItems: {
 
 Persistence: {
     Formatter: {
-        SourceFormatter: {
-            ampWcsSources: {
+        PersistableSourceVector: {
+            persistable_sourceSet0: {
                 templateTableName: "WCSSource"
                 tableNamePattern: "_tmp_v%(visitId)_c%(ccdId)_WcsSource"
             }
