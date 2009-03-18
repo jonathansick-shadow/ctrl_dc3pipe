@@ -1,6 +1,7 @@
 metadata: @dc3MetadataPolicy.paf
 datatype: @datatypePolicy/cfhtDataTypePolicy.paf
 suffix: Keyword
-imageName: rawCameraImage0
-metadataName: rawImageMetadata0
+imageKey: rawCameraImage0
+metadataKey: rawImageMetadata0
 computeWcsGuess: true
+wcsKey: wcsGuess

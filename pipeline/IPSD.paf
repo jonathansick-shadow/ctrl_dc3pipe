@@ -166,6 +166,13 @@ execute: {
       stagePolicy: "IPSD/calibrationInput_policy.paf"
    }
    
+   # Transform calibration exposure metadata into LSST standard (exposure 0)
+   appStage: {
+      stageName: "lsst.ctrl.dc3pipe.MetadataStages.TransformExposureMetadataStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/transformCalibrationMetadata_policy.paf"
+   }
+
    # Perform ISR (exposure 0)
    appStage: {
       stageName: "lsst.ip.isr.IsrStage"
