@@ -64,7 +64,7 @@ trimFilterName: true
 # For all data
 gainKeyword: GAIN
 saturationKeyword: SATURATE
-trimsecKeyword: TRIMSEC
+trimsecKeyword: DATASEC
 overscanKeyword: BIASSEC
 
 # For calibration data
