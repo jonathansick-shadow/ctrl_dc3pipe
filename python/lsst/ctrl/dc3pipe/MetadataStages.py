@@ -126,7 +126,6 @@ class TransformExposureMetadataStage(Stage):
             suffix = "Keyword"
 
         for exposureKey in exposureKeys:
-            print exposureKey
             exposure = self.activeClipboard.get(exposureKey)
             metadata = exposure.getMetadata()
             transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
