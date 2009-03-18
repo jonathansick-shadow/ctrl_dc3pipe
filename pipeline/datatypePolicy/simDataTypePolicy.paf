@@ -36,3 +36,7 @@ dataSetIdKeyword: DATASET
 
 # Trim section
 trimsecKeyword: DATASEC
+
+# Gain
+gainKeyword: GAIN
+

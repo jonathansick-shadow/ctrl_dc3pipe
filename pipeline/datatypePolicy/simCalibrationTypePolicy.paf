@@ -23,3 +23,6 @@ filterKeyword: FILTER
 # Airmass of mid-exposure
 dataSetIdKeyword: DATASET
 
+# File name
+filenameKeyword: FILENAME
+
