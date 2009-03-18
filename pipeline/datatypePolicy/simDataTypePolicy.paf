@@ -34,3 +34,5 @@ airmassKeyword: AIRMASS
 # Airmass of mid-exposure
 dataSetIdKeyword: DATASET
 
+# Trim section
+trimsecKeyword: DATASEC
