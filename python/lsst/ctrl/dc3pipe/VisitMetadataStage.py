@@ -15,12 +15,12 @@ class VisitMetadataStage(Stage):
         fpaExposureId = long(visitId) << 1 + exposureId
 
         visit = PropertySet()
-        visit.set("visitId", visitId)
-        visit.set("exposureId", fpaExposureId)
+        visit.setInt("visitId", visitId)
+        visit.setLongLong("exposureId", fpaExposureId)
         self.activeClipboard.put("visit" + str(exposureId), visit)
 
         rawFpaExposure = PropertySet()
-        rawFpaExposure.setInt64("rawFPAExposureId", fpaExposureId)
+        rawFpaExposure.setLongLong("rawFPAExposureId", fpaExposureId)
         rawFpaExposure.set("ra", event.get("ra"))
         rawFpaExposure.set("decl", event.get("decl"))
         rawFpaExposure.set("filterId",
@@ -55,9 +55,9 @@ class VisitMetadataStage(Stage):
         exposureMetadata = PropertySet()
         exposureMetadata.setInt("filterId",
                 self.lookupFilterId(event.get("filter")))
-        exposureMetadata.setInt64("fpaExposureId", fpaExposureId)
-        exposureMetadata.setInt64("ccdExposureId", ccdExposureId)
-        exposureMetadata.setInt64("ampExposureId", ampExposureId)
+        exposureMetadata.setLongLong("fpaExposureId", fpaExposureId)
+        exposureMetadata.setLongLong("ccdExposureId", ccdExposureId)
+        exposureMetadata.setLongLong("ampExposureId", ampExposureId)
         self.activeClipboard.put("exposureMetadata" + str(exposureId),
                 exposureMetadata)
 
