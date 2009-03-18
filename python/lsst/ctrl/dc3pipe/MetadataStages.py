@@ -26,6 +26,8 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
         if datatypePolicy.exists(mappingKey):
             keyword = datatypePolicy.getString(mappingKey)
             metadata.copy(paramName, metadata, keyword)
+            metadata.copy(keyword + "_orig", metadata, keyword)
+            metadata.remove(keyword)
     
     # Any additional operations on the input data?
     if datatypePolicy.exists('convertDateobsToTai'):
