@@ -1,5 +1,5 @@
 eventName: triggerImageprocEvent0
-calibDbPath: "/lsst/images/repository/calib/calibDatabaseAcb.paf"
+calibDbPath: "/lsst/images/repository/calib/calibDatabase2.paf"
 darkPolicy: closest
 pathPrefix: "%(input)/calib"
 outputKey: calibData
