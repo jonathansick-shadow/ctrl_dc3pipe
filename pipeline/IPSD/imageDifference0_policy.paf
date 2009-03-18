@@ -1,0 +1,11 @@
+#<? cfg paf policy ?>
+#
+# Stage policy for lsst.ip.diffim.DiffimStage
+
+scienceExposureKey: "scienceExposure0"
+templateExposureKey: "templateExposure0"
+
+diffimPolicy: @IPSD/diffimPolicy.paf
+
+differenceExposureKey: "differenceExposure0"
+sdqaRatingSetKey: "DiffimRatingSet0"
