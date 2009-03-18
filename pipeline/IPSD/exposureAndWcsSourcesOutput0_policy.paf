@@ -35,7 +35,7 @@ Persistence: {
     Formatter: {
         PersistableSourceVector: {
             persistable_sourceSet0: {
-                templateTableName: "Source"
+                templateTableName: "_tmpl_WCSSource"
                 tableNamePattern: "_tmp_v%(visitId)_c%03d(ccdId)_a%02d(ampId)_WcsSource"
             }
         }
