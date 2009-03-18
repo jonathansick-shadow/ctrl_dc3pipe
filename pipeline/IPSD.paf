@@ -187,6 +187,13 @@ execute: {
       stagePolicy: "IPSD/sourceDetection0_policy.paf"
    }
    
+   # Persist background-subtracted exposure (exposure 0)
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/bkgExposureOutput0_policy.paf"
+   }
+
    # Measure sources for WCS (exposure 0)
    appStage: {
       stageName: "lsst.meas.pipeline.SourceMeasurementStage"

@@ -10,7 +10,7 @@ measureObjects: {
 }
 psfKey: "smoothingPsf"
 data: {
-    exposureKey: "calibratedExposure0"
+    exposureKey: "backgroundSubtractedExposure0"
     outputKey: "sourceSet0"
 }
 positiveDetectionKey: "positiveFootprintSet"
