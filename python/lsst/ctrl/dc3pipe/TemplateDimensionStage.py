@@ -5,7 +5,7 @@ import lsst.afw.image as afwImage
 
 class TemplateDimensionStage(Stage):
     def process(self):
-        self.activeClipboard = self.inputQueue.getNextDataset()
+        clipboard = self.inputQueue.getNextDataset()
 
         additionalData = Utils.createAdditionalData(self,
                 self._policy, clipboard)
@@ -15,6 +15,6 @@ class TemplateDimensionStage(Stage):
         metadata = afwImage.readMetadata(templatePath)
         dims = afwImage.PointI(metadata.get("NAXIS1"), metadata.get("NAXIS2"))
         outputKey = self._policy.get('outputKey')
-        self.activeClipboard.put(outputKey, dims)
+        clipboard.put(outputKey, dims)
 
-        self.outputQueue.addDataset(self.activeClipboard)
+        self.outputQueue.addDataset(clipboard)

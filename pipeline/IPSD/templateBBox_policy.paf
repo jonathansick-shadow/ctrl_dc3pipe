@@ -1,6 +1,5 @@
 #<?cfg paf dictionary ?>
-scienceExposureName: "scienceExposure0"
+scienceExposureName: "calibratedExposure0"
 templateDimensionsName: "templateDimensions"
 templateWcsName: "templateWcs"
 borderWidth: 20
-
