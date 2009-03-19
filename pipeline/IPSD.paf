@@ -208,185 +208,185 @@ execute: {
       stagePolicy: "IPSD/exposureAndWcsSourcesOutput0_policy.paf"
    }
 
-   # Determine PSF (exposure 0)
+#   # Determine PSF (exposure 0)
+#   appStage: {
+#      stageName: "lsst.meas.pipeline.PsfDeterminationStage"
+#      eventTopic: "None"
+#      stagePolicy: "IPSD/psfDetermination0_policy.paf"
+#   }
+   
+#   # Persist PSF (exposure 0)
+#   appStage: {
+#      stageName: "lsst.pex.harness.IOStage.OutputStage"
+#      eventTopic: "None"
+#      stagePolicy: "IPSD/psfOutput0_policy.paf"
+#   }
+   
+   # Load input image (exposure 1)
    appStage: {
-      stageName: "lsst.meas.pipeline.PsfDeterminationStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/psfDetermination0_policy.paf"
+      stageName: "lsst.pex.harness.IOStage.InputStage"
+      eventTopic: "triggerImageprocEvent1"
+      stagePolicy: "IPSD/imageInput1_policy.paf"
    }
    
-   # Persist PSF (exposure 0)
+   # Transform input event into visit metadata (exposure 1)
+   appStage: {
+      stageName: "lsst.ctrl.dc3pipe.VisitMetadataStage.VisitMetadataStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/visitMetadata1_policy.paf"
+   }
+   
+   # Transform image metadata into LSST standard (exposure 1)
+   appStage: {
+      stageName: "lsst.ctrl.dc3pipe.MetadataStages.TransformMetadataStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/transformMetadata1_policy.paf"
+   }
+   
+   # Validate that metadata is in LSST standard form (exposure 1)
+   appStage: {
+      stageName: "lsst.ctrl.dc3pipe.MetadataStages.ValidateMetadataStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/validateMetadata1_policy.paf"
+   }
+   
+   # Persist the per-visit metadata (exposure 1)
    appStage: {
       stageName: "lsst.pex.harness.IOStage.OutputStage"
       eventTopic: "None"
-      stagePolicy: "IPSD/psfOutput0_policy.paf"
+      stagePolicy: "IPSD/visitMetadataOutput1_policy.paf"
+   }
+
+   # Persist the per-exposure metadata and the raw image (exposure 1)
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/rawImageAndMetadataOutput1_policy.paf"
    }
    
-#    # Load input image (exposure 1)
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.InputStage"
-#       eventTopic: "triggerImageprocEvent1"
-#       stagePolicy: "IPSD/imageInput1_policy.paf"
-#    }
-#    
-#    # Transform input event into visit metadata (exposure 1)
-#    appStage: {
-#       stageName: "lsst.ctrl.dc3pipe.VisitMetadataStage.VisitMetadataStage"
-#       eventTopic: "None"
-#       stagePoliicy: "IPSD/visitMetadata1_policy.paf"
-#    }
-#    
-#    # Transform image metadata into LSST standard (exposure 1)
-#    appStage: {
-#       stageName: "lsst.ctrl.dc3pipe.MetadataStages.TransformMetadataStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/transformMetadata1_policy.paf"
-#    }
-#    
-#    # Validate that metadata is in LSST standard form (exposure 1)
-#    appStage: {
-#       stageName: "lsst.ctrl.dc3pipe.MetadataStages.ValidateMetadataStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/validateMetadata1_policy.paf"
-#    }
-#    
-#    # Persist the per-visit metadata (exposure 1)
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.OutputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/visitMetadataOutput1_policy.paf"
-#    }
-# 
-#    # Persist the per-exposure metadata and the raw image (exposure 1)
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.OutputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/rawImageAndMetadataOutput1_policy.paf"
-#    }
-#    
-#    # Perform ISR (exposure 1)
-#    appStage: {
-#       stageName: "lsst.ip.isr.IsrStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/isr1_policy.paf"
-#    }
-#    
-#    # Load WCS sources from entire CCD
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.InputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/wcsSourcesInput_policy.paf"
-#    }
+   # Perform ISR (exposure 1)
+   appStage: {
+      stageName: "lsst.ip.isr.IsrStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/isr1_policy.paf"
+   }
    
-#    # Determine WCS based on CCD's WCS sources
-#    appStage: {
-#       stageName: "lsst.meas.pipeline.WcsDeterminationStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/wcsDetermination_policy.paf"
-#    }
-#    
-#    # Persist calibrated science exposures
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.OutputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/calibratedExposuresOutput_policy.paf"
-#    }
-#    
-#    # Load WCS from template image
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.InputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/templateMetadataInput_policy.paf"
-#    }
-#    
-#    appStage: {
-#       stageName: "lsst.ctrl.dc3pipe.TemplateDimensionStage.TemplateDimensionStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/templateDimension_policy.paf"
-#    }
-#
-#    # Determine bounding box of exposures within template image
-#    appStage: {
-#       stageName: "lsst.ip.diffim.TemplateBBoxStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/templateBBox_policy.paf"
-#    }
-#    
-#    # Load subimage of template corresponding to exposure
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.InputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/templateSubimageInput_policy.paf"
-#    }
-#    
-#    # Subtract template from exposure (exposure 0)
-#    appStage: {
-#       stageName: "lsst.ip.diffim.ImageDifferenceStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/imageDifference0_policy.paf"
-#    }
-#    
-#    # Subtract template from exposure (exposure 1)
-#    appStage: {
-#       stageName: "lsst.ip.diffim.ImageDifferenceStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/imageDifference1_policy.paf"
-#    }
-#    
-#    # Persist difference images and kernels
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.OutputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/differenceImageAndKernelOutput_policy.paf"
-#    }
-#    
-#    # Co-add difference images and detect DIASources
-#    appStage: {
-#       stageName: "lsst.meas.pipeline.AddAndDetectStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/addAndDetect_policy.paf"
-#    }
-#    
-#    # Measure DIASources in both exposures
-#    appStage: {
-#       stageName: "lsst.meas.pipeline.SourceMeasurementStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/diaSourceMeasurement_policy.paf"
-#    }
-# 
-#    # Conver the Sources to Dia sources
-#    appStage :{
-#       stageName: "lsst.meas.pipeline.SourceToDiaSourceStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/sourceToDiaSource_policy.paf"
-#    }
-# 
-#    # Classify DIASources
-#    appStage: {
-#       stageName: "lsst.meas.pipeline.SourceClassificationStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/sourceClassification_policy.paf"
-#    }
-#    
-#    # Persist DIASources
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.OutputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/diaSourceOutput_policy.paf"
-#    }
-#    
-#    # Persist SDQA ratings
-#    appStage: {
-#       stageName: "lsst.pex.harness.IOStage.OutputStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/sdqaOutput_policy.paf"
-#    }
-#    
-#    # Send an event to the association pipeline indicating that
-#    # new detections are available
-#    appStage: {
-#       stageName: "lsst.pex.harness.EventStage.EventStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/associationEvent_policy.paf"
-#    }
+   # Load WCS sources from entire CCD
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.InputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/wcsSourcesInput_policy.paf"
+   }
+   
+   # Determine WCS based on CCD's WCS sources
+   appStage: {
+      stageName: "lsst.meas.pipeline.WcsDeterminationStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/wcsDetermination_policy.paf"
+   }
+   
+   # Persist calibrated science exposures
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/calibratedExposuresOutput_policy.paf"
+   }
+   
+   # Load WCS from template image
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.InputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/templateMetadataInput_policy.paf"
+   }
+   
+   appStage: {
+      stageName: "lsst.ctrl.dc3pipe.TemplateDimensionStage.TemplateDimensionStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/templateDimension_policy.paf"
+   }
+
+   # Determine bounding box of exposures within template image
+   appStage: {
+      stageName: "lsst.ip.diffim.pipeline.TemplateBBoxStage.TemplateBBoxStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/templateBBox_policy.paf"
+   }
+   
+   # Load subimage of template corresponding to exposure
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.InputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/templateSubimageInput_policy.paf"
+   }
+   
+   # Subtract template from exposure (exposure 0)
+   appStage: {
+      stageName: "lsst.ip.diffim.pipeline.ImageSubtractStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/imageDifference0_policy.paf"
+   }
+   
+   # Subtract template from exposure (exposure 1)
+   appStage: {
+      stageName: "lsst.ip.diffim.pipeline.ImageSubtractStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/imageDifference1_policy.paf"
+   }
+   
+   # Persist difference images and kernels
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/differenceImageAndKernelOutput_policy.paf"
+   }
+   
+   # Co-add difference images and detect DIASources
+   appStage: {
+      stageName: "lsst.meas.pipeline.AddAndDetectStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/addAndDetect_policy.paf"
+   }
+   
+   # Measure DIASources in both exposures
+   appStage: {
+      stageName: "lsst.meas.pipeline.SourceMeasurementStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/diaSourceMeasurement_policy.paf"
+   }
+
+   # Convert the Sources to Dia sources
+   appStage :{
+      stageName: "lsst.meas.pipeline.SourceToDiaSourceStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/sourceToDiaSource_policy.paf"
+   }
+
+   # Classify DIASources
+   appStage: {
+      stageName: "lsst.meas.pipeline.SourceClassificationStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/sourceClassification_policy.paf"
+   }
+   
+   # Persist DIASources
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/diaSourceOutput_policy.paf"
+   }
+   
+   # Persist SDQA ratings
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/sdqaOutput_policy.paf"
+   }
+   
+   # Send an event to the association pipeline indicating that
+   # new detections are available
+   appStage: {
+      stageName: "lsst.pex.harness.EventStage.EventStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/associationEvent_policy.paf"
+   }
 }
