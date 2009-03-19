@@ -187,7 +187,7 @@ execute: {
       stagePolicy: "IPSD/sourceDetection0_policy.paf"
    }
    
-   # Persist background-subtracted exposure (exposure 0)
+   # Persist calibrated and background-subtracted exposures (exposure 0)
    appStage: {
       stageName: "lsst.pex.harness.IOStage.OutputStage"
       eventTopic: "None"
@@ -201,7 +201,7 @@ execute: {
       stagePolicy: "IPSD/sourceMeasurement0_policy.paf"
    }
    
-   # Persist calibrated exposure and sources (exposure 0)
+   # Persist sources (exposure 0)
    appStage: {
       stageName: "lsst.pex.harness.IOStage.OutputStage"
       eventTopic: "None"

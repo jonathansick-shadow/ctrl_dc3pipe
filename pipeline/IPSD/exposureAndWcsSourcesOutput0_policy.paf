@@ -8,14 +8,14 @@ AdditionalData: "filterId=exposureMetadata0.filterId"
 AdditionalData: "ccdId=ccdId"
 AdditionalData: "ampId=ampId"
 OutputItems: {
-    calibratedExposure0: {
-        Type: "ExposureF"
-        PythonType: "lsst.afw.image.ExposureF"
-        StoragePolicy: {
-            Storage: "FitsStorage"
-            Location: "%(output)/sci/v%(visitId)-e%(exposureId)/c%03d(ccdId)-a%02d(ampId)"
-        }
-    }
+#    calibratedExposure0: {
+#        Type: "ExposureF"
+#        PythonType: "lsst.afw.image.ExposureF"
+#        StoragePolicy: {
+#            Storage: "FitsStorage"
+#            Location: "%(output)/sci/v%(visitId)-e%(exposureId)/c%03d(ccdId)-a%02d(ampId)"
+#        }
+#    }
 #    backgroundSubtractedExposure0: {
 #        Type: "ExposureF"
 #        PythonType: "lsst.afw.image.ExposureF"
