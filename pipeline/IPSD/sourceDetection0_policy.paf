@@ -5,8 +5,10 @@
 exposureKey: "calibratedExposure0"
 
 backgroundPolicy: {
-    algorithm:  "NATURAL_SPLINE"        # how to interpolate the background values
-    binsize:    256                     # how large regions of the sky should be used for each background point
+    # how to interpolate the background values
+    algorithm:  "NATURAL_SPLINE" 
+    # how large regions of the sky should be used for each background point
+    binsize:    256
 }
 
 psfPolicy: {
@@ -23,7 +25,7 @@ detectionPolicy: {
     thresholdPolarity: "positive"
 }
 
-smoothingPsfKey: "smoothingPsf"
+psfKey: "psfModel"
 positiveDetectionKey: "positiveFootprintSet"
 negativeDetectionKey: "negativeFootprintSet"
 backgroundSubtractedExposureKey: "backgroundSubtractedExposure0"

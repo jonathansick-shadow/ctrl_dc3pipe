@@ -8,13 +8,14 @@ measureObjects: {
     photometryAlgorithm: "NAIVE"
     apRadius: 3.0
 }
-psfKey: "psfModel"
 data: {
     exposureKey: "calibratedExposure0"
+    psfKey: "psfModel"
     outputKey: "sourceSet0"
 }
 data: {
     exposureKey: "calibratedExposure1"
+    psfKey: "psfModel"
     outputKey: "sourceSet1"
 }
 positiveDetectionKey: "positiveFootprintSet"
