@@ -1,12 +1,13 @@
-import lsst.pex.harness as pexHarness
+from lsst.pex.harness.Stage import Stage
+from lsst.pex.harness import Utils
 from lsst.daf.persistence import LogicalLocation
 import lsst.afw.image as afwImage
 
-class TemplateDimension(pexHarness.Stage):
+class TemplateDimensionStage(Stage):
     def process(self):
         self.activeClipboard = self.inputQueue.getNextDataset()
 
-        additionalData = pexHarness.Utils.createAdditionalData(self,
+        additionalData = Utils.createAdditionalData(self,
                 self._policy, clipboard)
         templateLocation = self._policy.get('templateLocation')
         templatePath = LogicalLocation(templateLocation,
