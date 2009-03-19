@@ -2,8 +2,8 @@
 #
 # Stage policy for lsst.ip.diffim.DiffimStage
 
-scienceExposureKey: "scienceExposure1"
-templateExposureKey: "templateExposure1"
+scienceExposureKey: "calibratedExposure1"
+templateExposureKey: "templateExposure"
 
 diffimPolicy: @diffimPolicy.paf
 

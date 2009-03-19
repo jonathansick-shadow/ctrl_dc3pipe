@@ -10,7 +10,7 @@ InputItems: {
         PythonType: "lsst.afw.image.Wcs"
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(input)/template/%(datasetId)/25/%(filter)/T0004_%(datasetId)_25_%(filter).fits"
+            Location: "%(input)/template/%(datasetId)/25/%(filter)/T0004_%(datasetId)_25_%(filter)_img.fits"
         }
     }
 }

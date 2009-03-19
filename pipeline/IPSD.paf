@@ -208,19 +208,19 @@ execute: {
       stagePolicy: "IPSD/exposureAndWcsSourcesOutput0_policy.paf"
    }
 
-#   # Determine PSF (exposure 0)
-#   appStage: {
-#      stageName: "lsst.meas.pipeline.PsfDeterminationStage"
-#      eventTopic: "None"
-#      stagePolicy: "IPSD/psfDetermination0_policy.paf"
-#   }
+   # Determine PSF (exposure 0)
+   appStage: {
+      stageName: "lsst.meas.pipeline.PsfDeterminationStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/psfDetermination0_policy.paf"
+   }
    
-#   # Persist PSF (exposure 0)
-#   appStage: {
-#      stageName: "lsst.pex.harness.IOStage.OutputStage"
-#      eventTopic: "None"
-#      stagePolicy: "IPSD/psfOutput0_policy.paf"
-#   }
+   # Persist PSF (exposure 0)
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/psfOutput0_policy.paf"
+   }
    
    # Load input image (exposure 1)
    appStage: {
@@ -278,12 +278,12 @@ execute: {
       stagePolicy: "IPSD/wcsSourcesInput_policy.paf"
    }
    
-#    # Determine WCS based on CCD's WCS sources
-#    appStage: {
-#       stageName: "lsst.meas.pipeline.WcsDeterminationStage"
-#       eventTopic: "None"
-#       stagePolicy: "IPSD/wcsDetermination_policy.paf"
-#    }
+   # Determine WCS based on CCD's WCS sources
+#   appStage: {
+#      stageName: "lsst.meas.pipeline.WcsDeterminationStage"
+#      eventTopic: "None"
+#      stagePolicy: "IPSD/wcsDetermination_policy.paf"
+#   }
    
    # Persist calibrated science exposures
    appStage: {
@@ -299,6 +299,7 @@ execute: {
       stagePolicy: "IPSD/templateMetadataInput_policy.paf"
    }
    
+   # Load dimensions from template image (hack for DC3a)
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.TemplateDimensionStage.TemplateDimensionStage"
       eventTopic: "None"
@@ -319,16 +320,23 @@ execute: {
       stagePolicy: "IPSD/templateSubimageInput_policy.paf"
    }
    
+   # Persist template subimage with bounding box and WCS information
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: "IPSD/templateSubimageOutput_policy.paf"
+   }
+
    # Subtract template from exposure (exposure 0)
    appStage: {
-      stageName: "lsst.ip.diffim.pipeline.ImageSubtractStage"
+      stageName: "lsst.ip.diffim.diffimStages.DiffimStage"
       eventTopic: "None"
       stagePolicy: "IPSD/imageDifference0_policy.paf"
    }
    
    # Subtract template from exposure (exposure 1)
    appStage: {
-      stageName: "lsst.ip.diffim.pipeline.ImageSubtractStage"
+      stageName: "lsst.ip.diffim.diffimStages.DiffimStage"
       eventTopic: "None"
       stagePolicy: "IPSD/imageDifference1_policy.paf"
    }
@@ -355,7 +363,7 @@ execute: {
    }
 
    # Convert the Sources to Dia sources
-   appStage :{
+   appStage: {
       stageName: "lsst.meas.pipeline.SourceToDiaSourceStage"
       eventTopic: "None"
       stagePolicy: "IPSD/sourceToDiaSource_policy.paf"

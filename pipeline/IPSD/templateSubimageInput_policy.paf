@@ -4,17 +4,17 @@ AdditionalData: "exposureId=triggerImageprocEvent0.exposureId"
 AdditionalData: "ccdId=ccdId"
 AdditionalData: "ampId=ampId"
 AdditionalData: "filter=triggerImageprocEvent0.filter"
-AdditionalData: "llcX=templateBBoxProperties.llcX"
-AdditionalData: "llcY=templateBBoxProperties.llcY"
+AdditionalData: "llcX=templateBBoxProperties.llcx"
+AdditionalData: "llcY=templateBBoxProperties.llcy"
 AdditionalData: "width=templateBBoxProperties.width"
 AdditionalData: "height=templateBBoxProperties.height"
 InputItems: {
-    templateImage: {
+    templateExposure: {
         Type: "ExposureF"
         PythonType: "lsst.afw.image.ExposureF"
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(input)/template/%(datasetId)/25/%(filter)/T0004_%(datasetId)_25_%(filter).fits"
+            Location: "%(input)/template/%(datasetId)/25/%(filter)/T0004_%(datasetId)_25_%(filter)"
         }
     }
 }
