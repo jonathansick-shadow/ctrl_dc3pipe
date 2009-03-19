@@ -5,7 +5,7 @@
 scienceExposureKey: "scienceExposure0"
 templateExposureKey: "templateExposure0"
 
-diffimPolicy: @IPSD/diffimPolicy.paf
+diffimPolicy: @diffimPolicy.paf
 
 differenceExposureKey: "differenceExposure0"
 sdqaRatingSetKey: "DiffimRatingSet0"
