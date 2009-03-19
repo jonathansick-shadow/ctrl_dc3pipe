@@ -4,4 +4,4 @@ suffix: Keyword
 imageKey: rawCameraImage0
 metadataKey: rawImageMetadata0
 computeWcsGuess: true
-wcsKey: wcsGuess
+wcsKey: initialWcs

@@ -278,12 +278,12 @@ execute: {
       stagePolicy: "IPSD/wcsSourcesInput_policy.paf"
    }
    
-   # Determine WCS based on CCD's WCS sources
-   appStage: {
-      stageName: "lsst.meas.pipeline.WcsDeterminationStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/wcsDetermination_policy.paf"
-   }
+#    # Determine WCS based on CCD's WCS sources
+#    appStage: {
+#       stageName: "lsst.meas.pipeline.WcsDeterminationStage"
+#       eventTopic: "None"
+#       stagePolicy: "IPSD/wcsDetermination_policy.paf"
+#    }
    
    # Persist calibrated science exposures
    appStage: {
