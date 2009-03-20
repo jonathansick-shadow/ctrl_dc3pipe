@@ -2,3 +2,4 @@ nAmps: 8
 nCcds: 36
 ccdIdFormula: "sliceId / nAmps"
 ampIdFormula: "sliceId % nAmps"
+ampBBoxDbPath: "/lsst/images/repository/calib/cfhtAmpBBoxPolicy.paf"

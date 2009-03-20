@@ -1,8 +1,8 @@
 data: {
-    inputKey: "sourceSet0"
+    inputKey: "diffimSourceSet0"
     outputKey: "diaSourceSet0"
 }
 data: {
-    inputKey: "sourceSet1"
+    inputKey: "diffimSourceSet1"
     outputKey: "diaSourceSet1"
 }

@@ -1,5 +1,5 @@
 #<?cfg paf policy ?>
-# diffim policy 
+# Default Image Subtraction Policy File
 
 ######
 # Write intermediate FITS files? (boolean)
@@ -27,19 +27,19 @@ iterateKernel: false
 
 ######
 # Order of kernel spatial variation
-kernelSpatialOrder: 1
+kernelSpatialOrder: 0
 
 ######
 # Order of background spatial variation
-backgroundSpatialOrder: 1
+backgroundSpatialOrder: 0
 
 #####
 # Chops up the image into cells
 #
 #   segmentMaskedImage:
 #
-nSegmentCol: 20
-nSegmentRow: 40
+nSegmentCol: 10
+nSegmentRow: 10
 
 ######
 # Rejects objects with deviant Kernel Sums
