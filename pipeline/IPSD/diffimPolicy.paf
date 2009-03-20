@@ -1,9 +1,6 @@
 #<?cfg paf policy ?>
 # diffim policy 
 
-# Warping kernel order for warping template Exposure
-warpingKernelOrder: 4
-
 ######
 # Write intermediate FITS files? (boolean)
 debugIO: false
@@ -12,6 +9,9 @@ debugPlot: false
 # Testing for spatial kernel model
 spatialKernelTesting: false
 spatialKernelRejection: true
+
+# Warping kernel order for warping template Exposure
+warpingKernelSize: 8
 
 # Spatial function applied to : 'pca' or 'pixel' only
 spatialKernelModel: 'pca'
