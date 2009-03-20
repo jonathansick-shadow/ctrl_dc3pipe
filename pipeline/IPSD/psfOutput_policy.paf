@@ -2,7 +2,7 @@ AdditionalData: "visitId=triggerImageprocEvent0.visitId"
 AdditionalData: "ccdId=ccdId"
 AdditionalData: "ampId=ampId"
 OutputItems: {
-    psfModel0: {
+    psfModel: {
         Type: "PSF"
         PythonType: "lsst.meas.algorithms.PSF"
         StoragePolicy: {
