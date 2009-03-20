@@ -4,7 +4,7 @@
 # Is this one crudely coadded image or one or both exposures of the visit?
 # For now we decided to only detect on the first exposure of the visit.
 #
-astrometryIndicesGlob: "/lsst/DC3/stacks/gcc412/20feb/Generic/astrometry_net_data/usnob/index-*.fits"
+astrometryIndicesGlob: "/lsst/DC3/data/astrometry_net_data/usnob/index-*.fits"
 exposureNameList: "calibratedExposure0", "calibratedExposure1"
 sourceSetName: "sourceSet0"
 initialWcsName: "initialWcs"
