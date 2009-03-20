@@ -66,12 +66,12 @@ class ValidateMetadataStage(Stage):
     """
 
     def process(self):
-        self.activeClipboard = self.inputQueue.getNextDataset()
+        clipboard = self.inputQueue.getNextDataset()
         metadataPolicy = self._policy.getPolicy("metadata")
         imageMetadataKey = self._policy.get("imageMetadataKey")
-        metadata = self.activeClipboard.get(imageMetadataKey)
+        metadata = clipboard.get(imageMetadataKey)
         validateMetadata(metadata, metadataPolicy)
-        self.outputQueue.addDataset(self.activeClipboard)
+        self.outputQueue.addDataset(clipboard)
     
 class TransformMetadataStage(Stage):
 
@@ -83,13 +83,13 @@ class TransformMetadataStage(Stage):
     set."""
 
     def process(self):
-        self.activeClipboard = self.inputQueue.getNextDataset()
+        clipboard = self.inputQueue.getNextDataset()
         metadataPolicy = self._policy.getPolicy("metadata")
         datatypePolicy = self._policy.getPolicy("datatype")
         imageKey = self._policy.get("imageKey")
         metadataKey = self._policy.get("metadataKey")
         wcsKey = self._policy.get("wcsKey")
-        decoratedImage = self.activeClipboard.get(imageKey)
+        decoratedImage = clipboard.get(imageKey)
         metadata = decoratedImage.getMetadata()
 
         if self._policy.exists("suffix"):
@@ -99,26 +99,28 @@ class TransformMetadataStage(Stage):
 
         transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
 
-        self.activeClipboard.put(metadataKey, metadata)
-        self.activeClipboard.put(imageKey, decoratedImage.getImage())
+        clipboard.put(metadataKey, metadata)
+        clipboard.put(imageKey, decoratedImage.getImage())
         if self._policy.getBool("computeWcsGuess"):
-            self.activeClipboard.put(wcsKey, afwImage.Wcs(metadata))
+            clipboard.put(wcsKey, afwImage.Wcs(metadata))
 
-        self.outputQueue.addDataset(self.activeClipboard)
+        self.outputQueue.addDataset(clipboard)
 
 class TransformExposureMetadataStage(Stage):
 
-    """This stage takes alist of  input Exposures and transforms the metadata
+    """This stage takes a list of input Exposures and transforms the metadata
     of each one to the LSST standard.  It will be input-dataset specific, and
     the mapping is described in the datatypePolicy.  The standard is to have a
     string in the datatypePolicy named metadataKeyword that represents the
     location of LSST metadata in the particular data set."""
 
     def process(self):
-        self.activeClipboard = self.inputQueue.getNextDataset()
+        clipboard = self.inputQueue.getNextDataset()
         metadataPolicy = self._policy.getPolicy("metadata")
         datatypePolicy = self._policy.getPolicy("datatype")
         exposureKeys = self._policy.getStringArray("exposureKey")
+        ampBBoxKey = self._policy.getString("ampBBoxKey")
+        ampBBox = clipboard.get(ampBBoxKey)
 
         if self._policy.exists("suffix"):
             suffix = self._policy.get("suffix")
@@ -126,8 +128,9 @@ class TransformExposureMetadataStage(Stage):
             suffix = "Keyword"
 
         for exposureKey in exposureKeys:
-            exposure = self.activeClipboard.get(exposureKey)
+            exposure = clipboard.get(exposureKey)
             metadata = exposure.getMetadata()
             transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
+            exposure.getMaskedImage().setXY0(ampBBox.getLLC())
 
-        self.outputQueue.addDataset(self.activeClipboard)
+        self.outputQueue.addDataset(clipboard)

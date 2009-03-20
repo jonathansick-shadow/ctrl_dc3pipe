@@ -1,9 +1,15 @@
 #! /usr/bin/env python
 
 from lsst.pex.harness.Stage import Stage
+from lsst.pex.policy import Policy
+import lsst.afw.image as afwImage
 
 class SliceInfoStage(Stage):
     '''Compute per-slice information.'''
+
+    def __init__(self, stageId=-1, stagePolicy=None):
+        Stage.__init__(self, stageId, stagePolicy)
+        self.ampBBoxDb = Policy(self._policy.get("ampBBoxDbPath"))
 
     def preprocess(self): 
         self.process()
@@ -12,7 +18,7 @@ class SliceInfoStage(Stage):
         """
         Compute the ampId and ccdId corresponding to this slice.
         """
-        self.activeClipboard = self.inputQueue.getNextDataset()
+        clipboard = self.inputQueue.getNextDataset()
 
         sliceId = self.getRank()
 
@@ -25,7 +31,15 @@ class SliceInfoStage(Stage):
         ccdId = eval(ccdFormula)
         ampId = eval(ampFormula)
 
-        self.activeClipboard.put("ccdId", ccdId)
-        self.activeClipboard.put("ampId", ampId)
+        clipboard.put("ccdId", ccdId)
+        clipboard.put("ampId", ampId)
+        clipboard.put("ampBBox", self.lookupAmpBBox(ampId, ccdId))
 
-        self.outputQueue.addDataset(self.activeClipboard)
+        self.outputQueue.addDataset(clipboard)
+
+    def lookupAmpBBox(self, ampId, ccdId):
+        key = "CcdBBox.Amp%d" % ampId
+        p = self.ampBBoxDb.get(key)
+        return afwImage.BBox(
+                afwImage.PointI(p.get("x0"), p.get("y0")),
+                p.get("width"), p.get("height"))

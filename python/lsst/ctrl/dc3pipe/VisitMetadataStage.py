@@ -1,14 +1,9 @@
 from lsst.pex.harness.Stage import Stage
 from lsst.daf.persistence import LogicalLocation
 from lsst.daf.base import PropertySet, DateTime
-from lsst.pex.policy import Policy
 import lsst.afw.image as afwImage
 
 class VisitMetadataStage(Stage):
-    def __init__(self, stageId=-1, stagePolicy=None):
-        Stage.__init__(self, stageId, stagePolicy)
-        self.ampBBoxDb = Policy(self._policy.get("ampBBoxDbPath"))
-
     def preprocess(self):
         clipboard = self.inputQueue.getNextDataset()
 
@@ -64,8 +59,6 @@ class VisitMetadataStage(Stage):
         exposureMetadata.setLongLong("ampExposureId", ampExposureId)
         clipboard.put("exposureMetadata" + str(exposureId), exposureMetadata)
 
-        clipboard.put("ampBBox", self.lookupAmpBBox(ampId, ccdId))
-
         self.outputQueue.addDataset(clipboard)
 
     def lookupFilterId(self, filterName):
@@ -73,10 +66,3 @@ class VisitMetadataStage(Stage):
         filterDb = afwImage.Filter(dbLocation, filterName)
         filterId = filterDb.getId()
         return filterId
-
-    def lookupAmpBBox(self, ampId, ccdId):
-        key = "CcdBBox.Amp%d" % ampId
-        p = self.ampBBoxDb.get(key)
-        return afwImage.BBox(
-                afwImage.PointI(p.get("x0"), p.get("y0")),
-                p.get("width"), p.get("height"))
