@@ -5,10 +5,10 @@ import lsst.afw.image as afwImage
 
 class VisitMetadataStage(Stage):
     def preprocess(self):
-        clipboard = self.inputQueue.getNextDataset()
+        self.activeClipboard = self.inputQueue.getNextDataset()
 
         eventName = self._policy.get("inputEvent")
-        event = clipboard.get(eventName)
+        event = self.activeClipboard.get(eventName)
         visitId = event.get("visitId")
         exposureId = event.get("exposureId")
 
@@ -17,7 +17,7 @@ class VisitMetadataStage(Stage):
         visit = PropertySet()
         visit.setInt("visitId", visitId)
         visit.setLongLong("exposureId", fpaExposureId)
-        clipboard.put("visit" + str(exposureId), visit)
+        self.activeClipboard.put("visit" + str(exposureId), visit)
 
         rawFpaExposure = PropertySet()
         rawFpaExposure.setLongLong("rawFPAExposureId", fpaExposureId)
@@ -30,9 +30,9 @@ class VisitMetadataStage(Stage):
         rawFpaExposure.set("mjdObs", DateTime(event.get("dateObs")).mjd())
         rawFpaExposure.set("expTime", event.get("expTime"))
         rawFpaExposure.set("airmass", event.get("airmass"))
-        clipboard.put("fpaExposure" + str(exposureId), rawFpaExposure)
+        self.activeClipboard.put("fpaExposure" + str(exposureId), rawFpaExposure)
 
-        # rely on default postprocess() to move clipboard to output queue
+        # rely on default postprocess() to move self.activeClipboard to output queue
 
     def process(self):
         clipboard = self.inputQueue.getNextDataset()

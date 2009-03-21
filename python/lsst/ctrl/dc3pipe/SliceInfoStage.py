@@ -12,14 +12,19 @@ class SliceInfoStage(Stage):
         self.ampBBoxDb = Policy(self._policy.get("ampBBoxDbPath"))
 
     def preprocess(self): 
-        self.process()
+        self.activeClipboard = self.inputQueue.getNextDataset()
+        self._impl(self.activeClipboard)
+        # Let postprocess() put self.activeClipboard on the output queue
 
     def process(self): 
         """
         Compute the ampId and ccdId corresponding to this slice.
         """
         clipboard = self.inputQueue.getNextDataset()
+        self._impl(clipboard)
+        self.outputQueue.addDataset(clipboard)
 
+    def _impl(self, clipboard):
         sliceId = self.getRank()
 
         nAmps = self._policy.get("nAmps")
@@ -34,8 +39,6 @@ class SliceInfoStage(Stage):
         clipboard.put("ccdId", ccdId)
         clipboard.put("ampId", ampId)
         clipboard.put("ampBBox", self.lookupAmpBBox(ampId, ccdId))
-
-        self.outputQueue.addDataset(clipboard)
 
     def lookupAmpBBox(self, ampId, ccdId):
         key = "CcdBBox.Amp%d" % ampId
