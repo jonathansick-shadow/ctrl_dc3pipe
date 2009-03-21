@@ -1,0 +1,26 @@
+#<?cfg paf policy ?>
+#
+# Example policy file for the lsst.pex.harness.IOStage.InputStage
+# that feeds lsst.ap.pipeline.MatchMopsPredsStage
+
+AdditionalData: "visitId=triggerAssociationEvent.visitId"
+RunMode: "preprocess"
+InputItems: {
+    mopsPreds: {
+        Type: "PersistableMovingObjectPredictionVector"
+        PythonType: "lsst.mops.PersistableMopsPredVec"
+        StoragePolicy: {
+            Storage:  "DbStorage"
+            Location: "%(dbUrl)"
+        }
+    }
+}
+Persistence: {
+    Formatter: {
+        PersistableMovingObjectPredictionVector: {
+            mopsPreds: {
+                tableNamePattern: "_tmp_v%(visitId)_Preds"
+            }
+        }
+    }
+}

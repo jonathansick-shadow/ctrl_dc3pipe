@@ -1,0 +1,40 @@
+#<?cfg paf policy ?>
+#
+# Example policy file for the lsst.pex.harness.IOStage.OutputStage
+# that persists lsst.ap.pipeline.MatchMopsPredsStage outputs
+
+AdditionalData: "visitId=triggerAssociationEvent.visitId"
+RunMode: "preprocess"
+OutputItems: {
+    predToDiaSourceMatches: {
+        Required: true
+        StoragePolicy: {
+            Storage:  "DbStorage"
+            Location: "%(dbUrl)"
+        }
+    }
+    diaSourceToNewObject: {
+        Required: true
+        StoragePolicy: {
+            Storage:  "DbStorage"
+            Location: "%(dbUrl)"
+        }
+    }
+}
+Persistence: {
+    Formatter: {
+        PersistableIdPairVector: {
+            diaSourceToNewObject: {
+                templateTableName: "_tmpl_IdPair"
+                tableNamePattern: "_tmp_v%(visitId)_DIASourceToNewObject"
+            }
+        }
+        PersistableMatchPairVector: {
+            predToDiaSourceMatches: {
+                templateTableName: "_tmpl_MatchPair"
+                tableNamePattern: "_tmp_v%(visitId)_PredToDIASourceMatches"
+            }
+        }
+    }
+}
+
