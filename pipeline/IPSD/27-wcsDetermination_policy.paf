@@ -6,7 +6,7 @@
 #
 astrometryIndicesGlob: "/lsst/DC3/data/astrometry_net_data/usnob/index-*.fits"
 exposureKeyList: "calibratedExposure0", "calibratedExposure1"
-sourceSetKey: "sourceSet0"
+sourceSetKey: "ccdWcsSources"
 ampBBoxKey: "ampBBox"
 # Minimum flux of sources for WCS determination; default is 1000.0
 fluxLimit: 1000.0
