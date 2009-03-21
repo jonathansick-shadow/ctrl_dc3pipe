@@ -3,7 +3,7 @@
 # Stage policy for PsfDetermination Stage
 
 data: {
-    exposureKey: "calibratedExposure0"
+    exposureKey: "backgroundSubtractedExposure0"
     sourceSetKey: "sourceSet0"
     outputPsfKey: "psfModel"
     outputCellSetKey: "psfCellSet0"

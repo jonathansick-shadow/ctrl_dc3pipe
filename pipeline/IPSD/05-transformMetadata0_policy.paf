@@ -3,5 +3,4 @@ datatype: @datatypePolicy/cfhtDataTypePolicy.paf
 suffix: Keyword
 imageKey: rawCameraImage0
 metadataKey: rawImageMetadata0
-computeWcsGuess: true
-wcsKey: initialWcs
+computeWcsGuess: false
