@@ -5,7 +5,7 @@ OutputItems: {
     templateExposure: {
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(output)/tmpl/v%(visitId)/c%03d(ccdId)-a%02d(ampId).fits"
+            Location: "%(output)/tmpl/v%(visitId)/c%03d(ccdId)-a%02d(ampId)"
         }
     }
     templateWcs: {

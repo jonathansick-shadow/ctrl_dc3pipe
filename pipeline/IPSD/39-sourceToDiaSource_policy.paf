@@ -1,3 +1,4 @@
+ccdWcsKey: "ccdWcs"
 data: {
     inputKey: "diffimSourceSet0"
     outputKey: "diaSourceSet0"
