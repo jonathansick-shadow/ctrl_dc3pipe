@@ -20,8 +20,8 @@ OutputItems: {
 
 Persistence: {
     Formatter: {
-        DiaSourceFormatter: {
-            diaSourceSet1: {
+        PersistableDiaSourceVector: {
+            persistable_diaSourceSet1: {
                 templateTableName: "_tmpl_DIASource"
                 tableNamePattern: "_tmp_v%(visitId)_DIASource"
             }
