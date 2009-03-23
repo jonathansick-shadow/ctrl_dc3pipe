@@ -70,6 +70,12 @@ execute: {
          eventTopic: "None" 
          stagePolicy: "nightmops/output_policy.paf"
     }
+
+    appStage: {
+         stageName: "lsst.pex.harness.EventStage.EventStage"
+         eventTopic: "None"
+         stagePolicy: "nightmops/associationEvent_policy.paf"
+    }
     
     # the rest items will get overridden by the policy passed from the
    # orchestration layer.  It appears here as default values for when

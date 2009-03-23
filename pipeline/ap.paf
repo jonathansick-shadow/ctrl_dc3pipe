@@ -99,19 +99,19 @@ execute: {
    appStage: {
       stageName: "lsst.pex.harness.SymLinkStage.SymLinkStage"
       eventTopic: "None"
-      stagePolicy: "association/01-symLink_policy.paf"
+      stagePolicy: "ap/01-symLink_policy.paf"
    }
 
    appStage: {
       stageName: "lsst.ap.pipeline.LoadStage"
       eventTopic: "triggerAssociationEvent"
-      stagePolicy: "association/02-load_policy.paf"
+      stagePolicy: "ap/02-load_policy.paf"
    }
 
    appStage: {
       stageName: "lsst.pex.harness.IOStage.InputStage"
       eventTopic: "None"
-      stagePolicy: "association/03-diaSourceInput_policy.paf"
+      stagePolicy: "ap/03-diaSourceInput_policy.paf"
    }
 
    appStage: {
@@ -123,13 +123,13 @@ execute: {
    appStage: {
       stageName: "lsst.pex.harness.IOStage.OutputStage"
       eventTopic: "None"
-      stagePolicy: "association/05-diaSourceMatchOutput_policy.paf"
+      stagePolicy: "ap/05-diaSourceMatchOutput_policy.paf"
    }
 
    appStage: {
       stageName: "lsst.pex.harness.IOStage.InputStage"
       eventTopic: "triggerMatchMopsPredsEvent"
-      stagePolicy: "association/06-predInput_policy.paf"
+      stagePolicy: "ap/06-predInput_policy.paf"
    }
 
    appStage: {
@@ -141,12 +141,12 @@ execute: {
    appStage: {
       stageName: "lsst.pex.harness.IOStage.OutputStage"
       eventTopic: "None"
-      stagePolicy: "association/08-predMatchAndObjectOutput_policy.paf"
+      stagePolicy: "ap/08-predMatchAndObjectOutput_policy.paf"
    }
 
    appStage: {
       stageName: "lsst.ap.pipeline.StoreStage"
       eventTopic: "None"
-      stagePolicy: "association/09-store_policy.paf"
+      stagePolicy: "ap/09-store_policy.paf"
    }
 }
