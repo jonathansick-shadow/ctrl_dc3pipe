@@ -45,9 +45,9 @@ class VisitMetadataStage(Stage):
         ccdId = clipboard.get("ccdId")
         ampId = clipboard.get("ampId")
 
-        fpaExposureId = long(visitId) << 1 + exposureId
-        ccdExposureId = fpaExposureId << 8 + ccdId
-        ampExposureId = ccdExposureId << 6 + ampId
+        fpaExposureId = (long(visitId) << 1) + exposureId
+        ccdExposureId = (fpaExposureId << 8) + ccdId
+        ampExposureId = (ccdExposureId << 6) + ampId
 
         clipboard.put("visitId", visitId)
 
