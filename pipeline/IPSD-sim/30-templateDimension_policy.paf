@@ -1,0 +1,2 @@
+templateLocation: "%(input)/template/SimDeep/SimDeep4_img.fits"
+outputKey: "templateDimensions"

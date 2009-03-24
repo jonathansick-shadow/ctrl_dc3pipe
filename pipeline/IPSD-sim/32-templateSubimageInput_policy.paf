@@ -1,0 +1,14 @@
+AdditionalData: "llcX=templateBBoxProperties.llcx"
+AdditionalData: "llcY=templateBBoxProperties.llcy"
+AdditionalData: "width=templateBBoxProperties.width"
+AdditionalData: "height=templateBBoxProperties.height"
+InputItems: {
+    templateExposure: {
+        Type: "ExposureF"
+        PythonType: "lsst.afw.image.ExposureF"
+        StoragePolicy: {
+            Storage: "FitsStorage"
+            Location: "%(input)/template/SimDeep/SimDeep4"
+        }
+    }
+}

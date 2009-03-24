@@ -1,0 +1,6 @@
+metadata: @dc3MetadataPolicy.paf
+datatype: @datatypePolicy/simDataTypePolicy.paf
+suffix: Keyword
+imageKey: rawCameraImage0
+metadataKey: rawImageMetadata0
+computeWcsGuess: false

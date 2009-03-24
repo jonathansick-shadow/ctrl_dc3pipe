@@ -1,0 +1,5 @@
+nAmps: 16
+nCcds: 1
+ccdIdFormula: "sliceId / nAmps"
+ampIdFormula: "sliceId % nAmps"
+ampBBoxDbPath: "/lsst/images/repository/calib/simAmpBBoxPolicy.paf"
