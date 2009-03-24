@@ -10,12 +10,12 @@ measureObjects: {
 }
 data: {
     exposureKey: "differenceExposure0"
-    psfKey: "diffimSmoothingPsfModel"
+    psfKey: "psfModel"
     outputKey: "diffimSourceSet0"
 }
 data: {
     exposureKey: "differenceExposure1"
-    psfKey: "diffimSmoothingPsfModel"
+    psfKey: "psfModel"
     outputKey: "diffimSourceSet1"
 }
 positiveDetectionKey: "positiveDiffimFootprintSet"

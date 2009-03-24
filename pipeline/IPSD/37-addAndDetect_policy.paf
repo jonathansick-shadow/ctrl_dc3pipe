@@ -19,6 +19,7 @@ detectionPolicy: {
     thresholdPolarity: "both"
 }
 
-psfKey: "diffimSmoothingPsfModel"
+inputPsfKey: "psfModel"
+psfKey: "diffimPsfModel"
 positiveDetectionKey: "positiveDiffimFootprintSet"
 negativeDetectionKey: "negativeDiffimFootprintSet"
