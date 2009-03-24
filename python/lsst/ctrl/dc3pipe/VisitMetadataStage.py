@@ -12,7 +12,7 @@ class VisitMetadataStage(Stage):
         visitId = event.get("visitId")
         exposureId = event.get("exposureId")
 
-        fpaExposureId = long(visitId) << 1 + exposureId
+        fpaExposureId = (long(visitId) << 1) + exposureId
 
         visit = PropertySet()
         visit.setInt("visitId", visitId)

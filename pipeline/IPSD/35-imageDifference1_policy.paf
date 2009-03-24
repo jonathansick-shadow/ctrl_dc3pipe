@@ -8,4 +8,4 @@ templateExposureKey: "templateExposure"
 diffimPolicy: @diffimPolicy.paf
 
 differenceExposureKey: "differenceExposure1"
-sdqaRatingSetKey: "DiffimRatingSet1"
+sdqaRatingSetKey: "diffimRatingSet1"

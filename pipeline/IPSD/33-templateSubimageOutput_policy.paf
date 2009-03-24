@@ -5,19 +5,19 @@ OutputItems: {
     templateExposure: {
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(output)/tmpl/v%(visitId)/c%03d(ccdId)-a%02d(ampId)"
+            Location: "%(output)/tmpl/v%(visitId)/v%(visitId)-c%03d(ccdId)-a%02d(ampId).tmpl"
         }
     }
     templateWcs: {
         StoragePolicy: {
             Storage: "BoostStorage"
-            Location: "%(output)/tmpl/v%(visitId)/c%03d(ccdId)-a%02d(ampId).wcs.boost"
+            Location: "%(output)/tmpl/v%(visitId)/v%(visitId)-c%03d(ccdId)-a%02d(ampId).tmplwcs.boost"
         }
     }
     templateBBoxProperties: {
         StoragePolicy: {
             Storage: "XmlStorage"
-            Location: "%(output)/tmpl/v%(visitId)/c%03d(ccdId)-a%02d(ampId).bbox.xml"
+            Location: "%(output)/tmpl/v%(visitId)/v%(visitId)-c%03d(ccdId)-a%02d(ampId).tmplbbox.xml"
         }
     }
 }

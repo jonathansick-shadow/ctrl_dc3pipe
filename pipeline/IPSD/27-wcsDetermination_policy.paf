@@ -5,7 +5,7 @@
 # For now we decided to only detect on the first exposure of the visit.
 #
 astrometryIndicesGlob: "/lsst/DC3/data/astrometry_net_data/usnob/index-*.fits"
-exposureKeyList: "calibratedExposure0", "calibratedExposure1"
+exposureKeyList: "calibratedExposure0" "calibratedExposure1"
 sourceSetKey: "ccdWcsSources"
 ampBBoxKey: "ampBBox"
 outputCcdWcsKey: "ccdWcs"

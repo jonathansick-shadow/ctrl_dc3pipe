@@ -2,7 +2,7 @@ setupRequired(ctrl_orca >= 3.3.2)
 setupRequired(mops >= 3.2.4)
 setupRequired(meas_pipeline >= 3.0)
 setupRequired(ip_diffim >= 3.3.6)
-setupRequired(ip_isr >= 3.3.6)
+# setupRequired(ip_isr >= 3.3.6)
 
 envPrepend(PATH, ${PRODUCT_DIR}/bin)
 envPrepend(PORT_RANGE, "35001:35099")

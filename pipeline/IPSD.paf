@@ -383,10 +383,15 @@ execute: {
    }
 
    # Persist SDQA ratings
-   appStage: {
-      stageName: "lsst.pex.harness.IOStage.OutputStage"
-      eventTopic: "None"
-      stagePolicy: "IPSD/44-sdqaOutput_policy.paf"
-   }
+#   appStage: {
+#      stageName: "lsst.pex.harness.IOStage.OutputStage"
+#      eventTopic: "None"
+#      stagePolicy: "IPSD/44-sdqaOutput0_policy.paf"
+#   }
+#   appStage: {
+#      stageName: "lsst.pex.harness.IOStage.OutputStage"
+#      eventTopic: "None"
+#      stagePolicy: "IPSD/45-sdqaOutput1_policy.paf"
+#   }
    
 }
