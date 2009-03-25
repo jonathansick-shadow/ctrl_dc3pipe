@@ -46,4 +46,3 @@ trimsecKeyword: DATASEC
 overscanKeyword: BIASSEC
 
 convertVisitIdToInt: true
-alreadyLinearized: true
