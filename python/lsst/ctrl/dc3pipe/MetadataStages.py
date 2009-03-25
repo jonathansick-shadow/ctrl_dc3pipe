@@ -31,17 +31,14 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
     
     # Any additional operations on the input data?
     if datatypePolicy.exists('convertDateobsToTai'):
-        convertDateobsToTai = datatypePolicy.getBool('convertDateobsToTai')
-        if convertDateobsToTai:
+        if datatypePolicy.getBool('convertDateobsToTai'):
             dateObs  = metadata.getDouble('dateObs')
             dateTime = dafBase.DateTime(dateObs, dafBase.DateTime.UTC)
             dateObs  = dateTime.mjd(dafBase.DateTime.TAI)
             metadata.setDouble('dateObs', dateObs)
 
     if datatypePolicy.exists('convertDateobsToMidExposure'):
-        convertDateobsToMidExposure = \
-            datatypePolicy.getBool('convertDateobsToMidExposure')
-        if convertDateobsToMidExposure:
+        if datatypePolicy.getBool('convertDateobsToMidExposure'):
             dateObs  = metadata.getDouble('dateObs')
             dateObs += metadata.getDouble('expTime') * 0.5 / 3600. / 24.
             metadata.setDouble('dateObs', dateObs)
@@ -51,6 +48,15 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
             filter = metadata.getString('filter')
             filter = re.sub(r'\..*', '', filter)
             metadata.setString('filter', filter)
+
+    if datatypePolicy.exists('convertVisitIdToInt'):
+        if datatypePolicy.getBool('convertVisitIdToInt'):
+            visitId  = metadata.getString('visitId')
+            metadata.setInt('visitId', int(visitId))
+
+    if datatypePolicy.exists('alreadyLinearized'):
+        if datatypePolicy.getBool('alreadyLinearized'):
+            metadata.setString('ISR_LIN', "input assumed to be linearized")
 
 
 class ValidateMetadataStage(Stage):
@@ -101,8 +107,13 @@ class TransformMetadataStage(Stage):
 
         clipboard.put(metadataKey, metadata)
         clipboard.put(imageKey, decoratedImage.getImage())
-        if self._policy.getBool("computeWcsGuess"):
-            clipboard.put(wcsKey, afwImage.Wcs(metadata))
+        if self._policy.exists("computeWcsGuess"):
+            if self._policy.getBool("computeWcsGuess"):
+                wcs = afwImage.Wcs(metadata)
+                ampBBoxKey = self._policy.getString("ampBBoxKey")
+                ampBBox = clipboard.get(ampBBoxKey)
+                wcs.shiftReferencePixel(ampBBox.getX0(), ampBBox.getY0())
+                clipboard.put(wcsKey, wcs)
 
         self.outputQueue.addDataset(clipboard)
 
