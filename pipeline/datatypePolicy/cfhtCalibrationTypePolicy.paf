@@ -14,9 +14,6 @@ ccdIdKeyword: EXTVER
 # Amp Id
 ampIdKeyword: LSSTAMP
 
-# Exposure Id
-exposureIdKeyword: EXPID
-
 # Time of mid-observation in TAI
 dateObsKeyword: MJD-OBS
 
@@ -25,14 +22,6 @@ expTimeKeyword: EXPTIME
 
 # Filter
 filterKeyword: FILTER
-
-# Pointing Ra and Decl
-raKeyword: RA_DEG
-declKeyword: DEC_DEG
-equinoxKeyword: EQUINOX
-
-# Airmass of mid-exposure
-airmassKeyword: AIRMASS
 
 # Airmass of mid-exposure
 datasetIdKeyword: OBJECT
