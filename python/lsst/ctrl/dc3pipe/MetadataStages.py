@@ -54,10 +54,6 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
             visitId  = metadata.getString('visitId')
             metadata.setInt('visitId', int(visitId))
 
-    if datatypePolicy.exists('alreadyLinearized'):
-        if datatypePolicy.getBool('alreadyLinearized'):
-            metadata.setString('ISR_LIN', "input assumed to be linearized")
-
 
 class ValidateMetadataStage(Stage):
 
