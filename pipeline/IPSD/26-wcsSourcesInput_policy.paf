@@ -15,7 +15,7 @@ Persistence: {
     Formatter: {
         PersistableSourceVector: {
             ccdWcsSources: {
-                tableNamePattern: "_tmp_v%(visitId)_c%03d(ccdId)_WcsSource"
+                tableNamePattern: "_tmp_v%06d(visitId)_c%03d(ccdId)_WcsSource"
             }
         }
     }

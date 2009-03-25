@@ -32,11 +32,18 @@ equinoxKeyword: EQUINOX
 airmassKeyword: AIRMASS
 
 # Airmass of mid-exposure
-dataSetIdKeyword: DATASET
+datasetIdKeyword: DATASET
 
-# Trim section
-trimsecKeyword: DATASEC
+# Persisted name of file
+filenameKeyword: FILENAME
 
 # Gain
 gainKeyword: GAIN
 
+# Trim section
+saturationKeyword: SATURATE
+trimsecKeyword: DATASEC
+overscanKeyword: BIASSEC
+
+convertVisitIdToInt: true
+alreadyLinearized: true

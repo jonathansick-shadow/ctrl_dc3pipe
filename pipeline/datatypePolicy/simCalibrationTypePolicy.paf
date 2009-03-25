@@ -21,7 +21,7 @@ expTimeKeyword: EXPTIME
 filterKeyword: FILTER
 
 # Airmass of mid-exposure
-dataSetIdKeyword: DATASET
+datasetIdKeyword: DATASET
 
 # File name
 filenameKeyword: FILENAME
