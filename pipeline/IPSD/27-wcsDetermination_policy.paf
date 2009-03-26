@@ -9,8 +9,6 @@ exposureKeyList: "calibratedExposure0" "calibratedExposure1"
 sourceSetKey: "ccdWcsSources"
 ampBBoxKey: "ampBBox"
 outputCcdWcsKey: "ccdWcs"
-outputRaDecSys: "FK5"
-outputEquinox: 2000.0
 
 # Minimum flux of sources for WCS determination; default is 1000.0
 fluxLimit: 20000.0
