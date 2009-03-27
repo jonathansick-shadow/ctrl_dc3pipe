@@ -99,10 +99,6 @@ class TransformMetadataStage(Stage):
         else:
             suffix = "Keyword"
 
-        transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
-
-        clipboard.put(metadataKey, metadata)
-        clipboard.put(imageKey, decoratedImage.getImage())
         if self._policy.exists("computeWcsGuess"):
             if self._policy.getBool("computeWcsGuess"):
                 wcs = afwImage.Wcs(metadata)
@@ -110,6 +106,11 @@ class TransformMetadataStage(Stage):
                 ampBBox = clipboard.get(ampBBoxKey)
                 wcs.shiftReferencePixel(ampBBox.getX0(), ampBBox.getY0())
                 clipboard.put(wcsKey, wcs)
+
+        transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
+
+        clipboard.put(metadataKey, metadata)
+        clipboard.put(imageKey, decoratedImage.getImage())
 
         self.outputQueue.addDataset(clipboard)
 
