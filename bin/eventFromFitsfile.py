@@ -43,7 +43,7 @@ def EventFromInputfile(inputfile,
     event.copy('expTime',     metadata, 'expTime')
     event.copy('ra',          metadata, 'ra')
     event.copy('decl',        metadata, 'decl')
-    event.copy('equinox',     metadata, 'equinox')
+    event.copy('equinox',     metadata, 'EQUINOX')
     event.copy('airmass',     metadata, 'airmass')
     event.copy('dateObs',     metadata, 'dateObs')
 

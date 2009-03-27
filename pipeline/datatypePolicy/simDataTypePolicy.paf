@@ -26,7 +26,7 @@ filterKeyword: FILTER
 # Pointing Ra and Decl
 raKeyword: RA_DEG
 declKeyword: DEC_DEG
-equinoxKeyword: EQUINOX
+# equinoxKeyword: EQUINOX
 
 # Airmass of mid-exposure
 airmassKeyword: AIRMASS

@@ -13,7 +13,7 @@ filter     : string
 expTime    : float
 ra         : double
 decl       : double
-equinox    : double
+EQUINOX    : double
 airmass    : double
 dateObs    : double
 filename   : string
