@@ -33,6 +33,13 @@ kernelSpatialOrder: 0
 # Order of background spatial variation
 backgroundSpatialOrder: 0
 
+backgroundPolicy: {
+    # how to interpolate the background values
+    algorithm:  "NATURAL_SPLINE" 
+    # how large regions of the sky should be used for each background point
+    binsize:    128
+}
+
 #####
 # Chops up the image into cells
 #
