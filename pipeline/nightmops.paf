@@ -46,19 +46,19 @@ execute: {
     appStage: { 
          stageName: "lsst.mops.nightmops.pipeline.MopsStage" 
          eventTopic: "triggerImageprocEvent0" 
-         stagePolicy: "nightmops/NightMopsStagePolicy.paf"
+         stagePolicy: @nightmops/NightMopsStagePolicy.paf
     }
     
     appStage: { 
          stageName: "lsst.pex.harness.IOStage.OutputStage" 
          eventTopic: "None" 
-         stagePolicy: "nightmops/output_policy.paf"
+         stagePolicy: @nightmops/output_policy.paf
     }
 
     appStage: {
          stageName: "lsst.pex.harness.EventStage.EventStage"
          eventTopic: "None"
-         stagePolicy: "nightmops/associationEvent_policy.paf"
+         stagePolicy: @nightmops/associationEvent_policy.paf
     }
     
     # the rest items will get overridden by the policy passed from the
