@@ -4,7 +4,7 @@
 #
 
 dir: {
-   shortName: "ipsd"
+   shortName: "IPSD"
    # the default root directory all files read or written by pipelines
    # deployed on this platform.  This must be an absolute directory.  
    # This can be overriden by any of the "named role" directories below.
