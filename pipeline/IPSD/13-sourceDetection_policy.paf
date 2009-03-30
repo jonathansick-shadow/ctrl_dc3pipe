@@ -20,7 +20,7 @@ psfPolicy: {
 }
 detectionPolicy: {
     minPixels:1 
-    thresholdValue: 3
+    thresholdValue: 5
     thresholdType: "stdev"
     thresholdPolarity: "positive"
 }
