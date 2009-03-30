@@ -33,7 +33,7 @@ framework: {
    # can be represented as $ENVVAR which will be replaced with the
    # value of the environment variable with the name ENVVAR.
    # 
-   exec:  "$CTRL_DC3PIPE_DIR/bin/launchPipeline.sh"
+   exec:  "$PEX_HARNESS_DIR/bin/launchPipeline.sh"
 }
 
 # the contents of this item is passed to the harness to configure the
@@ -76,7 +76,9 @@ execute: {
       #
       defaultRoot:  .
 
-      runDirPattern: "%(runid)s"
+      shortName: "nightmops"
+
+      runDirPattern: "%(runid)s/%(shortname)s"
 
 
       # These indicate the directory that should be used for a named purpose.

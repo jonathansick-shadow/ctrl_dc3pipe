@@ -50,13 +50,15 @@ execute: {
    
    dir: {
 
+      shortName: "IPSD"
+
       # the default root directory all files read or written by pipelines
       # deployed on this platform.  
       # This can be overriden by any of the "named role" directories below.
       #
       defaultRoot:  .
 
-      runDirPattern: "../../%(runid)s"
+      runDirPattern: "../../%(runid)s/%(shortname)s"
 
 
       # These indicate the directory that should be used for a named purpose.
