@@ -20,4 +20,4 @@ matchThreshold: 27.631
 # Range of allowed fit pixel scale = [input scale/pixelScaleRangeFactor, input scale * pixelScaleRangeFactor]
 # must be >= 1.0; defaults to 1.1
 pixelScaleRangeFactor: 1.1
-ccdDimensions: @datatypePolicy/cfhtCcdDimensionsPolicy.paf
+ccdDimensions: @IPSD/datatypePolicy/cfhtCcdDimensionsPolicy.paf

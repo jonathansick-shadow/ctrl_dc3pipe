@@ -4,4 +4,4 @@ calibDataKey: calibData
 calibratedExposureKey: calibratedExposure1
 sdqaRatingSetKey: isrRatingSet1
 
-isrPolicy: @isrPolicy.paf
+isrPolicy: @IPSD/isrPolicy.paf
