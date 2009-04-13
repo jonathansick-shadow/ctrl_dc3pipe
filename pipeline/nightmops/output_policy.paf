@@ -8,7 +8,7 @@ OutputItems: {
        Required: true
        StoragePolicy: {
            Storage: "DbTsvStorage"
-           Location: "%(dbURL)"
+           Location: "%(dbUrl)"
            # Location: "mysql://lsst10.ncsa.uiuc.edu:3306/test_DC3a_u_%(runId)"
            # Location: "mysql://lsst10.ncsa.uiuc.edu:3306/fpierfed_cfhtls"
        }
