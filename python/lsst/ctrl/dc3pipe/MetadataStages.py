@@ -43,6 +43,9 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
             dateObs += metadata.getDouble('expTime') * 0.5 / 3600. / 24.
             metadata.setDouble('dateObs', dateObs)
 
+    dateTime = dafBase.DateTime(metadata.getDouble('dateObs'))
+    metadata.setDateTime('taiObs', dateTime)
+
     if datatypePolicy.exists('trimFilterName'):
         if datatypePolicy.getBool('trimFilterName'):
             filter = metadata.getString('filter')
@@ -90,8 +93,10 @@ class TransformMetadataStage(Stage):
         datatypePolicy = self._policy.getPolicy("datatype")
         imageKey = self._policy.get("imageKey")
         metadataKey = self._policy.get("metadataKey")
+        exposureMetadataKey = self._policy.get("exposureMetadataKey")
         wcsKey = self._policy.get("wcsKey")
         decoratedImage = clipboard.get(imageKey)
+        exposureMetadata = clipboard.get(exposureMetadataKey)
         metadata = decoratedImage.getMetadata()
 
         if self._policy.exists("suffix"):
@@ -108,6 +113,13 @@ class TransformMetadataStage(Stage):
                 clipboard.put(wcsKey, wcs)
 
         transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
+
+        metadata.set('rawAmpExposureId',
+                exposureMetadata.get('ampExposureId'))
+        metadata.set('rawCCDExposureId',
+                exposureMetadata.get('ccdExposureId'))
+        metadata.set('url', exposureMetadata.get('filename'))
+        metadata.set('ampId', clipboard.get('ampId'))
 
         clipboard.put(metadataKey, metadata)
         clipboard.put(imageKey, decoratedImage.getImage())
