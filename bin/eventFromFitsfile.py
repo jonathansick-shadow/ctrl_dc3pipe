@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, sys, re
+import os, sys, re, optparse, traceback
 import eups
 import lsst.afw.image as afwImage
 import lsst.afw.math as afwMath
@@ -8,17 +8,75 @@ import lsst.pex.policy as pexPolicy
 import lsst.pex.logging as pexLog
 import lsst.daf.base as dafBase
 import lsst.ctrl.events as ctrlEvents
+from lsst.pex.harness import run
 from lsst.ctrl.dc3pipe.MetadataStages import transformMetadata, validateMetadata
 
-import lsst.pex.logging as logging
-Verbosity = 4
-logging.Trace_setVerbosity('dc3pipe', Verbosity)
+usage = """Usage: %prog [-dvqs] [-V lev] [-b host] [-t topic] FITSfile policyfile"""
+desc = """Send an incoming visit event to instruct the alert production to process
+a given FITS file.  The data for the event is extracted from the FITS file.
+The given policy file controls the transformation of the FITS metadata into
+the event metadata where different input data collections (CFHT, simulated,
+etc.) will require different policies.  See the
+$CTRL_DC3PIPE/pipeline/datatypePolicy directory for samples.  
+"""
+
+logger = pexLog.Log(pexLog.Log.getDefaultLog(), "dc3pipe.eventFromFitsfile")
+exposureCount = 0
+
+def defineCmdLine(usage=usage, description=desc):
+    cl = optparse.OptionParser(usage=usage, description=description)
+    run.addAllVerbosityOptions(cl, "-V", "verb")
+    cl.add_option("-b", "--broker", action="store", dest="broker",
+                  default="lsst4.ncsa.uiuc.edu", help="event broker host")
+    cl.add_option("-t", "--topic", action="store", dest="topic",
+                  default="triggerImageprocEvent", help="event topic name")
+    cl.add_option("-M", "--metadata-policy", action="store", dest="mdpolicy",
+                  default=None,
+                  help="policy file defining the event metadata types")
+    return cl
+
+def main(cmdline):
+    """
+    run the script with the given command line
+    @param cmdline   an OptionParser instance with command-line options defined
+    """
+    cl = cmdline
+    (cl.opts, cl.args) = cl.parse_args()
+    pexLog.Log.getDefaultLog().setThreshold( \
+        run.verbosity2threshold(cl.opts.verb, 0))
+
+    mdPolicyFileName = cl.opts.mdpolicy
+    if mdPolicyFileName is None:
+        mpf = pexPolicy.DefaultPolicyFile("ctrl_dc3pipe",
+                                          "dc3MetadataPolicy.paf",
+                                          "pipeline")
+        metadataPolicy = pexPolicy.Policy.createPolicy(mpf,
+                                                       mpf.getRepositoryPath())
+    else:
+        metadataPolicy = pexPolicy.Policy.createPolicy(mdPolicyFileName)
+
+    dataPolicy = pexPolicy.Policy.createPolicy(cl.args[1])
+
+    if not EventFromInputfile(cl.args[0], dataPolicy, metadataPolicy,
+                              cl.opts.topic, cl.opts.broker):
+        # EventFromInputfile will print error message
+        sys.exit(3)
 
 def EventFromInputfile(inputfile, 
                        datatypePolicy, 
                        metadataPolicy,
                        topicName='triggerImageprocEvent', 
-                       hostName='lsst8.ncsa.uiuc.edu'):
+                       hostName='lsst4.ncsa.uiuc.edu'):
+    """generate a new file event for a given FITS file
+    @param inputfile       the name of the FITS file
+    @param datatyepPolicy  the policy describing the metadata transformation
+    @param metadataPolicy  the policy describing the event metadata types
+    @param topicName       the name of the topic to send event as
+    @param hostName        the event broker hostname
+    """
+    global exposureCount
+    exposureCount += 1
+    
     # For DC3a, inputfile is a .fits file on disk
     metadata = afwImage.readMetadata(inputfile)
 
@@ -27,10 +85,7 @@ def EventFromInputfile(inputfile,
 
     # To be consistent...
     if not validateMetadata(metadata, metadataPolicy):
-        pexLog.Trace('dc3pipe.eventfrominputfilelist', 1, 
-                     'Unable to create event from %s' % (inputfile))
-        return False
-        
+        logger.log(logger.FATAL, 'Unable to create event from %s' % inputfile)
 
     # Create event policy, using defaults from input metadata
     event = dafBase.PropertySet()
@@ -52,31 +107,22 @@ def EventFromInputfile(inputfile,
     elif event.getInt('exposureId') == 1:
         eventTransmitter = ctrlEvents.EventTransmitter(hostName, topicName+'1')
 
+    logger.log(logger.INFO,
+               'Sending event for %s' % os.path.basename(inputfile))
     eventTransmitter.publish(event)
-    # print('Sending event for file %s' %(inputfile))
+
     return True
 
 
 if __name__ == "__main__":
-    inputfile      = sys.argv[1]
-    datatypePolicy = pexPolicy.Policy.createPolicy(sys.argv[2])
+    try:
+        cl = defineCmdLine()
+        main(cl)
+    except run.UsageError, e:
+        print >> sys.stderr, "%s: %s" % (cl.get_prog_name(), e)
+        sys.exit(1)
+    except Exception, e:
+        logger.log(logger.FATAL, str(e))
+        traceback.print_exc(file=sys.stderr)
+        sys.exit(2)
     
-    # Extract broker info etc.
-    pipelinePolicy = dafBase.PropertySet()
-    if pipelinePolicy.exists('hostName'):
-        hostName  = pipelinePolicy.getString('hostName')
-    else:
-        hostName = 'lsst8.ncsa.uiuc.edu'
-    if pipelinePolicy.exists('topicName'):
-        topicName = pipelinePolicy.getString('topicName')
-    else:
-        topicName = 'triggerImageprocEvent'
-    
-    # Create a metadata policy object.
-    dc3pipeDir = eups.productDir('ctrl_dc3pipe')
-    metadataPolicy = pexPolicy.Policy.createPolicy(os.path.join(dc3pipeDir, 
-                        'pipeline', 'dc3MetadataPolicy.paf'))
-    
-    EventFromInputfile(inputfile, datatypePolicy, metadataPolicy, 
-                       topicName, hostName)
-
