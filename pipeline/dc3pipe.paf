@@ -3,8 +3,9 @@
 # Orchestration Layer Policy
 #
 
-eventBrokerHost:  lsst8.ncsa.uiuc.edu
+eventBrokerHost:     lsst4.ncsa.uiuc.edu
 repositoryDirectory: $CTRL_DC3PIPE_DIR/pipeline
+shutdownTopic:       alertProductionShutdown
 
 databaseConfig: {
     type: MySQL
