@@ -25,7 +25,7 @@ exposureCount = 0
 
 def defineCmdLine(usage=usage, description=desc):
     cl = optparse.OptionParser(usage=usage, description=description)
-    run.addAllVerbosityOptions(cl, "-V", "verb")
+    run.addAllVerbosityOptions(cl, "V", "verb")
     cl.add_option("-b", "--broker", action="store", dest="broker",
                   default="lsst4.ncsa.uiuc.edu", help="event broker host")
     cl.add_option("-t", "--topic", action="store", dest="topic",
