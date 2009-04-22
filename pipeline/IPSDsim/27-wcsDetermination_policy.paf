@@ -15,6 +15,11 @@ fluxLimit: 20000.0
 # Inform the solver that the image may suffer from some distortion. Leave this on if a purely linear wcs solution
 # will get the postions of some stars wrong by more than 1 pixel. Default is true
 allowDistortion: true
+
+#Only use the brightest N objects in a match. This value must be >= 20. A good upper bound
+#hasn't yet been determined, but probably around the range 20...60
+brightestNStars : 45
+
 # How good does a match need to be to be accepted. Typical value is log(1e12) = 27.631
 matchThreshold: 27.631
 # Range of allowed fit pixel scale = [input scale/pixelScaleRangeFactor, input scale * pixelScaleRangeFactor]

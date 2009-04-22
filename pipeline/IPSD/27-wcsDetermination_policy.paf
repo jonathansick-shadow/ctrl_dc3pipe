@@ -20,7 +20,7 @@ allowDistortion: true
 matchThreshold: 27.631
 
 #Only use the brightest N objects in a match. This value must be >= 20. A good upper bound
-#hasn't yet been determined, but probably around the range 50...60
+#hasn't yet been determined, but probably around the range 20...60
 brightestNStars : 45
 
 # Range of allowed fit pixel scale = [input scale/pixelScaleRangeFactor, input scale * pixelScaleRangeFactor]
