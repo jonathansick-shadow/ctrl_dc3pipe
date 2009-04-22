@@ -1,4 +1,4 @@
-setupRequired(ctrl_orca >= 3.3.2)
+setupRequired(ctrl_orca >= 3.5)
 setupRequired(mops >= 3.2.5)
 setupRequired(meas_pipeline >= 3.0.2)
 setupRequired(ip_diffim >= 3.3.7)

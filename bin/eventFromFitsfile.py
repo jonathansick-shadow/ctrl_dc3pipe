@@ -22,6 +22,7 @@ $CTRL_DC3PIPE/pipeline/datatypePolicy directory for samples.
 
 logger = pexLog.Log(pexLog.Log.getDefaultLog(), "dc3pipe.eventFromFitsfile")
 exposureCount = 0
+VERB3 = run.verbosity2threshold("verb3", logger.INFO-3)
 
 def defineCmdLine(usage=usage, description=desc):
     cl = optparse.OptionParser(usage=usage, description=description)
@@ -109,6 +110,13 @@ def EventFromInputfile(inputfile,
 
     logger.log(logger.INFO,
                'Sending event for %s' % os.path.basename(inputfile))
+    if logger.sends(logger.DEBUG):
+        logger.log(logger.DEBUG, "Data Event data:\n%s" % event.toString())
+    elif logger.sends(VERB3):
+       logger.log(VERB3,
+                  "Event data: datasetId=%s; ra=%f, dec=%f" %
+                  (event.get("datasetId"), event.get("ra"), event.get("decl")))
+
     eventTransmitter.publish(event)
 
     return True

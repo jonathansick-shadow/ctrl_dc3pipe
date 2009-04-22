@@ -7,6 +7,17 @@ import lsst.daf.base as dafBase
 
 from lsst.pex.harness.Stage import Stage
 
+propertySetTypeInfos = {}
+
+def setTypeInfos():
+    global propertySetTypeInfos
+    p = dafBase.PropertySet()
+    p.set("str",  "bar"); propertySetTypeInfos["string"] = p.typeOf("str")
+    p.set("int",      3); propertySetTypeInfos["int"]    = p.typeOf("int")
+    p.set("float",  3.1); propertySetTypeInfos["float"]  = p.typeOf("float")
+    p.set("bool",  True); propertySetTypeInfos["bool"]   = p.typeOf("bool")
+setTypeInfos()
+
 def validateMetadata(metadata, metadataPolicy):
     paramNames = metadataPolicy.paramNames(1)
     for paramName in paramNames:
@@ -25,7 +36,11 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
         mappingKey = paramName + suffix
         if datatypePolicy.exists(mappingKey):
             keyword = datatypePolicy.getString(mappingKey)
-            metadata.copy(paramName, metadata, keyword)
+            if metadata.typeOf(keyword) == propertySetTypeInfos["string"]:
+                metadata.set(paramName, metadata.getString(keyword).strip())
+            else:
+                metadata.copy(paramName, metadata, keyword)
+#            metadata.copy(paramName, metadata, keyword)
             metadata.copy(keyword + "_original", metadata, keyword)
             metadata.remove(keyword)
     
