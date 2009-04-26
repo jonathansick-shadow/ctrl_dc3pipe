@@ -37,7 +37,13 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
         if datatypePolicy.exists(mappingKey):
             keyword = datatypePolicy.getString(mappingKey)
             if metadata.typeOf(keyword) == propertySetTypeInfos["string"]:
-                metadata.set(paramName, metadata.getString(keyword).strip())
+                val = metadata.getString(keyword).strip()
+
+                # some FITS files have extra words after the field name
+                if paramName == "datasetId" and val.find(' ') > 0:
+                    val = val[:val.index(' ')]
+
+                metadata.set(paramName, val)
             else:
                 metadata.copy(paramName, metadata, keyword)
 #            metadata.copy(paramName, metadata, keyword)
