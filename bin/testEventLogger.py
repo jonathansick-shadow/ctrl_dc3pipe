@@ -102,7 +102,7 @@ def testEventLogger(broker, runid, sliceid, props, input=None, logname=None,
     uselog = Log(Log.getDefaultLog(), logname)
 
     for key in props.keys():
-        uselog.addPreambleProperty(key, props[key])
+        uselog.addPreamblePropertyString(key, props[key])
 
     testLogger(uselog, input)
 
