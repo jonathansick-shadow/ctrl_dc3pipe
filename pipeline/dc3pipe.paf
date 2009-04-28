@@ -17,21 +17,21 @@ pipelines: {
    IPSD: {
       shortname:     IPSD
       configuration: @IPSD.paf
-      platform:      @lsstcluster_ipsd.paf
+      platform:      @platform/lsstcluster_ipsd.paf
 
       launch: true
    }
    nightmops: {
       shortname:     nightmops
       configuration: @nightmops.paf
-      platform:      @lsstcluster_nmops.paf
+      platform:      @platform/lsstcluster_nmops.paf
 
       launch: true 
    }
    ap: {
       shortname:     ap
       configuration: @ap.paf
-      platform:      @lsstcluster_ap.paf
+      platform:      @platform/lsstcluster_ap.paf
 
       launch: true 
    }
