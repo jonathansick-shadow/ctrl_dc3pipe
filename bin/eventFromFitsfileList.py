@@ -13,7 +13,7 @@ import lsst.daf.base as dafBase
 import lsst.ctrl.events as ctrlEvents
 from lsst.pex.harness import run
 from lsst.ctrl.dc3pipe.MetadataStages import transformMetadata, validateMetadata
-usage = """Usage: %prog [-dvqs] [-V lev] [-b host] [-t topic] FITSfile policyfile [exptime] [slewtime]"""
+usage = """Usage: %prog [-dvqs] [-V lev] [-b host] [-t topic] visitfile policyfile [exptime] [slewtime]"""
 desc = """Generate events for the IPSD (and MOPS) pipeline by reading a list of visit
 directories and extracting the relevant information from the FITS files
 therein.

@@ -6,7 +6,7 @@ from lsst.pex.logging import Log
 from lsst.pex.policy import Policy
 from lsst.pex.exceptions import LsstCppException
 
-usage = """usage: %prog [-vqs] [-V int] [-p dc3pipe_policy_file] [-r runId] [node ...]
+usage = """usage: %prog [-vqs] [-V int] [-r reposDir ] [-p dc3pipe_policy_file] [-i runId] [node ...]
 
 Kill the pipelines running on a give set of head nodes.
 """
@@ -33,10 +33,10 @@ cl.add_option("-p", "--production-policy", action="store", dest="prodpol",
 cl.add_option("-l", "--platform-policy", action="store", dest="platpol", 
               default=None, metavar="policy_file",
               help="the platform policy file used to launch a pipeline")
-cl.add_option("-r", "--runid", action="store", dest="runid", 
+cl.add_option("-i", "--runid", action="store", dest="runid", 
               default="", metavar="runid",
               help="restrict the kill to pipelines running with this runid")
-cl.add_option("-d", "--repository-dir", action="store", dest="repos", 
+cl.add_option("-r", "--repository-dir", action="store", dest="repos", 
               default=None, metavar="dir",
            help="assume the given policy repository directory (for -p and -l)")
 
