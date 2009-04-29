@@ -20,10 +20,9 @@ filename   : string
 
 # Information needed for ISR
 gain       : float
-saturate   : float
+saturation : float
 trimsec    : string
 overscan   : string
-ampId      : int
 
 # calibration data only
 # meancounts : float
