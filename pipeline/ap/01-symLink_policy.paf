@@ -1,7 +1,7 @@
 RunMode: preprocess
 
 Links: {
-        sourcePath: /lsst/images/repository/catalogs/CFHTLS/objref
+        sourcePath: /lsst/images/repository/catalog/CFHTLS/objref
         destPath: %(input)/objref
 }
 
