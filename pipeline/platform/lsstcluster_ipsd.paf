@@ -38,14 +38,14 @@ dir: {
 hw: {
 
    # the number of available nodes
-   nodeCount:  2
+   nodeCount:  4
 
    # the minimum number of cores per node
    minCoresPerNode:  2
 
    # the maximum number of cores per node; if not specified, this will 
    # default to the minimum number.
-   maxCoresPerNode:  2
+   maxCoresPerNode:  8
 
    # the minimum RAM available per node in GB
    minRamPerNode:  2.0
@@ -68,9 +68,9 @@ deploy:  {
 
    # the node names and the number of cores available to them
    # 
-#   nodes:  "lsst5:8"
-   nodes:  "lsst6:2"
-#   nodes:  "lsst7:8"
-#   nodes:  "lsst8:8"
+   nodes:  "lsst5:8"
+   nodes:  "lsst6:8"
+   nodes:  "lsst7:8"
+   nodes:  "lsst8:8"
 
 }
