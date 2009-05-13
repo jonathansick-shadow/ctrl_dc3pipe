@@ -9,6 +9,10 @@ OutputItems: {
            Storage: "FitsStorage"
            Location: "%(output)/sci/v%(visitId)-e0/v%(visitId)-e0-c%03d(ccdId)-a%02d(ampId).sci"
        }
+       StoragePolicy: {
+           Storage: "DbStorage"
+           Location: "%(dbUrl)"
+       }
    }
    calibratedExposure1: {
        Type: "ExposureF"
@@ -17,5 +21,22 @@ OutputItems: {
            Storage: "FitsStorage"
            Location: "%(output)/sci/v%(visitId)-e1/v%(visitId)-e1-c%03d(ccdId)-a%02d(ampId).sci"
        }
+       StoragePolicy: {
+           Storage: "DbStorage"
+           Location: "%(dbUrl)"
+       }
+   }
+}
+
+Persistence: {
+   Formatter: {
+      ExposureF: {
+         calibratedExposure0: {
+            TableName: "Science_Amp_Exposure"
+         }
+         calibratedExposure1: {
+            TableName: "Science_Amp_Exposure"
+         }
+      }
    }
 }

@@ -275,6 +275,12 @@ execute: {
       eventTopic: "None"
       stagePolicy: @IPSD/28-calibratedExposuresOutput_policy.paf
    }
+
+   # Compute CCD-level metadata (no stage policy)
+   appStage: {
+      stageName: "lsst.ctrl.dc3pipe.CcdMetadataStage.CcdMetadataStage"
+      eventTopic: "None"
+   }
    
    # Load WCS from template image
    appStage: {
