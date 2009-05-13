@@ -135,11 +135,13 @@ class TransformMetadataStage(Stage):
 
         transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
 
-        metadata.set('rawAmpExposureId',
+        metadata.setLongLong('ampExposureId',
                 exposureMetadata.get('ampExposureId'))
-        metadata.set('rawCCDExposureId',
+        metadata.setLongLong('ccdExposureId',
                 exposureMetadata.get('ccdExposureId'))
-        metadata.set('url', exposureMetadata.get('filename'))
+        metadata.setLongLong('fpaExposureId',
+                exposureMetadata.get('fpaExposureId'))
+        metadata.set('url', metadata.get('filename'))
         metadata.set('ampId', clipboard.get('ampId'))
 
         clipboard.put(metadataKey, metadata)

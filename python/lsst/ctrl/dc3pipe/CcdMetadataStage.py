@@ -20,7 +20,8 @@ class CcdMetadataStage(Stage):
         db.executeSql("""
             INSERT INTO Science_CCD_Exposure
             SELECT DISTINCT
-                scienceCCDExposureId, scienceFPAExposureId, rawCCDExposureId
+                scienceCCDExposureId, scienceFPAExposureId,
+                scienceCCDExposureId
             FROM Science_Amp_Exposure
             WHERE scienceFPAExposureId = %d OR scienceFPAExposureId = %d
         """ % (fpaExposureId0, fpaExposureId1) )
