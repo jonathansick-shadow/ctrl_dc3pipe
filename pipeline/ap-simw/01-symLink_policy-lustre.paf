@@ -1,0 +1,7 @@
+RunMode: preprocess
+
+Links: {
+        sourcePath: /lustre/repository/catalog/SimWide/objref
+        destPath: %(input)/objref
+}
+
