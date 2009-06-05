@@ -84,7 +84,7 @@ execute: {
    appStage: {
       stageName: "lsst.pex.harness.SymLinkStage.SymLinkStage"
       eventTopic: "None"
-      stagePolicy: @apsim/01-symLink_policy-nfs.paf
+      stagePolicy: @ap-simd/01-symLink_policy-lustre.paf
    }
 
    appStage: {
@@ -132,6 +132,6 @@ execute: {
    appStage: {
       stageName: "lsst.ap.pipeline.StoreStage"
       eventTopic: "None"
-      stagePolicy: @ap/09-store_policy.paf
+      stagePolicy: @ap-simd/09-store_policy.paf
    }
 }

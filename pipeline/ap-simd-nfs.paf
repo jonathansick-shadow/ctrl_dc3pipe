@@ -1,0 +1,137 @@
+#<?cfg paf policy ?>
+#
+# Pipeline Layer Policy
+#
+
+# this part is used by the orchestration layer to determine if
+# this pipeline can run on a particular platform or with a particular
+# database server
+requires: {
+   database: {
+      type:  MySQL
+   }
+
+   platform: {
+      minCoreCount:  4
+   }
+}
+
+
+framework: {
+   # the type determines the schema of the "execute" policy below
+   type:  standard
+
+   # this is the file that should be sourced to set the environment on
+   # the head node where the pipeline is executed.  The file path component
+   # can be represented as $ENVVAR which will be replaced with the
+   # value of the environment variable with the name ENVVAR.
+   # 
+   environment: "$CTRL_DC3PIPE_DIR/etc/setup.sh".
+
+   # this is the execution script that we will use to start the
+   # pipeline on the head node of the platform.  The file path component
+   # can be represented as $ENVVAR which will be replaced with the
+   # value of the environment variable with the name ENVVAR.
+   # 
+   exec:  "$PEX_HARNESS_DIR/bin/launchPipeline.sh"
+}
+
+# the contents of this item is passed to the harness to configure the
+# pipeline at launch time.
+# 
+execute: {
+   # executionMode: oneloop
+   localLogMode: true
+   eventBrokerHost: "lsst8.ncsa.uiuc.edu"
+
+   # receiving an event with this topic name will shut down the pipeline
+   shutdownTopic: shutdownAssociationEvent
+
+   dir: {
+
+      shortName: "ap"
+
+      # the default root directory all files read or written by pipelines
+      # deployed on this platform.  
+      # This can be overriden by any of the "named role" directories below.
+      #
+      defaultRoot:  .
+
+      runDirPattern: "../../%(runid)s/%(shortname)s"
+
+
+      # These indicate the directory that should be used for a named purpose.
+      # If relative paths are given, the resulting directory will be relative
+      # to the default run directory (determined by defaultRoot and the 
+      # runDirPattern).  These can be given as patterns specified in the same 
+      # format as runDirPattern.  (If a directory is given as an absolute path,
+      # using a pattern is recommended in order to distinguish between different 
+      # production runs.)
+      #
+      work:     work    # the working directory, where the pipeline is started
+      input:    input   # the directory to cache/find input data
+      output:   output  # the directory to write output data
+      update:   update  # the directory where updatable data is deployed
+      scratch:  scratch # a directory for temporary files that may be deleted 
+                        # upon completion of the pipeline
+   }
+
+
+   ##
+   # Stage configuration
+
+   # Link input files into input directory
+   appStage: {
+      stageName: "lsst.pex.harness.SymLinkStage.SymLinkStage"
+      eventTopic: "None"
+      stagePolicy: @ap-simd/01-symLink_policy-nfs.paf
+   }
+
+   appStage: {
+      stageName: "lsst.ap.pipeline.LoadStage"
+      eventTopic: "triggerAssociationEvent"
+      stagePolicy: @ap/02-load_policy.paf
+   }
+
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.InputStage"
+      eventTopic: "None"
+      stagePolicy: @ap/03-diaSourceInput_policy.paf
+   }
+
+   appStage: {
+      stageName: "lsst.ap.pipeline.MatchDiaSourcesStage"
+      eventTopic: "None"
+      stagePolicy: "None"
+   }
+
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: @ap/05-diaSourceMatchOutput_policy.paf
+   }
+
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.InputStage"
+      eventTopic: "triggerMatchMopsPredsEvent"
+      stagePolicy: @ap/06-predInput_policy.paf
+   }
+
+   appStage: {
+      stageName: "lsst.ap.pipeline.MatchMopsPredsStage"
+      eventTopic: "None"
+      stagePolicy: "None"
+   }
+
+   appStage: {
+      stageName: "lsst.pex.harness.IOStage.OutputStage"
+      eventTopic: "None"
+      stagePolicy: @ap/08-predMatchAndObjectOutput_policy.paf
+   }
+
+   appStage: {
+      stageName: "lsst.ap.pipeline.StoreStage"
+      eventTopic: "None"
+      stagePolicy: @ap-simd/09-store_policy.paf
+   }
+}
