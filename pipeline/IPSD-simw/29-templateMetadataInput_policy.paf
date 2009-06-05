@@ -1,0 +1,10 @@
+InputItems: {
+    templateWcs: {
+        Type: "Wcs"
+        PythonType: "lsst.afw.image.Wcs"
+        StoragePolicy: {
+            Storage: "FitsStorage"
+            Location: "%(input)/template/SimDeep/SimWide4_img.fits"
+        }
+    }
+}

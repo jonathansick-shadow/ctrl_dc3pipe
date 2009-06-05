@@ -50,15 +50,13 @@ execute: {
    
    dir: {
 
-      shortName: "IPSD"
-
       # the default root directory all files read or written by pipelines
       # deployed on this platform.  
       # This can be overriden by any of the "named role" directories below.
       #
       defaultRoot:  .
 
-      runDirPattern: "../../%(runid)s/%(shortname)s"
+      runDirPattern: "../../%(runid)s"
 
 
       # These indicate the directory that should be used for a named purpose.
@@ -86,7 +84,7 @@ execute: {
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.SliceInfoStage.SliceInfoStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/01-sliceInfo_policy.paf
+      stagePolicy: @IPSD-simw/01-sliceInfo_policy.paf
    }
    
    # Link input files into input directory
@@ -100,7 +98,7 @@ execute: {
    appStage: {
       stageName: "lsst.pex.harness.IOStage.InputStage"
       eventTopic: "triggerImageprocEvent0"
-      stagePolicy: @IPSD/03-imageInput0_policy.paf
+      stagePolicy: @IPSD-simw/03-imageInput0_policy.paf
    }
    
    # Transform input event into visit metadata (exposure 0)
@@ -114,7 +112,7 @@ execute: {
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.MetadataStages.TransformMetadataStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/05-transformMetadata0_policy.paf
+      stagePolicy: @IPSD-simw/05-transformMetadata0_policy.paf
    }
    
    # Validate that metadata is in LSST standard form (exposure 0)
@@ -142,7 +140,7 @@ execute: {
    appStage: {
       stageName: "lsst.ip.isr.IdentifyCalibrationProductsStage.IdentifyCalibrationProductsStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/09-identifyCalibrationProducts_policy.paf
+      stagePolicy: @IPSD-simw/09-identifyCalibrationProducts_policy.paf
    }
    
    # Load the calibration data products
@@ -156,7 +154,7 @@ execute: {
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.MetadataStages.TransformExposureMetadataStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/11-transformCalibrationMetadata_policy.paf
+      stagePolicy: @IPSD-simw/11-transformCalibrationMetadata_policy.paf
    }
 
    # Perform ISR (exposure 0)
@@ -212,7 +210,7 @@ execute: {
    appStage: {
       stageName: "lsst.pex.harness.IOStage.InputStage"
       eventTopic: "triggerImageprocEvent1"
-      stagePolicy: @IPSD/19-imageInput1_policy.paf
+      stagePolicy: @IPSD-simw/19-imageInput1_policy.paf
    }
    
    # Transform input event into visit metadata (exposure 1)
@@ -226,7 +224,7 @@ execute: {
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.MetadataStages.TransformMetadataStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/21-transformMetadata1_policy.paf
+      stagePolicy: @IPSD-simw/21-transformMetadata1_policy.paf
    }
    
    # Validate that metadata is in LSST standard form (exposure 1)
@@ -257,19 +255,19 @@ execute: {
       stagePolicy: @IPSD/25-isr1_policy.paf
    }
    
-   # Load WCS sources from entire CCD
-   appStage: {
-      stageName: "lsst.pex.harness.IOStage.InputStage"
-      eventTopic: "None"
-      stagePolicy: @IPSD/26-wcsSourcesInput_policy.paf
-   }
-   
-   # Determine WCS based on CCD's WCS sources
-   appStage: {
-      stageName: "lsst.meas.pipeline.WcsDeterminationStage"
-      eventTopic: "None"
-      stagePolicy: @IPSD/27-wcsDetermination_policy.paf
-   }
+#   # Load WCS sources from entire CCD
+#   appStage: {
+#      stageName: "lsst.pex.harness.IOStage.InputStage"
+#      eventTopic: "None"
+#      stagePolicy: @IPSD/26-wcsSourcesInput_policy.paf
+#   }
+#   
+#   # Determine WCS based on CCD's WCS sources
+#   appStage: {
+#      stageName: "lsst.meas.pipeline.WcsDeterminationStage
+#      eventTopic: "None"
+#      stagePolicy: @IPSD-simw/27-wcsDetermination_policy.paf
+#   }
    
    # Persist calibrated science exposures
    appStage: {
@@ -277,25 +275,25 @@ execute: {
       eventTopic: "None"
       stagePolicy: @IPSD/28-calibratedExposuresOutput_policy.paf
    }
-   
+
    # Compute CCD-level metadata (no stage policy)
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.CcdMetadataStage.CcdMetadataStage"
       eventTopic: "None"
    }
-
+   
    # Load WCS from template image
    appStage: {
       stageName: "lsst.pex.harness.IOStage.InputStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/29-templateMetadataInput_policy.paf
+      stagePolicy: @IPSD-simw/29-templateMetadataInput_policy.paf
    }
    
    # Load dimensions from template image (hack for DC3a)
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.TemplateDimensionStage.TemplateDimensionStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/30-templateDimension_policy.paf
+      stagePolicy: @IPSD-simw/30-templateDimension_policy.paf
    }
 
    # Determine bounding box of exposures within template image
@@ -309,7 +307,7 @@ execute: {
    appStage: {
       stageName: "lsst.pex.harness.IOStage.InputStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/32-templateSubimageInput_policy.paf
+      stagePolicy: @IPSD-simw/32-templateSubimageInput_policy.paf
    }
    
    # Persist template subimage with bounding box and WCS information

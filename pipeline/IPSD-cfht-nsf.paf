@@ -86,7 +86,7 @@ execute: {
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.SliceInfoStage.SliceInfoStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/01-sliceInfo_policy-nsf.paf
+      stagePolicy: @IPSD/01-sliceInfo_policy.paf
    }
    
    # Link input files into input directory
@@ -142,7 +142,7 @@ execute: {
    appStage: {
       stageName: "lsst.ip.isr.IdentifyCalibrationProductsStage.IdentifyCalibrationProductsStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/09-identifyCalibrationProducts_policy-nsf.paf
+      stagePolicy: @IPSD/09-identifyCalibrationProducts_policy.paf
    }
    
    # Load the calibration data products
