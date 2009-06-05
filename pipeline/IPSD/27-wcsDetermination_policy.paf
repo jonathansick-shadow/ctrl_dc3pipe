@@ -23,5 +23,5 @@ brightestNStars : 45
 
 # Range of allowed fit pixel scale = [input scale/pixelScaleRangeFactor, input scale * pixelScaleRangeFactor]
 # must be >= 1.0; defaults to 1.1
-pixelScaleRangeFactor: 1.1
+pixelScaleRangeFactor: 2.0
 ccdDimensions: @datatypePolicy/cfhtCcdDimensionsPolicy.paf

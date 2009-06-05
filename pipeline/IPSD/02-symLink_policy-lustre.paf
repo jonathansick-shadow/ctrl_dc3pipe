@@ -1,0 +1,16 @@
+RunMode: preprocess
+
+Links: {
+	sourcePath: /lustre/repository/raw
+	destPath: %(input)/raw
+}
+
+Links: {
+	sourcePath: /lustre/repository/calib
+	destPath: %(input)/calib
+}
+
+Links: {
+	sourcePath: /lustre/repository/template
+	destPath: %(input)/template
+}

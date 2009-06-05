@@ -1,0 +1,5 @@
+nAmps: 8
+nCcds: 36
+ccdIdFormula: "sliceId / nAmps"
+ampIdFormula: "sliceId % nAmps"
+ampBBoxDbPath: "/lustre/repository/calib/cfhtAmpBBoxPolicy.paf"

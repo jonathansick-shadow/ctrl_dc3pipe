@@ -86,14 +86,14 @@ execute: {
    appStage: {
       stageName: "lsst.ctrl.dc3pipe.SliceInfoStage.SliceInfoStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/01-sliceInfo_policy.paf
+      stagePolicy: @IPSD/01-sliceInfo_policy-nsf.paf
    }
    
    # Link input files into input directory
    appStage: {
       stageName: "lsst.pex.harness.SymLinkStage.SymLinkStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/02-symLink_policy.paf
+      stagePolicy: @IPSD/02-symLink_policy-nsf.paf
    }
    
    # Load input image (exposure 0)
@@ -142,7 +142,7 @@ execute: {
    appStage: {
       stageName: "lsst.ip.isr.IdentifyCalibrationProductsStage.IdentifyCalibrationProductsStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/09-identifyCalibrationProducts_policy.paf
+      stagePolicy: @IPSD/09-identifyCalibrationProducts_policy-nsf.paf
    }
    
    # Load the calibration data products
