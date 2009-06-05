@@ -1,0 +1,38 @@
+#<?cfg paf policy ?>
+#
+# Orchestration Layer Policy
+#
+
+eventBrokerHost:     lsst4.ncsa.uiuc.edu
+repositoryDirectory: $CTRL_DC3PIPE_DIR/pipeline
+shutdownTopic:       alertProductionShutdown
+
+databaseConfig: {
+    type: MySQL
+    configuratorClass: lsst.ctrl.orca.dbservers.MySQLConfigurator
+    database: @lsst10-mysql.paf
+}
+
+pipelines: {
+   IPSD: {
+      shortname:     IPSD
+      configuration: @IPSD.paf
+      platform:      @platform/nfs/lsstcluster_ipsd.paf
+
+      launch: true
+   }
+   nightmops: {
+      shortname:     nightmops
+      configuration: @nightmops.paf
+      platform:      @platform/nfs/lsstcluster_nmops.paf
+
+      launch: true 
+   }
+   ap: {
+      shortname:     ap
+      configuration: @ap.paf
+      platform:      @platform/nfs/lsstcluster_ap.paf
+
+      launch: true 
+   }
+}
