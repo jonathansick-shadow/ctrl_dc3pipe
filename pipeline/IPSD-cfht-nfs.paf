@@ -93,7 +93,7 @@ execute: {
    appStage: {
       stageName: "lsst.pex.harness.SymLinkStage.SymLinkStage"
       eventTopic: "None"
-      stagePolicy: @IPSD/02-symLink_policy-nsf.paf
+      stagePolicy: @IPSD/02-symLink_policy-nfs.paf
    }
    
    # Load input image (exposure 0)
