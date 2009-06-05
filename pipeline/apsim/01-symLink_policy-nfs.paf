@@ -1,0 +1,7 @@
+RunMode: preprocess
+
+Links: {
+        sourcePath: /lsst/images/repository/catalog/SimDeep/objref
+        destPath: %(input)/objref
+}
+

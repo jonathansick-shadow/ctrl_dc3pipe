@@ -1,0 +1,7 @@
+RunMode: preprocess
+
+Links: {
+        sourcePath: /lustre/repository/catalog/CFHTLS/objref
+        destPath: %(input)/objref
+}
+

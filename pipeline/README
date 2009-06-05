@@ -1,0 +1,16 @@
+This directory contains the recommended policy files for running the
+DC3 (Alert Production) pipelines.  The following files represent the
+top-level production policy files:
+
+  dc3pipe.paf              process CFHT data on NFS filesystem
+  dc3pipe-cfht-lustre.paf  process CFHT data on Lustre filesystem
+  dc3pipe-sim-nfs.paf      process simulated data on NFS filesystem
+  dc3pipe-sim-lustre.paf   process simulated data on Lustre filesystem
+
+Note: due to a bug in the ctrl_orca package, the pipeline level
+      pipelines must be named pipeline-name.paf where pipeline-name is
+      the short name of the pipeline (e.g. IPSD, ap, and nightmops).
+      Thus, to use the above mentioned production files, one must
+      rename the corresponding, restricted pipeline policy name
+      (i.e. IPSD.paf, ap.paf, and nightmops.paf).  
+
