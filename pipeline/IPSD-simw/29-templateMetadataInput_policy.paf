@@ -1,10 +1,11 @@
+AdditionalData: "ccdId=ccdId"
 InputItems: {
     templateWcs: {
         Type: "Wcs"
         PythonType: "lsst.afw.image.Wcs"
         StoragePolicy: {
             Storage: "FitsStorage"
-            Location: "%(input)/template/SimDeep/SimWide4_img.fits"
+            Location: "%(input)/template/SimWide01/000001-c%03d(ccdId)_img.fits"
         }
     }
 }

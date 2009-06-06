@@ -1,2 +1,3 @@
-templateLocation: "%(input)/template/SimWide/SimWide4_img.fits"
+AdditionalData: "ccdId=ccdId"
+templateLocation: "%(input)/template/SimWide01/000001-c%03d(ccdId)_img.fits"
 outputKey: "templateDimensions"

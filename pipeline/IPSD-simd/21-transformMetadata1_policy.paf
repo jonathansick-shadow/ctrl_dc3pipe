@@ -3,4 +3,5 @@ datatype: @datatypePolicy/simDataTypePolicy.paf
 suffix: Keyword
 imageKey: rawCameraImage1
 metadataKey: rawImageMetadata1
+exposureMetadataKey: exposureMetadata1
 computeWcsGuess: false
