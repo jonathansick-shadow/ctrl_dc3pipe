@@ -1,3 +1,4 @@
+ampBBoxKey: "ampBBox"
 ccdWcsKey: "ccdWcs"
 data: {
     inputKey: "diffimSourceSet0"
