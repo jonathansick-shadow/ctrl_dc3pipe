@@ -3,9 +3,11 @@
 # Orchestration Layer Policy
 #
 
-eventBrokerHost:     lsst4.ncsa.uiuc.edu
+eventBrokerHost:     lsst8.ncsa.uiuc.edu
 repositoryDirectory: $CTRL_DC3PIPE_DIR/pipeline
 shutdownTopic:       alertProductionShutdown
+productionRunConfiguratorClass: lsst.ctrl.orca.BasicProductionRunConfigurator
+
 
 databaseConfig: {
     type: MySQL
@@ -16,13 +18,15 @@ databaseConfig: {
 pipelines: {
    IPSD: {
       shortname:     IPSD
-      configuration: @IPSD.paf
+      configuratorClass: lsst.ctrl.orca.BasicPipelineConfigurator
+      configuration: @IPSD-simd-nfs.paf
       platform:      @platform/nfs/lsstcluster_ipsd.paf
 
       launch: true
    }
    nightmops: {
       shortname:     nightmops
+      configuratorClass: lsst.ctrl.orca.BasicPipelineConfigurator
       configuration: @nightmops.paf
       platform:      @platform/nfs/lsstcluster_nmops.paf
 
@@ -30,7 +34,8 @@ pipelines: {
    }
    ap: {
       shortname:     ap
-      configuration: @ap.paf
+      configuratorClass: lsst.ctrl.orca.BasicPipelineConfigurator
+      configuration: @ap-simd-nfs.paf
       platform:      @platform/nfs/lsstcluster_ap.paf
 
       launch: true 
