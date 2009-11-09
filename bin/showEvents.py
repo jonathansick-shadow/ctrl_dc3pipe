@@ -88,7 +88,9 @@ def checkTopics(receivers):
             date = str(datetime.datetime.utcfromtimestamp(ts))
             ts -= timeoffset
             if event.exists("TIMESTAMP"):
-                ts = event.get("TIMESTAMP") / 1.0e9
+                timestampInfo = event.get("TIMESTAMP") 
+                timestampVal = timestampInfo.nsecs()
+                ts = timestampVal / 1.0e9
                 date = str(datetime.datetime.utcfromtimestamp(ts))
                 ts -= timeoffset
             if event.exists("DATE"):
