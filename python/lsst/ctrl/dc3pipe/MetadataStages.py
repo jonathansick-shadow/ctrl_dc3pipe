@@ -5,6 +5,8 @@ import re
 import lsst.afw.image as afwImage
 import lsst.daf.base as dafBase
 
+import lsst.pex.harness.stage as harnessStage
+
 from lsst.pex.harness.Stage import Stage
 
 propertySetTypeInfos = {}
@@ -80,6 +82,9 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
 
 
 class ValidateMetadataStage(Stage):
+    parallelClass = ValidateMetadataStageParallel
+
+class ValidateMetadataStageParallel(harnessStage.ParallelProcessing):
 
     """Validates that every field in metadataPolicy exists in the
     input metadata, before sending the event down the pipeline.  This
@@ -91,8 +96,8 @@ class ValidateMetadataStage(Stage):
     with a survey-specific policy file specifying this mapping.
     """
 
-    def process(self):
-        clipboard = self.inputQueue.getNextDataset()
+    def process(self, clipboard):
+        #clipboard = self.inputQueue.getNextDataset()
         metadataPolicy = self._policy.getPolicy("metadata")
         imageMetadataKey = self._policy.get("imageMetadataKey")
         metadata = clipboard.get(imageMetadataKey)
@@ -100,6 +105,9 @@ class ValidateMetadataStage(Stage):
         self.outputQueue.addDataset(clipboard)
     
 class TransformMetadataStage(Stage):
+    parallelClass = TransformMetadataStageParallel
+
+class TransformMetadataStageParallel(harnessStage.ParallelProcessing):
 
     """This stage takes an input set of metadata and transforms this
     to the LSST standard.  It will be input-dataset specific, and the
@@ -108,8 +116,8 @@ class TransformMetadataStage(Stage):
     represents the location of LSST metadata in the particular data
     set."""
 
-    def process(self):
-        clipboard = self.inputQueue.getNextDataset()
+    def process(self, clipboard):
+        #clipboard = self.inputQueue.getNextDataset()
         metadataPolicy = self._policy.getPolicy("metadata")
         datatypePolicy = self._policy.getPolicy("datatype")
         imageKey = self._policy.get("imageKey")
@@ -150,6 +158,9 @@ class TransformMetadataStage(Stage):
         self.outputQueue.addDataset(clipboard)
 
 class TransformExposureMetadataStage(Stage):
+    parallelClass = TransformExposureMetadataStageParallel
+
+class TransformExposureMetadataStageParallel(harnessStage.ParallelProcessing):
 
     """This stage takes a list of input Exposures and transforms the metadata
     of each one to the LSST standard.  It will be input-dataset specific, and
@@ -157,8 +168,8 @@ class TransformExposureMetadataStage(Stage):
     string in the datatypePolicy named metadataKeyword that represents the
     location of LSST metadata in the particular data set."""
 
-    def process(self):
-        clipboard = self.inputQueue.getNextDataset()
+    def process(self, clipboard):
+        #clipboard = self.inputQueue.getNextDataset()
         metadataPolicy = self._policy.getPolicy("metadata")
         datatypePolicy = self._policy.getPolicy("datatype")
         exposureKeys = self._policy.getStringArray("exposureKey")
