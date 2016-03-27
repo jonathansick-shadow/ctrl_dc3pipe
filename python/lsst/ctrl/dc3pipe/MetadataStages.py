@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-# 
+#
 # LSST Data Management System
 # Copyright 2008, 2009, 2010 LSST Corporation.
-# 
+#
 # This product includes software developed by the
 # LSST Project (http://www.lsst.org/).
 #
@@ -11,14 +11,14 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
-# You should have received a copy of the LSST License Statement and 
-# the GNU General Public License along with this program.  If not, 
+#
+# You should have received a copy of the LSST License Statement and
+# the GNU General Public License along with this program.  If not,
 # see <http://www.lsstcorp.org/LegalNotices/>.
 #
 
@@ -32,14 +32,20 @@ from lsst.pex.harness.Stage import Stage
 
 propertySetTypeInfos = {}
 
+
 def setTypeInfos():
     global propertySetTypeInfos
     p = dafBase.PropertySet()
-    p.set("str",  "bar"); propertySetTypeInfos["string"] = p.typeOf("str")
-    p.set("int",      3); propertySetTypeInfos["int"]    = p.typeOf("int")
-    p.set("float",  3.1); propertySetTypeInfos["float"]  = p.typeOf("float")
-    p.set("bool",  True); propertySetTypeInfos["bool"]   = p.typeOf("bool")
+    p.set("str", "bar")
+    propertySetTypeInfos["string"] = p.typeOf("str")
+    p.set("int", 3)
+    propertySetTypeInfos["int"] = p.typeOf("int")
+    p.set("float", 3.1)
+    propertySetTypeInfos["float"] = p.typeOf("float")
+    p.set("bool", True)
+    propertySetTypeInfos["bool"] = p.typeOf("bool")
 setTypeInfos()
+
 
 def validateMetadata(metadata, metadataPolicy):
     paramNames = metadataPolicy.paramNames(1)
@@ -49,13 +55,14 @@ def validateMetadata(metadata, metadataPolicy):
         # TBD; VALIDATE AGAINST DICTIONARY FOR TYPE ETC
     return True
 
+
 def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
     paramNames = metadataPolicy.paramNames(1)
     for paramName in paramNames:
         # If it already exists don't try and update it
         if metadata.exists(paramName):
             continue
-        
+
         mappingKey = paramName + suffix
         if datatypePolicy.exists(mappingKey):
             keyword = datatypePolicy.getString(mappingKey)
@@ -72,18 +79,18 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
 #            metadata.copy(paramName, metadata, keyword)
             metadata.copy(keyword + "_original", metadata, keyword)
             metadata.remove(keyword)
-    
+
     # Any additional operations on the input data?
     if datatypePolicy.exists('convertDateobsToTai'):
         if datatypePolicy.getBool('convertDateobsToTai'):
-            dateObs  = metadata.getDouble('dateObs')
+            dateObs = metadata.getDouble('dateObs')
             dateTime = dafBase.DateTime(dateObs, dafBase.DateTime.UTC)
-            dateObs  = dateTime.mjd(dafBase.DateTime.TAI)
+            dateObs = dateTime.mjd(dafBase.DateTime.TAI)
             metadata.setDouble('dateObs', dateObs)
 
     if datatypePolicy.exists('convertDateobsToMidExposure'):
         if datatypePolicy.getBool('convertDateobsToMidExposure'):
-            dateObs  = metadata.getDouble('dateObs')
+            dateObs = metadata.getDouble('dateObs')
             dateObs += metadata.getDouble('expTime') * 0.5 / 3600. / 24.
             metadata.setDouble('dateObs', dateObs)
 
@@ -98,7 +105,7 @@ def transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix):
 
     if datatypePolicy.exists('convertVisitIdToInt'):
         if datatypePolicy.getBool('convertVisitIdToInt'):
-            visitId  = metadata.getString('visitId')
+            visitId = metadata.getString('visitId')
             metadata.setInt('visitId', int(visitId))
 
 
@@ -121,7 +128,8 @@ class ValidateMetadataStage(Stage):
         metadata = clipboard.get(imageMetadataKey)
         validateMetadata(metadata, metadataPolicy)
         self.outputQueue.addDataset(clipboard)
-    
+
+
 class TransformMetadataStage(Stage):
 
     """This stage takes an input set of metadata and transforms this
@@ -159,11 +167,11 @@ class TransformMetadataStage(Stage):
         transformMetadata(metadata, datatypePolicy, metadataPolicy, suffix)
 
         metadata.setLongLong('ampExposureId',
-                exposureMetadata.get('ampExposureId'))
+                             exposureMetadata.get('ampExposureId'))
         metadata.setLongLong('ccdExposureId',
-                exposureMetadata.get('ccdExposureId'))
+                             exposureMetadata.get('ccdExposureId'))
         metadata.setLongLong('fpaExposureId',
-                exposureMetadata.get('fpaExposureId'))
+                             exposureMetadata.get('fpaExposureId'))
         metadata.set('url', metadata.get('filename'))
         metadata.set('ampId', clipboard.get('ampId'))
 
@@ -171,6 +179,7 @@ class TransformMetadataStage(Stage):
         clipboard.put(imageKey, decoratedImage.getImage())
 
         self.outputQueue.addDataset(clipboard)
+
 
 class TransformExposureMetadataStage(Stage):
 
